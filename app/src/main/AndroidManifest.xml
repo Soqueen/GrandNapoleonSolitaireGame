@@ -4,16 +4,23 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/gns_logo"
         android:label="@string/app_name"
+
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainPageActivity">
+        <activity android:name=".MainPageActivity" android:screenOrientation="landscape" android:configChanges="keyboardHidden|orientation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".DisplayDifficultyPageActivity"
+            android:parentActivityName=".MainPageActivity" >
+        </activity>
+        <activity android:name=".EasyLevelGameActivity"
+            android:parentActivityName=".DisplayDifficultyPageActivity" >
         </activity>
     </application>
 
