@@ -11,7 +11,7 @@
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="88dp"
-        android:layout_height="133dp"
+        android:layout_height="100dp"
         app:srcCompat="@drawable/abstract_clubs_1"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -95,4 +95,11 @@
         android:layout_toRightOf="@+id/imageView8"
         android:layout_alignBottom="@+id/imageView8" />
 
+    <ImageView
+        android:id="@+id/stack"
+        android:layout_width="88dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="15dp"
+        app:srcCompat="@drawable/background_stack"
+        android:layout_below="@id/imageView1"/>
 </RelativeLayout>
