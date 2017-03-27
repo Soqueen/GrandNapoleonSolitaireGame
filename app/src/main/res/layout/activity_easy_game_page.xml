@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/imageView1"
-        android:layout_width="88dp"
-        android:layout_height="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:srcCompat="@drawable/abstract_clubs_1"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -21,8 +21,8 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="88dp"
-        android:layout_height="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:srcCompat="@drawable/abstract_clubs_10"
         android:layout_alignTop="@+id/imageView1"
         android:layout_toRightOf="@+id/imageView1"
@@ -30,8 +30,8 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="88dp"
-        android:layout_height="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:srcCompat="@drawable/abstract_clubs_11"
         android:layout_alignTop="@+id/imageView2"
         android:layout_toRightOf="@+id/imageView2"
@@ -39,8 +39,8 @@
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="88dp"
-        android:layout_height="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:srcCompat="@drawable/abstract_clubs_12"
         android:layout_alignTop="@+id/imageView3"
         android:layout_toRightOf="@+id/imageView3"
@@ -48,19 +48,19 @@
 
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="88dp"
-        android:layout_height="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:srcCompat="@drawable/abstract_clubs_13"
         android:layout_alignTop="@+id/imageView4"
         android:layout_toRightOf="@+id/imageView4"
         android:layout_alignBottom="@+id/imageView4"
-        android:layout_marginLeft="70dp"
-        android:layout_marginRight="70dp"/>
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"/>
 
     <ImageView
         android:id="@+id/imageView6"
-        android:layout_width="88dp"
-        android:layout_height="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:srcCompat="@drawable/abstract_clubs_2"
         android:layout_alignTop="@+id/imageView5"
         android:layout_toRightOf="@+id/imageView5"
@@ -68,8 +68,8 @@
 
     <ImageView
         android:id="@+id/imageView7"
-        android:layout_width="88dp"
-        android:layout_height="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:srcCompat="@drawable/abstract_clubs_3"
         android:layout_alignTop="@+id/imageView6"
         android:layout_toLeftOf="@+id/imageView6"
@@ -79,8 +79,8 @@
 
     <ImageView
         android:id="@+id/imageView8"
-        android:layout_width="88dp"
-        android:layout_height="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:srcCompat="@drawable/abstract_clubs_5"
         android:layout_alignTop="@+id/imageView7"
         android:layout_toRightOf="@+id/imageView7"
@@ -88,8 +88,8 @@
 
     <ImageView
         android:id="@+id/imageView9"
-        android:layout_width="88dp"
-        android:layout_height="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:srcCompat="@drawable/abstract_clubs_4"
         android:layout_alignTop="@+id/imageView8"
         android:layout_toRightOf="@+id/imageView8"
@@ -97,8 +97,8 @@
 
     <ImageView
         android:id="@+id/stack"
-        android:layout_width="88dp"
-        android:layout_height="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         app:srcCompat="@drawable/background_stack"
         android:layout_below="@id/imageView1"/>
