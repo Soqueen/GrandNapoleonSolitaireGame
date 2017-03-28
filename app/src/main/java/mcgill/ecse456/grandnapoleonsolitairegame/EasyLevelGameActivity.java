@@ -19,6 +19,9 @@ public class EasyLevelGameActivity extends AppCompatActivity {
     private float dy;
     private float x;
     private float y;
+    private int stackHeight, stackWidth, stackX, stackY;
+    private int[] location = new int[2], locationCard = new int[2];
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,33 +44,17 @@ public class EasyLevelGameActivity extends AppCompatActivity {
                 v.bringToFront();
                 x = event.getRawX();
                 y = event.getRawY();
-                int stackHeight, stackWidth, stackX, stackY;
-                int[] location = new int[2];
-                cardStack.getLocationOnScreen(location);
-                stackHeight = cardStack.getHeight();
-                stackWidth = cardStack.getWidth();
-                stackX = cardStack.getLeft();
-                stackY = cardStack.getTop();
+                findStackLocation(img, cardStack);
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        Log.d(msg, "Action Down");
-                        dx = event.getX();
-                        dy = event.getY();
+                        actionDown(v, event, img);
                         break;
                     case MotionEvent.ACTION_MOVE:
-                        img.setX(x - dx);
-                        img.setY(y - (dy + 180));
+                        actionMove(img);
                         break;
                     case MotionEvent.ACTION_UP:
                         Log.d(msg, "Action Up");
-//                        Log.d(msg, ""+location[0]);
-//                        Log.d(msg, ""+location[1]);
-//                        Log.d(msg, ""+stackHeight);
-//                        Log.d(msg, ""+stackWidth);
-                        if ((x > location[0]+ 15 && x < location[0]+stackWidth) && (y > location[1] && y < location[1]+stackHeight)) {
-                            img.setX(stackX);
-                            img.setY(stackY);
-                        }
+                        actionUp(img);
                         break;
                     default:
                         Log.d(msg, "Default");
@@ -76,34 +63,24 @@ public class EasyLevelGameActivity extends AppCompatActivity {
                 return true;
             }
         });
+
         img2.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 v.bringToFront();
                 x = event.getRawX();
                 y = event.getRawY();
-                int stackHeight, stackWidth, stackX, stackY;
-                int[] location = new int[2];
-                cardStack.getLocationOnScreen(location);
-                stackHeight = cardStack.getHeight();
-                stackWidth = cardStack.getWidth();
-                stackX = cardStack.getLeft();
-                stackY = cardStack.getTop();
+                findStackLocation(img2, cardStack);
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        dx = event.getX();
-                        dy = event.getY();
+                        actionDown(v, event, img2);
                         break;
                     case MotionEvent.ACTION_MOVE:
-                        img2.setX(x - dx);
-                        img2.setY(y - (dy + 180));
+                        actionMove(img2);
                         break;
                     case MotionEvent.ACTION_UP:
                         Log.d(msg, "Action Up");
-                        if ((x > location[0]+ 15 && x < location[0]+stackWidth) && (y > location[1] && y < location[1]+stackHeight)) {
-                            img2.setX(stackX);
-                            img2.setY(stackY);
-                        }
+                        actionUp(img2);
                         break;
                     default:
                         Log.d(msg, "Default");
@@ -118,28 +95,17 @@ public class EasyLevelGameActivity extends AppCompatActivity {
                 v.bringToFront();
                 x = event.getRawX();
                 y = event.getRawY();
-                int stackHeight, stackWidth, stackX, stackY;
-                int[] location = new int[2];
-                cardStack.getLocationOnScreen(location);
-                stackHeight = cardStack.getHeight();
-                stackWidth = cardStack.getWidth();
-                stackX = cardStack.getLeft();
-                stackY = cardStack.getTop();
+                findStackLocation(img3, cardStack);
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        dx = event.getX();
-                        dy = event.getY();
+                        actionDown(v, event, img3);
                         break;
                     case MotionEvent.ACTION_MOVE:
-                        img3.setX(x - dx);
-                        img3.setY(y - (dy + 180));
+                        actionMove(img3);
                         break;
                     case MotionEvent.ACTION_UP:
                         Log.d(msg, "Action Up");
-                        if ((x > location[0]+ 15 && x < location[0]+stackWidth) && (y > location[1] && y < location[1]+stackHeight)) {
-                            img3.setX(stackX);
-                            img3.setY(stackY);
-                        }
+                        actionUp(img3);
                         break;
                     default:
                         Log.d(msg, "Default");
@@ -154,28 +120,17 @@ public class EasyLevelGameActivity extends AppCompatActivity {
                 v.bringToFront();
                 x = event.getRawX();
                 y = event.getRawY();
-                int stackHeight, stackWidth, stackX, stackY;
-                int[] location = new int[2];
-                cardStack.getLocationOnScreen(location);
-                stackHeight = cardStack.getHeight();
-                stackWidth = cardStack.getWidth();
-                stackX = cardStack.getLeft();
-                stackY = cardStack.getTop();
+                findStackLocation(img4, cardStack);
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        dx = event.getX();
-                        dy = event.getY();
+                        actionDown(v, event, img4);
                         break;
                     case MotionEvent.ACTION_MOVE:
-                        img4.setX(x - dx);
-                        img4.setY(y - (dy + 180));
+                        actionMove(img4);
                         break;
                     case MotionEvent.ACTION_UP:
                         Log.d(msg, "Action Up");
-                        if ((x > location[0]+ 15 && x < location[0]+stackWidth) && (y > location[1] && y < location[1]+stackHeight)) {
-                            img4.setX(stackX);
-                            img4.setY(stackY);
-                        }
+                        actionUp(img4);
                         break;
                     default:
                         Log.d(msg, "Default");
@@ -189,28 +144,17 @@ public class EasyLevelGameActivity extends AppCompatActivity {
                 v.bringToFront();
                 x = event.getRawX();
                 y = event.getRawY();
-                int stackHeight, stackWidth, stackX, stackY;
-                int[] location = new int[2];
-                cardStack.getLocationOnScreen(location);
-                stackHeight = cardStack.getHeight();
-                stackWidth = cardStack.getWidth();
-                stackX = cardStack.getLeft();
-                stackY = cardStack.getTop();
+                findStackLocation(img5, cardStack);
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        dx = event.getX();
-                        dy = event.getY();
+                        actionDown(v, event, img5);
                         break;
                     case MotionEvent.ACTION_MOVE:
-                        img5.setX(x - dx);
-                        img5.setY(y - (dy + 180));
+                        actionMove(img5);
                         break;
                     case MotionEvent.ACTION_UP:
                         Log.d(msg, "Action Up");
-                        if ((x > location[0]+ 15 && x < location[0]+stackWidth) && (y > location[1] && y < location[1]+stackHeight)) {
-                            img5.setX(stackX);
-                            img5.setY(stackY);
-                        }
+                        actionUp(img5);
                         break;
                     default:
                         Log.d(msg, "Default");
@@ -224,28 +168,17 @@ public class EasyLevelGameActivity extends AppCompatActivity {
                 v.bringToFront();
                 x = event.getRawX();
                 y = event.getRawY();
-                int stackHeight, stackWidth, stackX, stackY;
-                int[] location = new int[2];
-                cardStack.getLocationOnScreen(location);
-                stackHeight = cardStack.getHeight();
-                stackWidth = cardStack.getWidth();
-                stackX = cardStack.getLeft();
-                stackY = cardStack.getTop();
+                findStackLocation(img6, cardStack);
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        dx = event.getX();
-                        dy = event.getY();
+                        actionDown(v, event, img6);
                         break;
                     case MotionEvent.ACTION_MOVE:
-                        img6.setX(x - dx);
-                        img6.setY(y - (dy + 180));
+                        actionMove(img6);
                         break;
                     case MotionEvent.ACTION_UP:
                         Log.d(msg, "Action Up");
-                        if ((x > location[0]+ 15 && x < location[0]+stackWidth) && (y > location[1] && y < location[1]+stackHeight)) {
-                            img6.setX(stackX);
-                            img6.setY(stackY);
-                        }
+                        actionUp(img6);
                         break;
                     default:
                         Log.d(msg, "Default");
@@ -260,28 +193,17 @@ public class EasyLevelGameActivity extends AppCompatActivity {
                 v.bringToFront();
                 x = event.getRawX();
                 y = event.getRawY();
-                int stackHeight, stackWidth, stackX, stackY;
-                int[] location = new int[2];
-                cardStack.getLocationOnScreen(location);
-                stackHeight = cardStack.getHeight();
-                stackWidth = cardStack.getWidth();
-                stackX = cardStack.getLeft();
-                stackY = cardStack.getTop();
+                findStackLocation(img7, cardStack);
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        dx = event.getX();
-                        dy = event.getY();
+                        actionDown(v, event, img7);
                         break;
                     case MotionEvent.ACTION_MOVE:
-                        img7.setX(x - dx);
-                        img7.setY(y - (dy + 180));
+                        actionMove(img7);
                         break;
                     case MotionEvent.ACTION_UP:
                         Log.d(msg, "Action Up");
-                        if ((x > location[0]+ 15 && x < location[0]+stackWidth) && (y > location[1] && y < location[1]+stackHeight)) {
-                            img7.setX(stackX);
-                            img7.setY(stackY);
-                        }
+                        actionUp(img7);
                         break;
                     default:
                         Log.d(msg, "Default");
@@ -296,28 +218,17 @@ public class EasyLevelGameActivity extends AppCompatActivity {
                 v.bringToFront();
                 x = event.getRawX();
                 y = event.getRawY();
-                int stackHeight, stackWidth, stackX, stackY;
-                int[] location = new int[2];
-                cardStack.getLocationOnScreen(location);
-                stackHeight = cardStack.getHeight();
-                stackWidth = cardStack.getWidth();
-                stackX = cardStack.getLeft();
-                stackY = cardStack.getTop();
+                findStackLocation(img8, cardStack);
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        dx = event.getX();
-                        dy = event.getY();
+                        actionDown(v, event, img8);
                         break;
                     case MotionEvent.ACTION_MOVE:
-                        img8.setX(x - dx);
-                        img8.setY(y - (dy + 180));
+                        actionMove(img8);
                         break;
                     case MotionEvent.ACTION_UP:
                         Log.d(msg, "Action Up");
-                        if ((x > location[0]+ 15 && x < location[0]+stackWidth) && (y > location[1] && y < location[1]+stackHeight)) {
-                            img8.setX(stackX);
-                            img8.setY(stackY);
-                        }
+                        actionUp(img8);
                         break;
                     default:
                         Log.d(msg, "Default");
@@ -330,28 +241,19 @@ public class EasyLevelGameActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 v.bringToFront();
-                int stackHeight, stackWidth, stackX, stackY;
-                int[] location = new int[2];
-                cardStack.getLocationOnScreen(location);
-                stackHeight = cardStack.getHeight();
-                stackWidth = cardStack.getWidth();
-                stackX = cardStack.getLeft();
-                stackY = cardStack.getTop();
+                x = event.getRawX();
+                y = event.getRawY();
+                findStackLocation(img9, cardStack);
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        dx = event.getX();
-                        dy = event.getY();
+                        actionDown(v, event, img9);
                         break;
                     case MotionEvent.ACTION_MOVE:
-                        img9.setX(x - dx);
-                        img9.setY(y - (dy + 180));
+                        actionMove(img9);
                         break;
                     case MotionEvent.ACTION_UP:
                         Log.d(msg, "Action Up");
-                        if ((x > location[0]+ 15 && x < location[0]+stackWidth) && (y > location[1] && y < location[1]+stackHeight)) {
-                            img9.setX(stackX);
-                            img9.setY(stackY);
-                        }
+                        actionUp(img9);
                         break;
                     default:
                         Log.d(msg, "Default");
@@ -360,5 +262,33 @@ public class EasyLevelGameActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
+
+    private void actionDown(View v, MotionEvent event, ImageView i) {
+        x = event.getRawX();
+        y = event.getRawY();
+        dx = x - i.getX();
+        dy = y - i.getY();
+    }
+
+    private void actionMove(ImageView i) {
+        i.setX(x-dx);
+        i.setY(y-dy);
+    }
+
+    private void actionUp(ImageView i) {
+        if ((x > location[0]+ 15 && x < location[0]+stackWidth) && (y > location[1] && y < location[1]+stackHeight)) {
+            i.setX(stackX);
+            i.setY(stackY);
+        }
+    }
+
+    private void findStackLocation(ImageView i, ImageView c) {
+        i.getLocationOnScreen(locationCard);
+        c.getLocationOnScreen(location);
+        stackHeight = c.getHeight();
+        stackWidth = c.getWidth();
+        stackX = c.getLeft();
+        stackY = c.getTop();
     }
 }
