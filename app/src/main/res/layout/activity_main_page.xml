@@ -109,7 +109,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:fontFamily="serif-monospace"
-        android:text="Developed by: \n     Andrew Lin \n     Sok Heng Lim"
+        android:text="Developed by: \n     Sok Heng Lim \n     Andrew Lin"
         android:textColor="@android:color/darker_gray"
         android:textSize="22sp"
         android:layout_alignParentBottom="true"
