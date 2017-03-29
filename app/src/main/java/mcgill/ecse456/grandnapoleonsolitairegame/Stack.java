@@ -10,11 +10,16 @@ import java.util.ArrayList;
 
 public class Stack {
 
-    public ImageView view;
-    public ArrayList<Card> currentCards = new ArrayList<Card>();    // First index of the list = bottom card, Last index of the list = top card
+    private ImageView view;
+    private ArrayList<Card> currentCards = new ArrayList<Card>();    // First index of the list = bottom card, Last index of the list = top card
+    private int stackID;
 
+    public Stack(int id) {
+        this.stackID = id;
+    }
     public void addCardToStack(Card card) {
         currentCards.add(card);
+        card.setCurrentStackID(this.stackID);
     }
     public void removeCardFromStack(Card card) {
         currentCards.remove(currentCards.indexOf(card));
@@ -29,7 +34,12 @@ public class Stack {
     }
 
     public Card getFirstCard() {
-        return currentCards.get(0);
+        if (this.currentCards.size() > 0) {
+            return currentCards.get(0);
+        }
+        else {
+            return null;
+        }
     }
 
     public Card getLastCard() {
@@ -53,4 +63,9 @@ public class Stack {
         }
         return list;
     }
+
+    public int getStackID() {
+        return this.stackID;
+    }
 }
+

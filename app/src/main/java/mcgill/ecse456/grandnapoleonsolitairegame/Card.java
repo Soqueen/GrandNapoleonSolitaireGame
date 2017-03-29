@@ -14,6 +14,7 @@ public class Card {
     private int number;     // 1 for Ace, 2 for Two, ... , 11 for Jack, 12 for Queen, 13 for King
     private int[] drawables;
     private ImageView view;
+    private int currentStackID = 0;
 
     public final static int[] drawablesDiamonds = {
             R.drawable.abstract_diamonds_1, R.drawable.abstract_diamonds_2, R.drawable.abstract_diamonds_3, R.drawable.abstract_diamonds_4, R.drawable.abstract_diamonds_5,
@@ -285,6 +286,14 @@ public class Card {
             return "Spades";
         }
         return "Error with suit";
+    }
+
+    public int getCurrentStackID() {
+        return this.currentStackID;
+    }
+
+    public void setCurrentStackID(int id) {
+        this.currentStackID = id;
     }
 
 //    public static int[] drawables;
