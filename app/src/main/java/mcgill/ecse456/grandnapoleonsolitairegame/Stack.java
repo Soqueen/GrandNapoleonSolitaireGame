@@ -11,8 +11,7 @@ import java.util.ArrayList;
 public class Stack {
 
     public ImageView view;
-    public int drawable;
-    public ArrayList<Card> currentCards = new ArrayList<Card>();
+    public ArrayList<Card> currentCards = new ArrayList<Card>();    // First index of the list = bottom card, Last index of the list = top card
 
     public void addCardToStack(Card card) {
         currentCards.add(card);
@@ -21,9 +20,37 @@ public class Stack {
         currentCards.remove(currentCards.indexOf(card));
     }
 
-    public void refreshStack(){
-        Card dummy = new Card();
-        dummy = currentCards.get(currentCards.size()-1);
-        drawable = dummy.getDrawable();
+    public void setImageView(ImageView i) {
+        this.view = i;
+    }
+
+    public ImageView getImageView() {
+        return this.view;
+    }
+
+    public Card getFirstCard() {
+        return currentCards.get(0);
+    }
+
+    public Card getLastCard() {
+        if (currentCards.size() == 0) {
+            return null;
+        }
+        else {
+            return currentCards.get(currentCards.size()-1   );
+        }
+    }
+
+    public String getListOfCards() {
+        String list = "The list of cards are: ";
+        for (int i = 0; i < this.currentCards.size(); i++) {
+            if (i == this.currentCards.size() - 1) {
+                list = list + "and " + currentCards.get(i).convertToString();
+            }
+            else {
+                list = list + currentCards.get(i).convertToString() + ", ";
+            }
+        }
+        return list;
     }
 }
