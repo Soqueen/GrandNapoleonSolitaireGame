@@ -96,7 +96,7 @@
             android:layout_below="@+id/setting_button"
             android:layout_marginTop="30dp"
             android:background="@color/red"
-            android:text="Closed"
+            android:text="Close"
             android:onClick="closedApp"
             android:textAppearance="@style/TextAppearance.AppCompat.Button"
             android:textSize="24sp" />
