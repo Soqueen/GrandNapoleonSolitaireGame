@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 import static mcgill.ecse456.grandnapoleonsolitairegame.R.drawable.abstract_clubs_1;
 
 /**
@@ -22,7 +25,10 @@ public class EasyLevelGameActivity extends AppCompatActivity {
     private int[] location = new int[2], locationCard = new int[2], location2 = new int[2];
     Card card1, card2, card3, card4, card5, card6, card7, card8, card9;
     Stack stack, stack2;
-
+    Stack deck;
+    ArrayList<Card> cards = new ArrayList<Card>();
+    ArrayList<Card> test = new ArrayList<Card>();
+    private int index = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +48,9 @@ public class EasyLevelGameActivity extends AppCompatActivity {
         card7 = new Card(2, 5);
         card8 = new Card(3, 5);
         card9 = new Card(4, 5);
+        deck = new Stack(0);
+        generateAllCards(cards);
+        Log.d(msg, ""+deck.getListOfCards());
         card1.setImageView((ImageView) findViewById(R.id.imageView1));
         card2.setImageView((ImageView) findViewById(R.id.imageView2));
         card3.setImageView((ImageView) findViewById(R.id.imageView3));
@@ -125,14 +134,24 @@ public class EasyLevelGameActivity extends AppCompatActivity {
     }
 
     private void actionUp(Card card, Stack stack, Stack stack2) {
+
+        // check if the card is being dragged to stack
         if ((x > location[0]+ 15 && x < location[0]+stackWidth) && (y > location[1] && y < location[1]+stackHeight)) {
+
+            // check if the card is on the current stack
             if (card.getCurrentStackID() != stack.getStackID()) {
+                if (card.getCurrentStackID() == 2) {
+                    stack2.removeCardFromStack(card);
+                }
                 if (stack.getLastCard() == null) {
                     stack.addCardToStack(card);
                     card.getImageView().setX(stackX[0]);
                     card.getImageView().setY(stackY[0]);
                 }
+                // check if same suit
                 else if (stack.getLastCard().getSuit() == card.getSuit()) {
+
+                    // check if consecutive
                     if (stack.getLastCard().getNumber() == 13 && card.getNumber() == 1) {
                         stack.addCardToStack(card);
                         card.getImageView().setX(stackX[0]);
@@ -160,33 +179,42 @@ public class EasyLevelGameActivity extends AppCompatActivity {
                     card.getImageView().setY(initialY);
                 }
             }
-
             String a = "The first card of the stack is the " + stack.getFirstCard().convertToString();
             Log.d(msg, a);
             Log.d(msg, stack.getListOfCards());
             Log.d(msg, ""+card.getCurrentStackID());
         }
         else if ((x > location2[0]+ 15 && x < location2[0]+stackWidth) && (y > location2[1] && y < location2[1]+stackHeight) && card.getCurrentStackID() != stack2.getStackID() ) {
-            if (stack2.getLastCard() == null) {
-                stack2.addCardToStack(card);
-                card.getImageView().setX(stackX[1]);
-                card.getImageView().setY(stackY[1]);
-            }
-            else if (stack2.getLastCard().getSuit() == card.getSuit()) {
-                if (stack2.getLastCard().getNumber() == 13 && card.getNumber() == 1) {
+            if (card.getCurrentStackID() != stack2.getStackID()) {
+                if (card.getCurrentStackID() == 1) {
+                    stack.removeCardFromStack(card);
+                }
+                if (stack2.getLastCard() == null) {
                     stack2.addCardToStack(card);
                     card.getImageView().setX(stackX[1]);
                     card.getImageView().setY(stackY[1]);
                 }
-                else if (stack2.getLastCard().getNumber() == 1 && card.getNumber() == 13) {
-                    stack2.addCardToStack(card);
-                    card.getImageView().setX(stackX[1]);
-                    card.getImageView().setY(stackY[1]);
-                }
-                else if (Math.abs(card.getNumber() - stack2.getLastCard().getNumber()) == 1) {
-                    stack2.addCardToStack(card);
-                    card.getImageView().setX(stackX[1]);
-                    card.getImageView().setY(stackY[1]);
+                else if (stack2.getLastCard().getSuit() == card.getSuit()) {
+                    if (stack2.getLastCard().getNumber() == 13 && card.getNumber() == 1) {
+                        stack2.addCardToStack(card);
+                        card.getImageView().setX(stackX[1]);
+                        card.getImageView().setY(stackY[1]);
+                    }
+                    else if (stack2.getLastCard().getNumber() == 1 && card.getNumber() == 13) {
+                        stack2.addCardToStack(card);
+                        card.getImageView().setX(stackX[1]);
+                        card.getImageView().setY(stackY[1]);
+                    }
+                    else if (Math.abs(card.getNumber() - stack2.getLastCard().getNumber()) == 1) {
+                        stack2.addCardToStack(card);
+                        card.getImageView().setX(stackX[1]);
+                        card.getImageView().setY(stackY[1]);
+                    }
+                    else {
+                        Log.d(msg, "Cannot stack cards");
+                        card.getImageView().setX(initialX);
+                        card.getImageView().setY(initialY);
+                    }
                 }
                 else {
                     Log.d(msg, "Cannot stack cards");
@@ -194,11 +222,7 @@ public class EasyLevelGameActivity extends AppCompatActivity {
                     card.getImageView().setY(initialY);
                 }
             }
-            else {
-                Log.d(msg, "Cannot stack cards");
-                card.getImageView().setX(initialX);
-                card.getImageView().setY(initialY);
-            }
+
             String a = "The first card of the stack is the " + stack2.getFirstCard().convertToString();
             Log.d(msg, a);
             Log.d(msg, stack2.getListOfCards());
@@ -249,5 +273,15 @@ public class EasyLevelGameActivity extends AppCompatActivity {
                 return false;
         }
         return true;
+    }
+
+    private void generateAllCards(ArrayList<Card> cl) {
+        Card temp;
+        for (int i = 1; i <= 4; i++) {
+            for (int j = 1; j <= 13; j++) {
+                temp = new Card(i,j);
+                deck.addCardToStack(temp);
+            }
+        }
     }
 }

@@ -18,11 +18,13 @@ public class Stack {
         this.stackID = id;
     }
     public void addCardToStack(Card card) {
-        currentCards.add(card);
         card.setCurrentStackID(this.stackID);
+        currentCards.add(card);
     }
     public void removeCardFromStack(Card card) {
-        currentCards.remove(currentCards.indexOf(card));
+        if (currentCards.indexOf(card) >= 0) {
+            currentCards.remove(currentCards.indexOf(card));
+        }
     }
 
     public void setImageView(ImageView i) {
@@ -64,6 +66,9 @@ public class Stack {
         return list;
     }
 
+    public ArrayList<Card> getCurrentCards() {
+        return this.currentCards;
+    }
     public int getStackID() {
         return this.stackID;
     }
