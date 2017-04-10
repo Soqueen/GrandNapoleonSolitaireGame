@@ -14,7 +14,7 @@ When winning a game, your score will be saved in a list of up to 10 high scores.
 
 ##### Game features:
 This game has a undo function to take back up to 10 card movements. A hint function shows you up to only one possible card movements at once.
-A replay last game button show you all the moves you used of your last game. 
+A replay last game button show you all the moves you played in your last game. 
 
 #### No ads:
 This game is completely free without ads, tracking or something else. Just have fun.
