@@ -14,24 +14,24 @@ When winning a game, your score will be saved in a list of up to 10 high scores.
 
 ##### Game features:
 This game has a undo function to take back up to 10 card movements. A hint function shows you up to only one possible card movements at once.
-A replay last game button show you all the moves you played in your last game. 
+A replay last game button shows you all the moves you played in your last game. 
 
 #### No ads:
-This game is completely free without ads, tracking or something else. Just have fun.
+This game is completely free without ads. Simply, just have fun.
 
 #### Landscape and tablet support: 
-It can only support the landscape mode on the Android Tablet. Please refers to `Prerequisites` section for information of target Tablet.
+It can only support the landscape mode on the Android Tablet. Please refer to `Prerequisites` section for more information about the target Tablet.
 
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
 
 
 ### Prerequisites:
-#### Android Studio
-#### Mininum Android SDK Version 15
-#### Target Android SDK Version 23
-#### Target Emulator device 10.1"WXGA Tablet
-#### At least JRE 1.7 
+Android Studio
+Mininum Android SDK Version 15
+Target Android SDK Version 23
+Target Emulator device 10.1"WXGA Tablet
+At least JRE 1.7 
 
 
 ### Installation 
