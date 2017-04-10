@@ -20,7 +20,7 @@ A replay last game button show you all the moves you used of your last game.
 This game is completely free without ads, tracking or something else. Just have fun.
 
 #### Landscape and tablet support: 
-You can support only landscape mode on the Android Tablet. Please refers to `Prerequisites` section for information of target Tablet.
+It can only support the landscape mode on the Android Tablet. Please refers to `Prerequisites` section for information of target Tablet.
 
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
