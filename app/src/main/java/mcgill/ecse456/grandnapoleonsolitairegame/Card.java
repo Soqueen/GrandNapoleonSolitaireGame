@@ -1,14 +1,17 @@
 package mcgill.ecse456.grandnapoleonsolitairegame;
 
-import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 
-import static mcgill.ecse456.grandnapoleonsolitairegame.R.drawable.*;
-
 /**
- * Created by AL on 3/25/2017.
+ * GNS Android Game Application
+ * Card
+ * Purpose: Contains everything related to cards. it uses a picture view for drawable,
+ * like loading or saving cards orientation and setting the drawable files
+ *
+ * @author Sok Heng Lim
+ * @author Andrew Lin
+ * @version 1.0 03/25/2017
  */
-
 public class Card {
     private int suit;       // 1 for Diamonds, 2 for Clubs, 3 for Hearts, 4 for Spades
     private int number;     // 1 for Ace, 2 for Two, ... , 11 for Jack, 12 for Queen, 13 for King
@@ -40,29 +43,59 @@ public class Card {
             R.drawable.abstract_spades_11, R.drawable.abstract_spades_12, R.drawable.abstract_spades_13,
     };
 
+    /**
+     * Public constructor Card to easily access by others.
+     *
+     * @params suit Integer suite defined range[1,4]
+     * @params number Integer number of the card range [1,13]
+     */
     public Card(int suit, int number) {
         this.suit = suit;
         this.number = number;
     }
 
+    /**
+     * Get suit number of card.
+     *
+     * @return suit Integer suit number of card
+     * @params args not used
+     */
     public int getSuit() {
         return this.suit;
     }
 
+    /**
+     * Get number of card.
+     *
+     * @return number Integer number of card
+     * @params args not used
+     */
     public int getNumber() {
         return this.number;
     }
 
+    /**
+     * Get ImageView of card.
+     *
+     * @return view
+     * @params args not used
+     */
     public ImageView getImageView() {
         return this.view;
     }
 
+    /**
+     * Set ImageView for card.
+     *
+     * @return None
+     * @params i ImageView
+     */
     public void setImageView(ImageView i) {
         this.view = i;
-        switch(suit) {
+        switch (suit) {
             case 1:
                 drawables = drawablesDiamonds;
-                switch(number) {
+                switch (number) {
                     case 1:
                         i.setImageResource(drawables[0]);
                         break;
@@ -108,7 +141,7 @@ public class Card {
                 break;
             case 2:
                 drawables = drawablesClubs;
-                switch(number) {
+                switch (number) {
                     case 1:
                         i.setImageResource(drawables[0]);
                         break;
@@ -154,7 +187,7 @@ public class Card {
                 break;
             case 3:
                 drawables = drawablesHearts;
-                switch(number) {
+                switch (number) {
                     case 1:
                         i.setImageResource(drawables[0]);
                         break;
@@ -200,7 +233,7 @@ public class Card {
                 break;
             case 4:
                 drawables = drawablesSpades;
-                switch(number) {
+                switch (number) {
                     case 1:
                         i.setImageResource(drawables[0]);
                         break;
@@ -246,20 +279,32 @@ public class Card {
                 break;
             default:
                 break;
-
         }
     }
 
+    /**
+     * Mapping the complete card name with its suit and number
+     *
+     * @return cardName The suite and number of card
+     * @params args not used
+     */
     public String convertToString() {
-        return (numberToString() + " of " + this.suitToString());
+        String cardName = numberToString() + " of " + this.suitToString();
+        return cardName;
     }
 
+    /**
+     * Mapping integer number 1, 10, 12, 14 to string 'Ace', 'Jack', 'Queen' and 'King'.
+     *
+     * @return 'Ace' or 'Jack' or 'Queen' or 'king'
+     * @params args not used
+     */
     public String numberToString() {
         if (this.number == 1) {
             return "Ace";
         }
         if (this.number <= 10) {
-            return ""+this.number;
+            return "" + this.number;
         }
         if (this.number == 11) {
             return "Jack";
@@ -272,6 +317,13 @@ public class Card {
         }
         return "Error with number";
     }
+
+    /**
+     * Mapping integer suite number 1, 2, 3, 4 to string suite 'Diamonds', 'Clubs', 'Hearts' and 'Spades'
+     *
+     * @return 'Diamonds' or 'Clubs' or 'Hearts' or'Spades'
+     * @params args not used
+     */
     public String suitToString() {
         if (this.suit == 1) {
             return "Diamonds";
@@ -288,21 +340,24 @@ public class Card {
         return "Error with suit";
     }
 
+    /**
+     * Mapping integer suite number 1, 2, 3, 4 to string suite 'Diamonds', 'Clubs', 'Hearts' and 'Spades'
+     *
+     * @return 'Diamonds' or 'Clubs' or 'Hearts' or'Spades'
+     * @params args not used
+     */
     public int getCurrentStackID() {
         return this.currentStackID;
     }
 
+    /**
+     * Mapping integer suite number 1, 2, 3, 4 to string suite 'Diamonds', 'Clubs', 'Hearts' and 'Spades'
+     *
+     * @return 'Diamonds' or 'Clubs' or 'Hearts' or'Spades'
+     * @params args not used
+     */
     public void setCurrentStackID(int id) {
         this.currentStackID = id;
     }
 
-//    public static int[] drawables;
-//
-//    public static void updateCardDrawable(){
-//        drawables = new int[]{R.drawable.abstract_clubs_1, R.drawable.abstract_clubs_2, R.drawable.abstract_clubs_3,
-//                R.drawable.abstract_clubs_4, R.drawable.abstract_clubs_5, R.drawable.abstract_clubs_6,
-//                R.drawable.abstract_clubs_7, R.drawable.abstract_clubs_8, R.drawable.abstract_clubs_9,
-//                R.drawable.abstract_clubs_10, R.drawable.abstract_clubs_11, R.drawable.abstract_clubs_12,
-//                R.drawable.abstract_clubs_13};
-//    }
 }

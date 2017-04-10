@@ -2,23 +2,23 @@ package mcgill.ecse456.grandnapoleonsolitairegame;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
 import java.util.Random;
 
-import static mcgill.ecse456.grandnapoleonsolitairegame.R.drawable.abstract_clubs_1;
-
 /**
- * Created by sokhenglim on 3/15/17.
+ * GNS Android Game Application
+ * EasyLevelGameActivity.java
+ * Purpose: Contains the logic of the game page features.
+ *
+ * @author Sok Heng Lim
+ * @author Andrew Lin
+ * @version 1.0 03/15/2017
  */
-
 public class EasyLevelGameActivity extends AppCompatActivity {
-    String msg;
-    private float dx, dy, x , y, initialX, initialY;
+    private float dx, dy, x, y, initialX, initialY;
     private int stackHeight, stackWidth;
     private int[] stackX = new int[2], stackY = new int[2];
     private int[] location = new int[2], locationCard = new int[2], location2 = new int[2];
@@ -30,33 +30,72 @@ public class EasyLevelGameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_easy_game_page);
-        Log.d("ELGActivity", "onCreate was called");
 
         // Create 53 stacks
-        for (int index=0; index<stacks.length; index++){
+        for (int index = 0; index < stacks.length; index++) {
             stacks[index] = new Stack(index);
         }
+
         // create 52 cards
-        int index =0;
+        int index = 0;
         for (int suit = 1; suit < 5; suit++) {
             for (int num = 1; num < 14; num++) {
                 cards[index] = new Card(suit, num);
-                index ++;
+                index++;
             }
         }
+
         // Shuffle Cards
-        for (int i=0; i<cards.length; i++){
-            // Generate random number
-            Random r = new Random();
-            int randomCard = r.nextInt(cards.length);
-            Log.d("RandomNumberGenerator: ", ""+randomCard);
-            // Swap the cards
-            Card tempCard = cards[i];
-            cards[i] = cards[randomCard];
-            cards[randomCard] = tempCard;
-        }
+        cards = shuffleCard(cards);
 
         // Set stacks to stacks views
+        setStackView(stacks);
+
+        // Display cards  over the stacks
+        setCardViewOnStack(cards);
+
+        // Detect touch motion
+        cards[0].getImageView().setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return myTouch(v, event, cards[0], stacks[0], stacks[1]);
+            }
+        });
+
+        cards[1].getImageView().setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return myTouch(v, event, cards[1], stacks[0], stacks[1]);
+            }
+        });
+    }
+
+    /**
+     * Shuffle the cards to randomly display the game layout.
+     *
+     * @return cardDeck Array of Card after shuffle
+     * @params cardDeck Array of Card before shuffle
+     */
+    private Card[] shuffleCard(Card[] cardDeck) {
+        for (int i = 0; i < cardDeck.length; i++) {
+            // Generate random number
+            Random r = new Random();
+            int randomCard = r.nextInt(cardDeck.length);
+            // Swap the cards
+            Card tempCard = cardDeck[i];
+            cardDeck[i] = cardDeck[randomCard];
+            cardDeck[randomCard] = tempCard;
+        }
+        return cardDeck;
+    }
+
+    /**
+     * Set view for all the 53 stacks.
+     *
+     * @return None
+     * @params stack Array of stacks
+     */
+    private void setStackView(Stack[] stacks) {
         stacks[0].setImageView((ImageView) findViewById(R.id.stack0));
         stacks[1].setImageView((ImageView) findViewById(R.id.stack1));
         stacks[2].setImageView((ImageView) findViewById(R.id.stack2));
@@ -111,84 +150,70 @@ public class EasyLevelGameActivity extends AppCompatActivity {
         stacks[51].setImageView((ImageView) findViewById(R.id.stack51));
         // Cella place at stack52
         stacks[52].setImageView((ImageView) findViewById(R.id.stack52));
-
-
-        // Add display cards to stacks
-        // TODO- Should we add display card to stack?
-        //stacks[0].addCardToStack(cards[0]);
-
-
-        // Display cards  over the stacks
-        cards[0].setImageView((ImageView) findViewById(R.id.stack0));
-        cards[1].setImageView((ImageView) findViewById(R.id.stack1));
-        cards[2].setImageView((ImageView) findViewById(R.id.stack2));
-        cards[3].setImageView((ImageView) findViewById(R.id.stack3));
-        cards[4].setImageView((ImageView) findViewById(R.id.stack4));
-        cards[5].setImageView((ImageView) findViewById(R.id.stack5));
-        cards[6].setImageView((ImageView) findViewById(R.id.stack6));
-        cards[7].setImageView((ImageView) findViewById(R.id.stack7));
-        cards[8].setImageView((ImageView) findViewById(R.id.stack8));
-        cards[9].setImageView((ImageView) findViewById(R.id.stack9));
-        cards[10].setImageView((ImageView) findViewById(R.id.stack10));
-        cards[11].setImageView((ImageView) findViewById(R.id.stack11));
-        cards[12].setImageView((ImageView) findViewById(R.id.stack12));
-        cards[13].setImageView((ImageView) findViewById(R.id.stack13));
-        cards[14].setImageView((ImageView) findViewById(R.id.stack14));
-        cards[15].setImageView((ImageView) findViewById(R.id.stack15));
-        cards[16].setImageView((ImageView) findViewById(R.id.stack16));
-        cards[17].setImageView((ImageView) findViewById(R.id.stack17));
-        cards[18].setImageView((ImageView) findViewById(R.id.stack18));
-        cards[19].setImageView((ImageView) findViewById(R.id.stack19));
-        cards[20].setImageView((ImageView) findViewById(R.id.stack20));
-        cards[21].setImageView((ImageView) findViewById(R.id.stack21));
-        cards[22].setImageView((ImageView) findViewById(R.id.stack22));
-        cards[23].setImageView((ImageView) findViewById(R.id.stack23));
-        cards[24].setImageView((ImageView) findViewById(R.id.stack24));
-        cards[25].setImageView((ImageView) findViewById(R.id.stack25));
-        cards[26].setImageView((ImageView) findViewById(R.id.stack26));
-        cards[27].setImageView((ImageView) findViewById(R.id.stack27));
-        cards[28].setImageView((ImageView) findViewById(R.id.stack28));
-        cards[29].setImageView((ImageView) findViewById(R.id.stack29));
-        cards[30].setImageView((ImageView) findViewById(R.id.stack30));
-        cards[31].setImageView((ImageView) findViewById(R.id.stack31));
-        cards[32].setImageView((ImageView) findViewById(R.id.stack32));
-        cards[33].setImageView((ImageView) findViewById(R.id.stack33));
-        cards[34].setImageView((ImageView) findViewById(R.id.stack34));
-        cards[35].setImageView((ImageView) findViewById(R.id.stack35));
-        cards[36].setImageView((ImageView) findViewById(R.id.stack36));
-        cards[37].setImageView((ImageView) findViewById(R.id.stack37));
-        cards[38].setImageView((ImageView) findViewById(R.id.stack38));
-        cards[39].setImageView((ImageView) findViewById(R.id.stack39));
-        cards[40].setImageView((ImageView) findViewById(R.id.stack40));
-        cards[41].setImageView((ImageView) findViewById(R.id.stack41));
-        cards[42].setImageView((ImageView) findViewById(R.id.stack42));
-        cards[43].setImageView((ImageView) findViewById(R.id.stack43));
-        cards[44].setImageView((ImageView) findViewById(R.id.stack44));
-        cards[45].setImageView((ImageView) findViewById(R.id.stack45));
-        cards[46].setImageView((ImageView) findViewById(R.id.stack46));
-        cards[47].setImageView((ImageView) findViewById(R.id.stack47));
-        cards[48].setImageView((ImageView) findViewById(R.id.stack48));
-        cards[49].setImageView((ImageView) findViewById(R.id.stack49));
-        cards[50].setImageView((ImageView) findViewById(R.id.stack50));
-        cards[51].setImageView((ImageView) findViewById(R.id.stack51));
-
-
-        // Detect touch motion
-        // TODO - MORE FOR THE 50 MORE CARDS
-        cards[0].getImageView().setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return myTouch(v, event, cards[0], stacks[0], stacks[1]);
-            }
-        });
-
-        cards[1].getImageView().setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return myTouch(v, event, cards[1], stacks[0], stacks[1]);
-            }
-        });
     }
+
+
+    /**
+     * Set all 52 cards Image on the 52 stacks in the view.
+     *
+     * @return None
+     * @params cardDecks Array of cards images
+     */
+    private void setCardViewOnStack(Card[] cardDeck) {
+        cardDeck[0].setImageView((ImageView) findViewById(R.id.stack0));
+        cardDeck[1].setImageView((ImageView) findViewById(R.id.stack1));
+        cardDeck[2].setImageView((ImageView) findViewById(R.id.stack2));
+        cardDeck[3].setImageView((ImageView) findViewById(R.id.stack3));
+        cardDeck[4].setImageView((ImageView) findViewById(R.id.stack4));
+        cardDeck[5].setImageView((ImageView) findViewById(R.id.stack5));
+        cardDeck[6].setImageView((ImageView) findViewById(R.id.stack6));
+        cardDeck[7].setImageView((ImageView) findViewById(R.id.stack7));
+        cardDeck[8].setImageView((ImageView) findViewById(R.id.stack8));
+        cardDeck[9].setImageView((ImageView) findViewById(R.id.stack9));
+        cardDeck[10].setImageView((ImageView) findViewById(R.id.stack10));
+        cardDeck[11].setImageView((ImageView) findViewById(R.id.stack11));
+        cardDeck[12].setImageView((ImageView) findViewById(R.id.stack12));
+        cardDeck[13].setImageView((ImageView) findViewById(R.id.stack13));
+        cardDeck[14].setImageView((ImageView) findViewById(R.id.stack14));
+        cardDeck[15].setImageView((ImageView) findViewById(R.id.stack15));
+        cardDeck[16].setImageView((ImageView) findViewById(R.id.stack16));
+        cardDeck[17].setImageView((ImageView) findViewById(R.id.stack17));
+        cardDeck[18].setImageView((ImageView) findViewById(R.id.stack18));
+        cardDeck[19].setImageView((ImageView) findViewById(R.id.stack19));
+        cardDeck[20].setImageView((ImageView) findViewById(R.id.stack20));
+        cardDeck[21].setImageView((ImageView) findViewById(R.id.stack21));
+        cardDeck[22].setImageView((ImageView) findViewById(R.id.stack22));
+        cardDeck[23].setImageView((ImageView) findViewById(R.id.stack23));
+        cardDeck[24].setImageView((ImageView) findViewById(R.id.stack24));
+        cardDeck[25].setImageView((ImageView) findViewById(R.id.stack25));
+        cardDeck[26].setImageView((ImageView) findViewById(R.id.stack26));
+        cardDeck[27].setImageView((ImageView) findViewById(R.id.stack27));
+        cardDeck[28].setImageView((ImageView) findViewById(R.id.stack28));
+        cardDeck[29].setImageView((ImageView) findViewById(R.id.stack29));
+        cardDeck[30].setImageView((ImageView) findViewById(R.id.stack30));
+        cardDeck[31].setImageView((ImageView) findViewById(R.id.stack31));
+        cardDeck[32].setImageView((ImageView) findViewById(R.id.stack32));
+        cardDeck[33].setImageView((ImageView) findViewById(R.id.stack33));
+        cardDeck[34].setImageView((ImageView) findViewById(R.id.stack34));
+        cardDeck[35].setImageView((ImageView) findViewById(R.id.stack35));
+        cardDeck[36].setImageView((ImageView) findViewById(R.id.stack36));
+        cardDeck[37].setImageView((ImageView) findViewById(R.id.stack37));
+        cardDeck[38].setImageView((ImageView) findViewById(R.id.stack38));
+        cardDeck[39].setImageView((ImageView) findViewById(R.id.stack39));
+        cardDeck[40].setImageView((ImageView) findViewById(R.id.stack40));
+        cardDeck[41].setImageView((ImageView) findViewById(R.id.stack41));
+        cardDeck[42].setImageView((ImageView) findViewById(R.id.stack42));
+        cardDeck[43].setImageView((ImageView) findViewById(R.id.stack43));
+        cardDeck[44].setImageView((ImageView) findViewById(R.id.stack44));
+        cardDeck[45].setImageView((ImageView) findViewById(R.id.stack45));
+        cardDeck[46].setImageView((ImageView) findViewById(R.id.stack46));
+        cardDeck[47].setImageView((ImageView) findViewById(R.id.stack47));
+        cardDeck[48].setImageView((ImageView) findViewById(R.id.stack48));
+        cardDeck[49].setImageView((ImageView) findViewById(R.id.stack49));
+        cardDeck[50].setImageView((ImageView) findViewById(R.id.stack50));
+        cardDeck[51].setImageView((ImageView) findViewById(R.id.stack51));
+    }
+
 
     private void actionDown(View v, MotionEvent event, ImageView i) {
         initialX = i.getX();
@@ -200,94 +225,72 @@ public class EasyLevelGameActivity extends AppCompatActivity {
     }
 
     private void actionMove(ImageView i) {
-        i.setX(x-dx);
-        i.setY(y-dy);
+        i.setX(x - dx);
+        i.setY(y - dy);
     }
 
     private void actionUp(Card card, Stack stack, Stack stack2) {
-        if ((x > location[0]+ 15 && x < location[0]+stackWidth) && (y > location[1] && y < location[1]+stackHeight)) {
+        if ((x > location[0] + 15 && x < location[0] + stackWidth) && (y > location[1] && y < location[1] + stackHeight)) {
             if (card.getCurrentStackID() != stack.getStackID()) {
                 if (stack.getLastCard() == null) {
                     stack.addCardToStack(card);
                     card.getImageView().setX(stackX[0]);
                     card.getImageView().setY(stackY[0]);
-                }
-                else if (stack.getLastCard().getSuit() == card.getSuit()) {
+                } else if (stack.getLastCard().getSuit() == card.getSuit()) {
                     if (stack.getLastCard().getNumber() == 13 && card.getNumber() == 1) {
                         stack.addCardToStack(card);
                         card.getImageView().setX(stackX[0]);
                         card.getImageView().setY(stackY[0]);
-                    }
-                    else if (stack.getLastCard().getNumber() == 1 && card.getNumber() == 13) {
+                    } else if (stack.getLastCard().getNumber() == 1 && card.getNumber() == 13) {
                         stack.addCardToStack(card);
                         card.getImageView().setX(stackX[0]);
                         card.getImageView().setY(stackY[0]);
-                    }
-                    else if (Math.abs(card.getNumber() - stack.getLastCard().getNumber()) == 1) {
+                    } else if (Math.abs(card.getNumber() - stack.getLastCard().getNumber()) == 1) {
                         stack.addCardToStack(card);
                         card.getImageView().setX(stackX[0]);
                         card.getImageView().setY(stackY[0]);
-                    }
-                    else {
-                        Log.d(msg, "Cannot stack cards");
+                    } else {
                         card.getImageView().setX(initialX);
                         card.getImageView().setY(initialY);
                     }
-                }
-                else {
-                    Log.d(msg, "Cannot stack cards");
+                } else {
                     card.getImageView().setX(initialX);
                     card.getImageView().setY(initialY);
                 }
             }
 
             String a = "The first card of the stack is the " + stack.getFirstCard().convertToString();
-            Log.d(msg, a);
-            Log.d(msg, stack.getListOfCards());
-            Log.d(msg, ""+card.getCurrentStackID());
-        }
-        else if ((x > location2[0]+ 15 && x < location2[0]+stackWidth) && (y > location2[1] && y < location2[1]+stackHeight) && card.getCurrentStackID() != stack2.getStackID() ) {
+        } else if ((x > location2[0] + 15 && x < location2[0] + stackWidth) && (y > location2[1] && y < location2[1] + stackHeight) && card.getCurrentStackID() != stack2.getStackID()) {
             if (stack2.getLastCard() == null) {
                 stack2.addCardToStack(card);
                 card.getImageView().setX(stackX[1]);
                 card.getImageView().setY(stackY[1]);
-            }
-            else if (stack2.getLastCard().getSuit() == card.getSuit()) {
+            } else if (stack2.getLastCard().getSuit() == card.getSuit()) {
                 if (stack2.getLastCard().getNumber() == 13 && card.getNumber() == 1) {
                     stack2.addCardToStack(card);
                     card.getImageView().setX(stackX[1]);
                     card.getImageView().setY(stackY[1]);
-                }
-                else if (stack2.getLastCard().getNumber() == 1 && card.getNumber() == 13) {
+                } else if (stack2.getLastCard().getNumber() == 1 && card.getNumber() == 13) {
                     stack2.addCardToStack(card);
                     card.getImageView().setX(stackX[1]);
                     card.getImageView().setY(stackY[1]);
-                }
-                else if (Math.abs(card.getNumber() - stack2.getLastCard().getNumber()) == 1) {
+                } else if (Math.abs(card.getNumber() - stack2.getLastCard().getNumber()) == 1) {
                     stack2.addCardToStack(card);
                     card.getImageView().setX(stackX[1]);
                     card.getImageView().setY(stackY[1]);
-                }
-                else {
-                    Log.d(msg, "Cannot stack cards");
+                } else {
                     card.getImageView().setX(initialX);
                     card.getImageView().setY(initialY);
                 }
-            }
-            else {
-                Log.d(msg, "Cannot stack cards");
+            } else {
                 card.getImageView().setX(initialX);
                 card.getImageView().setY(initialY);
             }
             String a = "The first card of the stack is the " + stack2.getFirstCard().convertToString();
-            Log.d(msg, a);
-            Log.d(msg, stack2.getListOfCards());
-            Log.d(msg, ""+card.getCurrentStackID());
-        }
-        else {
+        } else {
             if (card.getCurrentStackID() != 0) {
-                card.getImageView().setX(stackX[card.getCurrentStackID()-1]);
-                card.getImageView().setY(stackY[card.getCurrentStackID()-1]);
+                card.getImageView().setX(stackX[card.getCurrentStackID() - 1]);
+                card.getImageView().setY(stackY[card.getCurrentStackID() - 1]);
             }
         }
     }
@@ -317,11 +320,9 @@ public class EasyLevelGameActivity extends AppCompatActivity {
                 actionMove(c.getImageView());
                 break;
             case MotionEvent.ACTION_UP:
-//                        Log.d(msg, "Action Up");
                 actionUp(c, s1, s2);
                 break;
             default:
-                Log.d(msg, "Default");
                 return false;
         }
         return true;
