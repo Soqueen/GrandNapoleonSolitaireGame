@@ -4,19 +4,20 @@
 This is a single player card game, which involves evaluation of options and forward planning. While the initial deal and layout of the tableau with a matrix of 52 cards is random, the play of the hand ranges from easy to impossible. The GNS App will shuffle a regular deck of cards and deal the tableau. The play will be on an Android tablet using a drag and drop interface. The development of GNS will be in Java and enforce the strict set of GNS rules and logic.
 
 #### Set up difficulty:
-You can set up the difficulty for Klondike, Spider and Golf in the settings!
+You can set up three different difficulties: `Easy`, `Medium` and `Difficult`
 
 #### Automatic saving:
-The current game will be saved every time you pause or close the app. So you can continue your game where you left it!
+The current game will be saved every time you pause or close the app. So you can continue your game where you left it.
 
 ##### High Score list:
 When winning a game, your score will be saved in a list of up to 10 high scores.
 
 ##### Game features:
 This game has a undo function to take back up to 10 card movements. A hint function shows you up to only one possible card movements at once.
+A replay last game button show you all the moves you used of your last game. 
 
 #### No ads:
-This game is completely free without ads, tracking or something else. Just have fun :)
+This game is completely free without ads, tracking or something else. Just have fun.
 
 #### Landscape and tablet support: 
 You can support only landscape mode on the Android Tablet. Please refers to `Prerequisites` section for information of target Tablet.
