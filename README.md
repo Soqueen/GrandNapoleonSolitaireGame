@@ -49,11 +49,11 @@ The plateforms that will support the GNS application is Android Tablet. Therefor
 #### [Andrew Lin](https://github.com/andrewlin94)
 
 ## Product Owner
-### Professor Gerald Ratzer
+#### Professor Gerald Ratzer
 
 ## Supervisor
-### [Professor Gerald Ratzer](https://github.com/jvybihal)
+#### [Professor Gerald Ratzer](https://github.com/jvybihal)
 
 ## License 
-### [MIT](https://github.com/Soqueen/GrandNapoleonSolitaireGame/blob/dev/LICENSE)
+#### [MIT](https://github.com/Soqueen/GrandNapoleonSolitaireGame/blob/dev/LICENSE)
 
