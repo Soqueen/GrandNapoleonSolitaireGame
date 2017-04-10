@@ -41,7 +41,7 @@ Clone the project into your local directory. If you use command line, you can ru
 The plateforms that will support the GNS application is Android Tablet. Therefore, below will guide you through on how to running the app on different platform.
 
 ###### STEP 1 - Import `GrandNapoleonSolitaireGame' project in Android Studio
-###### STEP 3 - Click `Run` the project with target emulator device on the Android Studio
+###### STEP 2 - Click `Run` the project with target emulator device on the Android Studio
 
 ## Authors
 
