@@ -15,28 +15,29 @@ import android.widget.ImageView;
 public class Card {
     private int suit;       // 1 for Diamonds, 2 for Clubs, 3 for Hearts, 4 for Spades
     private int number;     // 1 for Ace, 2 for Two, ... , 11 for Jack, 12 for Queen, 13 for King
-    private int[] drawables;
+    private int[] drawables;// values for the image of the card
     private ImageView view;
     private int currentStackID = 0;
 
+    // constants for retrieving the image of diamond cards
     public final static int[] drawablesDiamonds = {
             R.drawable.abstract_diamonds_1, R.drawable.abstract_diamonds_2, R.drawable.abstract_diamonds_3, R.drawable.abstract_diamonds_4, R.drawable.abstract_diamonds_5,
             R.drawable.abstract_diamonds_6, R.drawable.abstract_diamonds_7, R.drawable.abstract_diamonds_8, R.drawable.abstract_diamonds_9, R.drawable.abstract_diamonds_10,
             R.drawable.abstract_diamonds_11, R.drawable.abstract_diamonds_12, R.drawable.abstract_diamonds_13,
     };
-
+    // constants for retrieving the image of club cards
     public final static int[] drawablesClubs = {
             R.drawable.abstract_clubs_1, R.drawable.abstract_clubs_2, R.drawable.abstract_clubs_3, R.drawable.abstract_clubs_4, R.drawable.abstract_clubs_5,
             R.drawable.abstract_clubs_6, R.drawable.abstract_clubs_7, R.drawable.abstract_clubs_8, R.drawable.abstract_clubs_9, R.drawable.abstract_clubs_10,
             R.drawable.abstract_clubs_11, R.drawable.abstract_clubs_12, R.drawable.abstract_clubs_13,
     };
-
+    // constants for retrieving the image of heart cards
     public final static int[] drawablesHearts = {
             R.drawable.abstract_hearts_1, R.drawable.abstract_hearts_2, R.drawable.abstract_hearts_3, R.drawable.abstract_hearts_4, R.drawable.abstract_hearts_5,
             R.drawable.abstract_hearts_6, R.drawable.abstract_hearts_7, R.drawable.abstract_hearts_8, R.drawable.abstract_hearts_9, R.drawable.abstract_hearts_10,
             R.drawable.abstract_hearts_11, R.drawable.abstract_hearts_12, R.drawable.abstract_hearts_13,
     };
-
+    // constants for retrieving the image of spade cards
     public final static int[] drawablesSpades = {
             R.drawable.abstract_spades_1, R.drawable.abstract_spades_2, R.drawable.abstract_spades_3, R.drawable.abstract_spades_4, R.drawable.abstract_spades_5,
             R.drawable.abstract_spades_6, R.drawable.abstract_spades_7, R.drawable.abstract_spades_8, R.drawable.abstract_spades_9, R.drawable.abstract_spades_10,
@@ -92,9 +93,11 @@ public class Card {
      */
     public void setImageView(ImageView i) {
         this.view = i;
+        // case switch to set suit
         switch (suit) {
             case 1:
                 drawables = drawablesDiamonds;
+                // select the correct image depending on the number
                 switch (number) {
                     case 1:
                         i.setImageResource(drawables[0]);
@@ -141,6 +144,7 @@ public class Card {
                 break;
             case 2:
                 drawables = drawablesClubs;
+                // select the correct image depending on the number
                 switch (number) {
                     case 1:
                         i.setImageResource(drawables[0]);
@@ -187,6 +191,7 @@ public class Card {
                 break;
             case 3:
                 drawables = drawablesHearts;
+                // select the correct image depending on the number
                 switch (number) {
                     case 1:
                         i.setImageResource(drawables[0]);
@@ -233,6 +238,7 @@ public class Card {
                 break;
             case 4:
                 drawables = drawablesSpades;
+                // select the correct image depending on the number
                 switch (number) {
                     case 1:
                         i.setImageResource(drawables[0]);
