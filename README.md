@@ -35,7 +35,8 @@ At least JRE 1.7
 
 
 ### Installation 
-Clone the project into your local directory. If you use command line, you can run ```git clone https://github.com/Soqueen/GrandNapoleonSolitaireGame.git```
+Clone the project into your local directory. If you use command line, you can run 
+```git clone https://github.com/Soqueen/GrandNapoleonSolitaireGame.git```
 
 ### Running the software 
 The plateforms that will support the GNS application is Android Tablet. Therefore, below will guide you through on how to running the app on different platform.
