@@ -218,7 +218,9 @@ public class EasyLevelGameActivity extends AppCompatActivity {
 	 * Calculate touch event on card respective to card's location and on screen
 	 *
 	 * @return None
-	 * @param v not used. event used to get type of touch event, i ImageView of card being dragged
+	 * @param v not used. event used to get type of touch event
+     * @param event
+     * @param i ImageView of card being dragged
 	 */
 	private void actionDown(View v, MotionEvent event, ImageView i) {
 		initialX = i.getX();
@@ -246,7 +248,9 @@ public class EasyLevelGameActivity extends AppCompatActivity {
 	 * back to original position.
 	 *
 	 * @return None
-	 * @params i ImageView of card being dragged, stack and stack2 are the stacks.
+	 * @params card
+     * @param stack The first stack
+     * @param stack2 The second stack
 	 */
 	private void actionUp(Card card, Stack stack, Stack stack2) {
 		// check if touch event is in the location of stack
@@ -334,8 +338,8 @@ public class EasyLevelGameActivity extends AppCompatActivity {
 	 *
 	 * @return None
 	 * @params i ImageView of card being dragged
-	 *         s ImageView of stack
-	 *         s ImageView of stack2
+     * @param  s ImageView of stack
+     * @param s2 ImageView of stack
 	 */    
 	private void findStackLocation(ImageView i, ImageView s, ImageView s2) {
 		i.getLocationOnScreen(locationCard);
@@ -353,10 +357,11 @@ public class EasyLevelGameActivity extends AppCompatActivity {
 	 * Drag and drop function for cards
 	 *
 	 * @return None
-	 * @param 	i ImageView of card being dragged
-	 * 			s1 and s2 are the stacks
-	 *        	e MotionEvent to get touch event
-	 *			c is the card the user wants to move
+	 * @param 	v ImageView of card being dragged
+     * @param   s2 The stacks
+     * @param   s1 The stacks
+     * @param   e MotionEvent to get touch event
+     * @param   c is the card the user wants to move
 	 */
 	private boolean myTouch(View v, MotionEvent e, Card c, Stack s1, Stack s2) {
 		// show card in front of all
