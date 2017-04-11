@@ -27,13 +27,13 @@ These instructions will get you a copy of the project up and running on your loc
 
 
 ### Prerequisites:
-```
-	##### Android Studio
-	##### Mininum Android SDK Version 15
-	##### Target Android SDK Version 23
-	##### Target Emulator device 10.1"WXGA Tablet
-	##### At least JRE 1.7 
-```
+
+##### Android Studio
+##### Mininum Android SDK Version 15
+##### Target Android SDK Version 23
+##### Target Emulator device 10.1"WXGA Tablet
+##### At least JRE 1.7 
+
 
 ### Installation 
 Clone the project into your local directory. If you use command line, you can run 
