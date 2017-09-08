@@ -296,13 +296,4 @@ public class Card {
         this.currentStackID = id;
     }
 
-//    public static int[] drawables;
-//
-//    public static void updateCardDrawable(){
-//        drawables = new int[]{R.drawable.abstract_clubs_1, R.drawable.abstract_clubs_2, R.drawable.abstract_clubs_3,
-//                R.drawable.abstract_clubs_4, R.drawable.abstract_clubs_5, R.drawable.abstract_clubs_6,
-//                R.drawable.abstract_clubs_7, R.drawable.abstract_clubs_8, R.drawable.abstract_clubs_9,
-//                R.drawable.abstract_clubs_10, R.drawable.abstract_clubs_11, R.drawable.abstract_clubs_12,
-//                R.drawable.abstract_clubs_13};
-//    }
 }
