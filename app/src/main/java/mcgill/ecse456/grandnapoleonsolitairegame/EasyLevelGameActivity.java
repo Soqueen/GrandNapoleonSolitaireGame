@@ -273,7 +273,7 @@ public class EasyLevelGameActivity extends AppCompatActivity {
             public boolean onTouch(View v, MotionEvent event) {
                 return myTouch(v, event, cards[2], stacks);
             }
-        };
+        });
 
         cards[3].getImageView().setOnTouchListener(new View.OnTouchListener() {
             @Override
