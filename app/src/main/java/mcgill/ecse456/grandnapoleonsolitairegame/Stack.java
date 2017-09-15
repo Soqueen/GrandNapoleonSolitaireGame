@@ -15,6 +15,7 @@ public class Stack {
     private int stackID;
     private int leftSideLocation, topSideLocation;
     private int[] location = new int[2];
+    private float height, width;
 
     public Stack(int id) {
         this.stackID = id;
@@ -40,6 +41,10 @@ public class Stack {
         this.leftSideLocation = x;
         this.topSideLocation = y;
     }
+    public void setSize(int width, int height) {
+        this.width = width;
+        this.height = height;
+    }
 
     public ImageView getImageView() {
         return this.view;
@@ -59,7 +64,7 @@ public class Stack {
             return null;
         }
         else {
-            return currentCards.get(currentCards.size()-1   );
+            return currentCards.get(currentCards.size()-1);
         }
     }
 
@@ -97,6 +102,13 @@ public class Stack {
 
     public int getTopSideLocation() {
         return this.topSideLocation;
+    }
+
+    public float getHeight() {
+        return this.height;
+    }
+    public float getWidth() {
+        return this.width;
     }
 }
 

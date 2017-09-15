@@ -237,8 +237,6 @@ public class EasyLevelGameActivity extends AppCompatActivity {
         for (int i = 0; i < stacks.length; i++) {
             Log.d("", "Stack number " + i + " has " + stacks[i].getListOfCards());
         }
-
-        DragDrop.main(cards, stacks);
     }
 //    @Override
 //    protected void onResume() {
@@ -416,8 +414,11 @@ public class EasyLevelGameActivity extends AppCompatActivity {
     private void setStacksLocation(Stack[] s) {
         for (int i = 0; i < s.length; i++) {
             s[i].getImageView().getLocationOnScreen(location);
+            s[i].setSize(s[i].getImageView().getWidth(), s[i].getImageView().getHeight());
             s[i].setXYCoordinates(location[0], location[1]);
-            Log.d("", "Stack " + i + " is at " + s[i].getLeftSideLocation() + " " + s[i].getTopSideLocation());
+//            Log.d("", "Stack " + i + " is at " + s[i].getLeftSideLocation() + " " + s[i].getTopSideLocation());
+//            Log.d("", "Stack " + i + " has height " + s[i].getHeight() + ", and width " + s[i].getWidth());
+            DragDrop.main(cards, stacks);
         }
     }
 

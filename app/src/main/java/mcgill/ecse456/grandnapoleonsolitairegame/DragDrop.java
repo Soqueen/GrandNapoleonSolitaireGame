@@ -5,16 +5,32 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 
+import static java.lang.Math.abs;
+
 /**
  * Created by AL on 9/12/2017.
  */
 
 public class DragDrop {
     public static float dx, dy, x , y, initialX, initialY;
+    public static float[] rowXCoordinates = new float[11];
+    public static float[] columnYCoordinates = new float[5];
+    public static Card[] cards;
+    public static Stack[] stacks;
     public static void main(Card[] c, Stack[] s) {
-        final Card[] cards = c;
-        final Stack[] stacks = s;
-
+        cards = c;
+        stacks = s;
+        String d = "";
+        for (int i = 0; i < rowXCoordinates.length; i++) {
+            rowXCoordinates[i] = stacks[(i*4)].getLeftSideLocation();
+//            d = d + rowXCoordinates[i] + ", ";
+        }
+        for (int i = 0; i < columnYCoordinates.length; i++) {
+            columnYCoordinates[i] = stacks[(i+40)].getTopSideLocation();
+            d = d + columnYCoordinates[i] + ", ";
+        }
+        Log.d("", d);
+        // TODO: Only let outside cards move. All cards can be moved right now.
         cards[0].getImageView().setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -346,8 +362,61 @@ public class DragDrop {
         i.setY(y-dy);
     }
 
-    private static void actionUp(Card card) {
-
+    private static void actionUp(Card card, float x, float y) {
+        int row = 0, column = 0;
+        // Hardcoded width and height for now. TODO: Make height and width accessible in this class
+        for (int i = 0; i < rowXCoordinates.length; i++) {
+            if (x > rowXCoordinates[i] && x < rowXCoordinates[i] + 70) {
+                column = i;
+                break;
+            }
+        }
+        for (int i = 0; i < columnYCoordinates.length; i++) {
+            if (y > columnYCoordinates[i] && y < columnYCoordinates[i] + 100) {
+                row = i;
+                break;
+            }
+        }
+        int whichStack = -1;
+        if (row == 4) {
+            whichStack = 43 + column;
+        }
+        else {
+            whichStack = column*4 + row;
+        }
+//        Log.d("", "x is " + x + " y is " + y + ", touch stack number " + whichStack + " Stacks array length is " + stacks.length + " Card moving is from stack " + card.getCurrentStackID() + " and the card is " + card.convertToString());
+        if (card.getCurrentStackID() != whichStack) {
+            if (stacks[whichStack].getCurrentCards().size()==0) {
+                stacks[whichStack].addCardToStack(card);
+            }
+            if (card.getSuit() == stacks[whichStack].getLastCard().getSuit()) {
+                if (abs(card.getNumber() - stacks[whichStack].getLastCard().getNumber()) == 1) {
+                    stacks[card.getCurrentStackID()].removeCardFromStack(card);
+                    stacks[whichStack].addCardToStack(card);
+                    card.getImageView().setX(rowXCoordinates[column]);
+                    card.getImageView().setY(columnYCoordinates[row]-88); //TODO: Fix this line. Y coordinate not aligned due to top bar.
+                    Log.d("", "Setting X as " + rowXCoordinates[column] + " and Y as " + columnYCoordinates[row]);
+                }
+            }
+        }
+//        switch(column) {
+//            case 0:
+//                if (row < 4) {
+//                    whichStack = row;
+//                }
+//                break;
+//            case 1:
+//                if (row < 4) {
+//                    whichStack = 4*column + row;
+//                }
+//                else {
+//                    whichStack = 44;
+//                }
+//                break;
+//            case 2:
+//
+//
+//        }
 //        // check if the card is being dragged to stack
 //        if ((x > location[0]+ 15 && x < location[0]+stackWidth) && (y > location[1] && y < location[1]+stackHeight)) {
 //
@@ -465,7 +534,7 @@ public class DragDrop {
                 break;
             case MotionEvent.ACTION_UP:
 //                        Log.d(msg, "Action Up");
-                actionUp(c);
+                actionUp(c, x, y);
                 break;
             default:
                 Log.d("", "Default");
