@@ -7,9 +7,6 @@ import android.widget.ImageView;
 
 import static java.lang.Math.abs;
 
-/**
- * Created by AL on 9/12/2017.
- */
 
 public class DragDrop {
     public static float dx, dy, x , y, initialX, initialY;

@@ -94,13 +94,12 @@ public class Stack {
      * @params args not used
      */
     public Card getFirstCard() {
-        Card firstCard;
         if (this.currentCards.size() > 0) {
-            firstCard = currentCards.get(0);
-        } else {
-            firstCard = null;
+            return currentCards.get(0);
         }
-        return firstCard;
+        else {
+            return null;
+        }
     }
 
     /**
@@ -110,14 +109,12 @@ public class Stack {
      * @params args not used
      */
     public Card getLastCard() {
-        Card lastCard;
         if (currentCards.size() == 0) {
             return null;
         }
         else {
             return currentCards.get(currentCards.size()-1);
         }
-        return lastCard;
     }
 
     /**

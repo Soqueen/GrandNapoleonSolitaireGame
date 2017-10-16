@@ -1,6 +1,9 @@
 package mcgill.ecse456.grandnapoleonsolitairegame;
 
+import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
+
+import static mcgill.ecse456.grandnapoleonsolitairegame.R.drawable.*;
 
 /**
  * GNS Android Game Application
