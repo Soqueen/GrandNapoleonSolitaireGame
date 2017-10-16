@@ -56,6 +56,7 @@
             android:layout_below="@+id/setting_button"
             android:layout_marginTop="30dp"
             android:background="@color/Lemon"
+            android:fontFeatureSettings="@string/app_name"
             android:onClick="ScoreTable"
             android:text="Score Table"
             android:textAppearance="@style/TextAppearance.AppCompat.Button"

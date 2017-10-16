@@ -172,4 +172,3 @@ public class Stack {
         return this.width;
     }
 }
-
