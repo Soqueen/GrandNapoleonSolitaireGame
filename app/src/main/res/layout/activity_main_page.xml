@@ -48,6 +48,20 @@
             android:textSize="24sp" />
 
         <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/setting_button"
+            android:layout_alignStart="@+id/setting_button"
+            android:layout_below="@+id/setting_button"
+            android:layout_marginTop="30dp"
+            android:background="@color/Lemon"
+            android:onClick="ScoreTable"
+            android:text="Score Table"
+            android:textAppearance="@style/TextAppearance.AppCompat.Button"
+            android:textSize="24sp" />
+
+        <Button
             android:id="@+id/instruction_button"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -82,7 +96,7 @@
             android:layout_below="@+id/setting_button"
             android:layout_marginTop="30dp"
             android:background="@color/red"
-            android:text="Closed"
+            android:text="Close"
             android:onClick="closedApp"
             android:textAppearance="@style/TextAppearance.AppCompat.Button"
             android:textSize="24sp" />
@@ -95,7 +109,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:fontFamily="serif-monospace"
-        android:text="Developed by: \n     Andrew Lin \n     Sok Heng Lim"
+        android:text="Developed by: \n     Sok Heng Lim \n     Andrew Lin"
         android:textColor="@android:color/darker_gray"
         android:textSize="22sp"
         android:layout_alignParentBottom="true"

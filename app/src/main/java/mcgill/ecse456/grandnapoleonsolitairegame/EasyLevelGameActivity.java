@@ -2,7 +2,6 @@ package mcgill.ecse456.grandnapoleonsolitairegame;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,9 +10,14 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * Created by sokhenglim on 3/15/17.
+ * GNS Android Game Application
+ * EasyLevelGameActivity.java
+ * Purpose: Contains the logic of the game page features.
+ *
+ * @author Sok Heng Lim
+ * @author Andrew Lin
+ * @version 1.0 03/15/2017
  */
-
 public class EasyLevelGameActivity extends AppCompatActivity {
     String msg;
     private float dx, dy, x , y, initialX, initialY;
