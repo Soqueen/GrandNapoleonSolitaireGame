@@ -18,6 +18,9 @@ public class Stack {
     private ImageView view;
     private ArrayList<Card> currentCards = new ArrayList<Card>();    // First index of the list = bottom card, Last index of the list = top card
     private int stackID;
+    private int leftSideLocation, topSideLocation;
+    private int[] location = new int[2];
+    private float height, width;
 
     /**
      * Public constructor Stack to easily access by other classes.
@@ -35,8 +38,8 @@ public class Stack {
      * @params card card that will be added to stack
      */
     public void addCardToStack(Card card) {
-        currentCards.add(card);
         card.setCurrentStackID(this.stackID);
+        currentCards.add(card);
     }
 
     /**
@@ -46,7 +49,9 @@ public class Stack {
      * @params card card that will be removed from the stack
      */
     public void removeCardFromStack(Card card) {
-        currentCards.remove(currentCards.indexOf(card));
+        if (currentCards.indexOf(card) >= 0) {
+            currentCards.remove(currentCards.indexOf(card));
+        }
     }
 
     /**
@@ -55,8 +60,21 @@ public class Stack {
      * @return None
      * @params i ImageView
      */
+
     public void setImageView(ImageView i) {
         this.view = i;
+        view.getLocationOnScreen(location);
+        this.leftSideLocation = location[0];
+        this.topSideLocation = location[1];
+    }
+
+    public void setXYCoordinates(int x, int y) {
+        this.leftSideLocation = x;
+        this.topSideLocation = y;
+    }
+    public void setSize(int width, int height) {
+        this.width = width;
+        this.height = height;
     }
 
     /**
@@ -94,9 +112,10 @@ public class Stack {
     public Card getLastCard() {
         Card lastCard;
         if (currentCards.size() == 0) {
-            lastCard = null;
-        } else {
-            lastCard = currentCards.get(currentCards.size() - 1);
+            return null;
+        }
+        else {
+            return currentCards.get(currentCards.size()-1);
         }
         return lastCard;
     }
@@ -109,16 +128,28 @@ public class Stack {
      */
     public String getListOfCards() {
         String list = "The list of cards are: ";
-        for (int i = 0; i < this.currentCards.size(); i++) {
-            if (i == this.currentCards.size() - 1) {
-                list = list + "and " + currentCards.get(i).convertToString();
-            } else {
-                list = list + currentCards.get(i).convertToString() + ", ";
+        if (this.currentCards.size() > 1) {
+            for (int i = 0; i < this.currentCards.size(); i++) {
+                if (i == this.currentCards.size() - 1) {
+                    list = list + "and " + currentCards.get(i).convertToString();
+                }
+                else {
+                    list = list + currentCards.get(i).convertToString() + ", ";
+                }
             }
+        }
+        else if (this.currentCards.size() == 1){
+            return (list + currentCards.get(0).convertToString());
+        }
+        else {
+            return "Error, no cards";
         }
         return list;
     }
 
+    public ArrayList<Card> getCurrentCards() {
+        return this.currentCards;
+    }
     /**
      * Get stack identify ID.
      *
@@ -127,6 +158,21 @@ public class Stack {
      */
     public int getStackID() {
         return this.stackID;
+    }
+
+    public int getLeftSideLocation() {
+        return this.leftSideLocation;
+    }
+
+    public int getTopSideLocation() {
+        return this.topSideLocation;
+    }
+
+    public float getHeight() {
+        return this.height;
+    }
+    public float getWidth() {
+        return this.width;
     }
 }
 
