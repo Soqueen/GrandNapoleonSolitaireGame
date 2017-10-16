@@ -27,6 +27,24 @@ public class DragDrop {
             d = d + columnYCoordinates[i] + ", ";
         }
         Log.d("", d);
+//        for (int i = 0; i < c.length; i++) {
+//            switch(cards[i].getCurrentStackID()) {
+//                case 0:
+//                    cards[i].setCanMove(1);
+//                    break;
+//                case 1:
+//                    cards[i].setCanMove(1);
+//                    break;
+//                case 2:
+//                    cards[i].setCanMove(1);
+//                    break;
+//                case 3:
+//                    cards[i].setCanMove(1);
+//                    break;
+//                default:
+//                    break;
+//            }
+//        }
         // TODO: Only let outside cards move. All cards can be moved right now.
         cards[0].getImageView().setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -58,12 +76,14 @@ public class DragDrop {
                 return myTouch(v, event, cards[4], stacks);
             }
         });
+//        if (cards[5].getCanMove() == 1) {
         cards[5].getImageView().setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 return myTouch(v, event, cards[5], stacks);
             }
         });
+//        }
         cards[6].getImageView().setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -382,20 +402,35 @@ public class DragDrop {
             whichStack = column*4 + row;
         }
 //        Log.d("", "x is " + x + " y is " + y + ", touch stack number " + whichStack + " Stacks array length is " + stacks.length + " Card moving is from stack " + card.getCurrentStackID() + " and the card is " + card.convertToString());
-        if (card.getCurrentStackID() != whichStack) {
-            if (stacks[whichStack].getCurrentCards().size()==0) {
-                stacks[whichStack].addCardToStack(card);
+        int currentStack = card.getCurrentStackID();
+        int cardSuit = card.getSuit();
+        int cardNumber = card.getNumber();
+        ImageView c = card.getImageView();
+        Stack s = stacks[whichStack];
+        if (currentStack != whichStack) {
+            if (s.getCurrentCards().size() == 0) {
+                stacks[currentStack].removeCardFromStack(card);
+                s.addCardToStack(card);
+                c.setX(rowXCoordinates[column]);
+                c.setY(columnYCoordinates[row]-88); //TODO: Fix this line. Y coordinate not aligned due to top bar.
             }
-            if (card.getSuit() == stacks[whichStack].getLastCard().getSuit()) {
-                if (abs(card.getNumber() - stacks[whichStack].getLastCard().getNumber()) == 1) {
-                    stacks[card.getCurrentStackID()].removeCardFromStack(card);
-                    stacks[whichStack].addCardToStack(card);
-                    card.getImageView().setX(rowXCoordinates[column]);
-                    card.getImageView().setY(columnYCoordinates[row]-88); //TODO: Fix this line. Y coordinate not aligned due to top bar.
-                    Log.d("", "Setting X as " + rowXCoordinates[column] + " and Y as " + columnYCoordinates[row]);
+            if (cardSuit == s.getLastCard().getSuit()) {
+                if (abs(cardNumber - stacks[whichStack].getLastCard().getNumber()) == 1) {
+                    if (s.getCanStack() == 1) {
+                        stacks[currentStack].removeCardFromStack(card);
+                        s.addCardToStack(card);
+                        c.setX(rowXCoordinates[column]);
+                        c.setY(columnYCoordinates[row] - 88); //TODO: Fix this line. Y coordinate not aligned due to top bar.
+                        Log.d("", "Setting X as " + rowXCoordinates[column] + " and Y as " + columnYCoordinates[row]);
+                    }
                 }
             }
+            else {
+                c.setX(stacks[currentStack].getLeftSideLocation());
+                c.setY(stacks[currentStack].getTopSideLocation()-88);
+            }
         }
+
 //        switch(column) {
 //            case 0:
 //                if (row < 4) {
