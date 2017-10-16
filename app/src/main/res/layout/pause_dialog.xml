@@ -1,6 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main_page"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="mcgill.ecse456.grandnapoleonsolitairegame.MainPageActivity">
 
-</LinearLayout>
+    <Button
+        android:id="@+id/resume_button"
+        android:background="@color/blue"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="118dp"
+        android:text="Resume"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/restart_button"
+        android:background="@color/Lemon"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/resume_button"
+        android:layout_alignStart="@+id/resume_button"
+        android:layout_below="@+id/resume_button"
+        android:layout_marginTop="71dp"
+        android:text="Restart" />
+
+    <Button
+        android:id="@+id/instruction_button"
+        android:layout_width="110dp"
+        android:background="@color/green_light"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/restart_button"
+        android:layout_alignStart="@+id/restart_button"
+        android:layout_below="@+id/restart_button"
+        android:layout_marginTop="62dp"
+        android:text="Instructions" />
+
+    <Button
+        android:id="@+id/setting_button"
+        android:background="@color/Grey"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/instruction_button"
+        android:layout_alignStart="@+id/instruction_button"
+        android:layout_below="@+id/instruction_button"
+        android:layout_marginTop="60dp"
+        android:text="Setting" />
+
+    <Button
+        android:id="@+id/quit_button"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:background="@color/red"
+        android:layout_alignEnd="@+id/setting_button"
+        android:layout_alignRight="@+id/setting_button"
+        android:layout_below="@+id/setting_button"
+        android:layout_marginTop="70dp"
+        android:text="Quit" />
+</RelativeLayout>

@@ -16,10 +16,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DisplayDifficultyPageActivity"
+        <activity android:name=".DisplayDifficultyPageActivity">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
             android:parentActivityName=".MainPageActivity" >
         </activity>
-        <activity android:name=".EasyLevelGameActivity"
+        <activity android:name=".EasyLevelGameActivity">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
             android:parentActivityName=".DisplayDifficultyPageActivity" >
         </activity>
     </application>

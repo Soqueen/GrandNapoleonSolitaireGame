@@ -1,11 +1,16 @@
 package mcgill.ecse456.grandnapoleonsolitairegame;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.ImageView;
+import android.content.Context;
+import android.widget.TextView;
+
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -28,10 +33,22 @@ public class EasyLevelGameActivity extends AppCompatActivity {
     Stack[] stacks = new Stack[53];
     ArrayList<Stack> stackslist = new ArrayList<>();
     Card[] cards = new Card[52];
+    final Context context = this;
+    private Button pauseButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_easy_game_page);
+        setContentView(R.layout.game_page);
+
+        final Chronometer timer = (Chronometer) findViewById(R.id.chronometer1); // initiate a chronometer
+        timer.start(); // Start the time counter
+
+        // When Pause button trigger
+        pauseButton = (Button) findViewById(R.id.pause);
+        Pause pause = new Pause(context, pauseButton);
+        pause.popUp();
+
         Log.d("ELGActivity", "onCreate was called");
         // Create 53 stacks
         for (int i = 0; i < stacks.length; i++) {
@@ -432,4 +449,6 @@ public class EasyLevelGameActivity extends AppCompatActivity {
     public void onWindowFocusChanged (boolean hasFocus) {
         setStacksLocation(stacks);
     }
+
+
 }
