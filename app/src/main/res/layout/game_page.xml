@@ -886,12 +886,12 @@
         android:layout_toEndOf="@+id/stack41" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/step_counter"
         android:textSize="@dimen/counter"
-        android:drawableLeft="@drawable/score"
+        android:drawableLeft="@drawable/step"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Scores"
+        android:text="#Steps"
         android:layout_above="@+id/pause"
         android:layout_alignLeft="@+id/chronometer1"
         android:layout_alignStart="@+id/chronometer1" />
