@@ -44,7 +44,7 @@ public class EasyLevelGameActivity extends AppCompatActivity {
         while (numb == 0) {
             numb = rand.nextInt(14);
         }
-        Log.d("", "Number generated is " + numb);
+        Log.d("", "Number gene  rated is " + numb);
         int suit = 1;
         for (int i = 20; i < 24; i++) {
             cards[i] = new Card(suit, numb);
