@@ -21,22 +21,46 @@ public class Stack {
     private int leftSideLocation, topSideLocation;
     private int[] location = new int[2];
     private float height, width;
-    private int canStack;
 
-    public Stack(int id, int canStack) {
+    /**
+     * Public constructor Stack to easily access by other classes.
+     *
+     * @params id Unique Identify of stack
+     */
+    public Stack(int id) {
         this.stackID = id;
-        this.canStack = canStack;
     }
 
+    /**
+     * Add card to stack.
+     *
+     * @return None
+     * @params card card that will be added to stack
+     */
     public void addCardToStack(Card card) {
         card.setCurrentStackID(this.stackID);
         currentCards.add(card);
     }
+
+    /**
+     * Remove card from stack.
+     *
+     * @return None
+     * @params card card that will be removed from the stack
+     */
     public void removeCardFromStack(Card card) {
         if (currentCards.indexOf(card) >= 0) {
             currentCards.remove(currentCards.indexOf(card));
         }
     }
+
+    /**
+     * Set Imageview for stack.
+     *
+     * @return None
+     * @params i ImageView
+     */
+
     public void setImageView(ImageView i) {
         this.view = i;
         view.getLocationOnScreen(location);
@@ -53,10 +77,22 @@ public class Stack {
         this.height = height;
     }
 
+    /**
+     * Get the ImageView.
+     *
+     * @return view
+     * @params args not used
+     */
     public ImageView getImageView() {
         return this.view;
     }
 
+    /**
+     * Get the first Cards from the stack.
+     *
+     * @return firstCard First card of the stack
+     * @params args not used
+     */
     public Card getFirstCard() {
         if (this.currentCards.size() > 0) {
             return currentCards.get(0);
@@ -66,6 +102,12 @@ public class Stack {
         }
     }
 
+    /**
+     * Get the last Cards from the stack.
+     *
+     * @return LastCard Last card of the stack
+     * @params args not used
+     */
     public Card getLastCard() {
         if (currentCards.size() == 0) {
             return null;
@@ -75,6 +117,12 @@ public class Stack {
         }
     }
 
+    /**
+     * Get the list of the cards.
+     *
+     * @return list list of cards
+     * @params args not used
+     */
     public String getListOfCards() {
         String list = "The list of cards are: ";
         if (this.currentCards.size() > 1) {
@@ -99,6 +147,12 @@ public class Stack {
     public ArrayList<Card> getCurrentCards() {
         return this.currentCards;
     }
+    /**
+     * Get stack identify ID.
+     *
+     * @return stackID
+     * @params args not used
+     */
     public int getStackID() {
         return this.stackID;
     }
@@ -117,5 +171,4 @@ public class Stack {
     public float getWidth() {
         return this.width;
     }
-    public int getCanStack() { return this.canStack; }
 }
