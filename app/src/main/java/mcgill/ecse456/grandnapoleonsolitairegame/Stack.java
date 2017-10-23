@@ -49,9 +49,7 @@ public class Stack {
      * @params card card that will be removed from the stack
      */
     public void removeCardFromStack(Card card) {
-        if (currentCards.indexOf(card) >= 0) {
-            currentCards.remove(currentCards.indexOf(card));
-        }
+        currentCards.remove(card);
     }
 
     /**

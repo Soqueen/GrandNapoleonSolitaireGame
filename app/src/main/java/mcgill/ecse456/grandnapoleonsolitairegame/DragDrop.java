@@ -24,9 +24,9 @@ public class DragDrop {
         }
         for (int i = 0; i < columnYCoordinates.length; i++) {
             columnYCoordinates[i] = stacks[(i+40)].getTopSideLocation();
-            d = d + columnYCoordinates[i] + ", ";
+//            d = d + columnYCoordinates[i] + ", ";
         }
-        Log.d("", d);
+//        Log.d("", d);
         // TODO: Only let outside cards move. All cards can be moved right now.
         cards[0].getImageView().setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -345,13 +345,15 @@ public class DragDrop {
         });
     }
 
-    private static void actionDown(View v, MotionEvent event, ImageView i) {
+    private static void actionDown(View v, MotionEvent event, Card c, Stack[] s) {
+        ImageView i = c.getImageView();
         initialX = i.getX();
         initialY = i.getY();
         x = event.getRawX();
         y = event.getRawY();
         dx = x - i.getX();
         dy = y - i.getY();
+        s[c.getCurrentStackID()].removeCardFromStack(c);
     }
 
     private static void actionMove(ImageView i) {
@@ -377,150 +379,48 @@ public class DragDrop {
         int whichStack = -1;
         if (row == 4) {
             whichStack = 43 + column;
-        }
-        else {
-            whichStack = column*4 + row;
+        } else {
+            whichStack = column * 4 + row;
         }
 //        Log.d("", "x is " + x + " y is " + y + ", touch stack number " + whichStack + " Stacks array length is " + stacks.length + " Card moving is from stack " + card.getCurrentStackID() + " and the card is " + card.convertToString());
-        if (card.getCurrentStackID() != whichStack) {
-            if (stacks[whichStack].getCurrentCards().size()==0) {
-                stacks[whichStack].addCardToStack(card);
-            }
-            if (card.getSuit() == stacks[whichStack].getLastCard().getSuit()) {
-                if (abs(card.getNumber() - stacks[whichStack].getLastCard().getNumber()) == 1) {
-                    stacks[card.getCurrentStackID()].removeCardFromStack(card);
+        boolean a = canStack(card, whichStack, stacks);
+        if (a) {
+            if (card.getCurrentStackID() != whichStack) {
+                if (stacks[whichStack].getCurrentCards().size() == 0) {
                     stacks[whichStack].addCardToStack(card);
                     card.getImageView().setX(rowXCoordinates[column]);
-                    card.getImageView().setY(columnYCoordinates[row]-88); //TODO: Fix this line. Y coordinate not aligned due to top bar.
+                    card.getImageView().setY(columnYCoordinates[row] - 88); //TODO: Fix this line. Y coordinate not aligned due to top bar.
+                } else if (card.getSuit() == stacks[whichStack].getLastCard().getSuit() && ((abs(card.getNumber() - stacks[whichStack].getLastCard().getNumber()) == 1) || (abs(card.getNumber() - stacks[whichStack].getLastCard().getNumber()) == 12))) {
+                    stacks[whichStack].addCardToStack(card);
+                    card.getImageView().setX(rowXCoordinates[column]);
+                    if (whichStack >= 20 && whichStack < 24) {
+                        card.getImageView().setY(columnYCoordinates[row] - 108); //TODO: Fix this line. Y coordinate not aligned due to top bar.
+                    } else {
+                        card.getImageView().setY(columnYCoordinates[row] - 88); //TODO: Fix this line. Y coordinate not aligned due to top bar.
+                    }
                     Log.d("", "Setting X as " + rowXCoordinates[column] + " and Y as " + columnYCoordinates[row]);
+                } else {
+                    card.getImageView().setX(stacks[card.getCurrentStackID()].getLeftSideLocation());
+                    card.getImageView().setY(stacks[card.getCurrentStackID()].getTopSideLocation() - 88);
                 }
+            } else {
+                card.getImageView().setX(stacks[card.getCurrentStackID()].getLeftSideLocation());
+                card.getImageView().setY(stacks[card.getCurrentStackID()].getTopSideLocation() - 88);
             }
+        } else {
+            card.getImageView().setX(stacks[card.getCurrentStackID()].getLeftSideLocation());
+            card.getImageView().setY(stacks[card.getCurrentStackID()].getTopSideLocation() - 88);
+            Log.d("", "Cannot stack");
         }
-//        switch(column) {
-//            case 0:
-//                if (row < 4) {
-//                    whichStack = row;
-//                }
-//                break;
-//            case 1:
-//                if (row < 4) {
-//                    whichStack = 4*column + row;
-//                }
-//                else {
-//                    whichStack = 44;
-//                }
-//                break;
-//            case 2:
-//
-//
-//        }
-//        // check if the card is being dragged to stack
-//        if ((x > location[0]+ 15 && x < location[0]+stackWidth) && (y > location[1] && y < location[1]+stackHeight)) {
-//
-//            // check if the card is on the current stack
-//            if (card.getCurrentStackID() != stack.getStackID()) {
-//                if (card.getCurrentStackID() == 2) {
-//                    stack2.removeCardFromStack(card);
-//                }
-//                if (stack.getLastCard() == null) {
-//                    stack.addCardToStack(card);
-//                    card.getImageView().setX(stackX[0]);
-//                    card.getImageView().setY(stackY[0]);
-//                }
-//                // check if same suit
-//                else if (stack.getLastCard().getSuit() == card.getSuit()) {
-//
-//                    // check if consecutive
-//                    if (stack.getLastCard().getNumber() == 13 && card.getNumber() == 1) {
-//                        stack.addCardToStack(card);
-//                        card.getImageView().setX(stackX[0]);
-//                        card.getImageView().setY(stackY[0]);
-//                    }
-//                    else if (stack.getLastCard().getNumber() == 1 && card.getNumber() == 13) {
-//                        stack.addCardToStack(card);
-//                        card.getImageView().setX(stackX[0]);
-//                        card.getImageView().setY(stackY[0]);
-//                    }
-//                    else if (Math.abs(card.getNumber() - stack.getLastCard().getNumber()) == 1) {
-//                        stack.addCardToStack(card);
-//                        card.getImageView().setX(stackX[0]);
-//                        card.getImageView().setY(stackY[0]);
-//                    }
-//                    else {
-//                        Log.d(msg, "Cannot stack cards");
-//                        card.getImageView().setX(initialX);
-//                        card.getImageView().setY(initialY);
-//                    }
-//                }
-//                else {
-//                    Log.d(msg, "Cannot stack cards");
-//                    card.getImageView().setX(initialX);
-//                    card.getImageView().setY(initialY);
-//                }
-//            }
-//            String a = "The first card of the stack is the " + stack.getFirstCard().convertToString();
-//            Log.d(msg, a);
-//            Log.d(msg, stack.getListOfCards());
-//            Log.d(msg, ""+card.getCurrentStackID());
-//        }
-//        else if ((x > location2[0]+ 15 && x < location2[0]+stackWidth) && (y > location2[1] && y < location2[1]+stackHeight) && card.getCurrentStackID() != stack2.getStackID() ) {
-//            if (card.getCurrentStackID() != stack2.getStackID()) {
-//                if (card.getCurrentStackID() == 1) {
-//                    stack.removeCardFromStack(card);
-//                }
-//                if (stack2.getLastCard() == null) {
-//                    stack2.addCardToStack(card);
-//                    card.getImageView().setX(stackX[1]);
-//                    card.getImageView().setY(stackY[1]);
-//                }
-//                else if (stack2.getLastCard().getSuit() == card.getSuit()) {
-//                    if (stack2.getLastCard().getNumber() == 13 && card.getNumber() == 1) {
-//                        stack2.addCardToStack(card);
-//                        card.getImageView().setX(stackX[1]);
-//                        card.getImageView().setY(stackY[1]);
-//                    }
-//                    else if (stack2.getLastCard().getNumber() == 1 && card.getNumber() == 13) {
-//                        stack2.addCardToStack(card);
-//                        card.getImageView().setX(stackX[1]);
-//                        card.getImageView().setY(stackY[1]);
-//                    }
-//                    else if (Math.abs(card.getNumber() - stack2.getLastCard().getNumber()) == 1) {
-//                        stack2.addCardToStack(card);
-//                        card.getImageView().setX(stackX[1]);
-//                        card.getImageView().setY(stackY[1]);
-//                    }
-//                    else {
-//                        Log.d(msg, "Cannot stack cards");
-//                        card.getImageView().setX(initialX);
-//                        card.getImageView().setY(initialY);
-//                    }
-//                }
-//                else {
-//                    Log.d(msg, "Cannot stack cards");
-//                    card.getImageView().setX(initialX);
-//                    card.getImageView().setY(initialY);
-//                }
-//            }
-//
-//            String a = "The first card of the stack is the " + stack2.getFirstCard().convertToString();
-//            Log.d(msg, a);
-//            Log.d(msg, stack2.getListOfCards());
-//            Log.d(msg, ""+card.getCurrentStackID());
-//        }
-//        else {
-//            if (card.getCurrentStackID() != 0) {
-//                card.getImageView().setX(stackX[card.getCurrentStackID()-1]);
-//                card.getImageView().setY(stackY[card.getCurrentStackID()-1]);
-//            }
     }
-    //    }
+
     public static boolean myTouch(View v, MotionEvent e, Card c, Stack[] stacks) {
         v.bringToFront();
         x = e.getRawX();
         y = e.getRawY();
         switch (e.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                actionDown(v, e, c.getImageView());
+                actionDown(v, e, c, stacks);
 //                        Log.d(msg, ""+event.getRawX());
 //                        Log.d(msg, ""+event.getRawY());
 //                        Log.d(msg, ""+card1.getImageView().getX());
@@ -538,5 +438,39 @@ public class DragDrop {
                 return false;
         }
         return true;
+    }
+
+    private static boolean canStack(Card c, int whichStack, Stack[] s) {
+        Log.d("", "" + whichStack);
+        if (whichStack >= 0 && whichStack < 20) {
+            if (whichStack < 4) {
+                Log.d("", "First column");
+                return true;
+            } else {
+                Log.d("", "Recursion");
+                if (s[whichStack - 4].getCurrentCards().size() == 0) {
+                    return canStack(c, whichStack - 4, s);
+                } else {
+                    return false;
+                }
+            }
+        } else if (whichStack >= 24 && whichStack < 44) {
+            if (whichStack > 39) {
+                Log.d("", "Last Column");
+                return true;
+            } else {
+                Log.d("", "Recursion");
+                if (s[whichStack+4].getCurrentCards().size() == 0) {
+                    return canStack(c, whichStack + 4, s);
+                } else {
+                    return false;
+                }
+            }
+        } else if (whichStack >= 20 && whichStack < 24) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }
