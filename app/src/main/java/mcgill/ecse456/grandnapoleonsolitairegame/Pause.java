@@ -4,13 +4,20 @@ import android.app.Dialog;
 import android.content.Context;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Chronometer;
+import android.os.SystemClock;
+
 
 public class Pause {
     private Context context;
     private Button pauseButton;
-    public Pause(Context context, Button pauseButton) {
+    private Chronometer timer;
+    private long timeDiff;
+    public Pause(Context context, Button pauseButton, Chronometer timer) {
         this.context = context;
         this.pauseButton = pauseButton;
+        this.timer = timer;
+        this.timeDiff = 0;
     }
 
     public void popUp() {
@@ -34,12 +41,17 @@ public class Pause {
                 resumeButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        //resume timer
+                        timer.setBase(SystemClock.elapsedRealtime() + timeDiff);
+                        timer.start();
                         dialog.dismiss();
                         // TODO - Pause timer
-
                     }
                 });
                 // TODO - Restart , quit, setting, instruction
+                // Pause timer
+                timeDiff = timer.getBase()- SystemClock.elapsedRealtime();
+                timer.stop();
                 dialog.show();
             }
         });
