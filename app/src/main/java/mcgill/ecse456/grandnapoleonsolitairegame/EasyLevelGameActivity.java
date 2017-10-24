@@ -69,10 +69,6 @@ public class EasyLevelGameActivity extends AppCompatActivity {
             cards[i] = new Card(suit, numb);
             suit++;
         }
-//        Log.d("", "Card 20 = " + cards[20].convertToString());
-//        Log.d("", "Card 21 = " + cards[21].convertToString());
-//        Log.d("", "Card 22 = " + cards[22].convertToString());
-//        Log.d("", "Card 23 = " + cards[23].convertToString());
 
         // Fill stacks with cards except cellar
         int index = 0;
@@ -168,34 +164,6 @@ public class EasyLevelGameActivity extends AppCompatActivity {
         // Cella place at stack52
         stacks[52].setImageView((ImageView) findViewById(R.id.stack52));
 
-//        Log.d("", "Stack 0 " + stacks[0].getLeftSideLocation() + " " + stacks[0].getTopSideLocation());
-//        ImageView im = (ImageView) findViewById(R.id.stack0);
-//        im.getLocationOnScreen(location);
-//        int top = location[1];
-//        int left = location[0];
-//        top = im.getTop();
-//        left = im.getLeft();
-//        Log.d("", "Stack directly " + top + " " + left);
-//        Stack stack0 = new Stack(0);
-//        stackslist.add(stack0);
-//
-//        stackslist.get(0).setImageView((ImageView) findViewById(R.id.stack0));
-//        stackslist.get(0).getImageView().getLocationOnScreen(location);
-////        int top = stackslist.get(0).getImageView().getTop();
-////        int left = stackslist.get(0).getImageView().getLeft();
-//        top = location[1];
-//        left = location[0];
-//        Log.d("", "Stack from ArrayList " + top + " " + left);
-//
-//        int[] location = new int[2];
-//        stacks[0].getImageView().getLocationOnScreen(location);
-//        int x = stacks[0].getImageView().getTop();
-//        int y = stacks[0].getImageView().getLeft();
-//        stacks[0].setXYCoordinates(x, y);
-//        Log.d("", "Stack 0 " + stacks[0].getLeftSideLocation() + " " + stacks[0].getTopSideLocation());
-//
-//        Log.d("", "Stack 0 " + stacks[0].getLeftSideLocation() + " " + stacks[0].getTopSideLocation());
-
         cards[0].setImageView((ImageView) findViewById(R.id.card0));
         cards[1].setImageView((ImageView) findViewById(R.id.card1));
         cards[2].setImageView((ImageView) findViewById(R.id.card2));
@@ -262,177 +230,6 @@ public class EasyLevelGameActivity extends AppCompatActivity {
             Log.d("", "Stack number " + i + " has " + stacks[i].getListOfCards());
         }
     }
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        findLocation((ImageView) findViewById(R.id.card0));
-//    }
-//    private void actionDown(View v, MotionEvent event, ImageView i) {
-//        initialX = i.getX();
-//        initialY = i.getY();
-//        x = event.getRawX();
-//        y = event.getRawY();
-//        dx = x - i.getX();
-//        dy = y - i.getY();
-//    }
-//
-//    private void actionMove(ImageView i) {
-//        i.setX(x-dx);
-//        i.setY(y-dy);
-//    }
-//
-//    private void actionUp(Card card) {
-//
-////        // check if the card is being dragged to stack
-////        if ((x > location[0]+ 15 && x < location[0]+stackWidth) && (y > location[1] && y < location[1]+stackHeight)) {
-////
-////            // check if the card is on the current stack
-////            if (card.getCurrentStackID() != stack.getStackID()) {
-////                if (card.getCurrentStackID() == 2) {
-////                    stack2.removeCardFromStack(card);
-////                }
-////                if (stack.getLastCard() == null) {
-////                    stack.addCardToStack(card);
-////                    card.getImageView().setX(stackX[0]);
-////                    card.getImageView().setY(stackY[0]);
-////                }
-////                // check if same suit
-////                else if (stack.getLastCard().getSuit() == card.getSuit()) {
-////
-////                    // check if consecutive
-////                    if (stack.getLastCard().getNumber() == 13 && card.getNumber() == 1) {
-////                        stack.addCardToStack(card);
-////                        card.getImageView().setX(stackX[0]);
-////                        card.getImageView().setY(stackY[0]);
-////                    }
-////                    else if (stack.getLastCard().getNumber() == 1 && card.getNumber() == 13) {
-////                        stack.addCardToStack(card);
-////                        card.getImageView().setX(stackX[0]);
-////                        card.getImageView().setY(stackY[0]);
-////                    }
-////                    else if (Math.abs(card.getNumber() - stack.getLastCard().getNumber()) == 1) {
-////                        stack.addCardToStack(card);
-////                        card.getImageView().setX(stackX[0]);
-////                        card.getImageView().setY(stackY[0]);
-////                    }
-////                    else {
-////                        Log.d(msg, "Cannot stack cards");
-////                        card.getImageView().setX(initialX);
-////                        card.getImageView().setY(initialY);
-////                    }
-////                }
-////                else {
-////                    Log.d(msg, "Cannot stack cards");
-////                    card.getImageView().setX(initialX);
-////                    card.getImageView().setY(initialY);
-////                }
-////            }
-////            String a = "The first card of the stack is the " + stack.getFirstCard().convertToString();
-////            Log.d(msg, a);
-////            Log.d(msg, stack.getListOfCards());
-////            Log.d(msg, ""+card.getCurrentStackID());
-////        }
-////        else if ((x > location2[0]+ 15 && x < location2[0]+stackWidth) && (y > location2[1] && y < location2[1]+stackHeight) && card.getCurrentStackID() != stack2.getStackID() ) {
-////            if (card.getCurrentStackID() != stack2.getStackID()) {
-////                if (card.getCurrentStackID() == 1) {
-////                    stack.removeCardFromStack(card);
-////                }
-////                if (stack2.getLastCard() == null) {
-////                    stack2.addCardToStack(card);
-////                    card.getImageView().setX(stackX[1]);
-////                    card.getImageView().setY(stackY[1]);
-////                }
-////                else if (stack2.getLastCard().getSuit() == card.getSuit()) {
-////                    if (stack2.getLastCard().getNumber() == 13 && card.getNumber() == 1) {
-////                        stack2.addCardToStack(card);
-////                        card.getImageView().setX(stackX[1]);
-////                        card.getImageView().setY(stackY[1]);
-////                    }
-////                    else if (stack2.getLastCard().getNumber() == 1 && card.getNumber() == 13) {
-////                        stack2.addCardToStack(card);
-////                        card.getImageView().setX(stackX[1]);
-////                        card.getImageView().setY(stackY[1]);
-////                    }
-////                    else if (Math.abs(card.getNumber() - stack2.getLastCard().getNumber()) == 1) {
-////                        stack2.addCardToStack(card);
-////                        card.getImageView().setX(stackX[1]);
-////                        card.getImageView().setY(stackY[1]);
-////                    }
-////                    else {
-////                        Log.d(msg, "Cannot stack cards");
-////                        card.getImageView().setX(initialX);
-////                        card.getImageView().setY(initialY);
-////                    }
-////                }
-////                else {
-////                    Log.d(msg, "Cannot stack cards");
-////                    card.getImageView().setX(initialX);
-////                    card.getImageView().setY(initialY);
-////                }
-////            }
-////
-////            String a = "The first card of the stack is the " + stack2.getFirstCard().convertToString();
-////            Log.d(msg, a);
-////            Log.d(msg, stack2.getListOfCards());
-////            Log.d(msg, ""+card.getCurrentStackID());
-////        }
-////        else {
-////            if (card.getCurrentStackID() != 0) {
-////                card.getImageView().setX(stackX[card.getCurrentStackID()-1]);
-////                card.getImageView().setY(stackY[card.getCurrentStackID()-1]);
-////            }
-//        }
-////    }
-//    private void findLocation(ImageView stack) {
-//        // Return weird values? Investigate later
-//        int top = stack.getTop();
-//        int left = stack.getLeft();
-//        Log.d("", "Method gets " + top + " " + left);
-//
-//        //  Return real values
-//        stack.getLocationOnScreen(location);
-//        top = location[0];
-//        left = location[1];
-//        Log.d("", "Method gets " + top + " " + left);
-//    }
-//    private void findStackLocation(ImageView i, ImageView s, ImageView s2) {
-//        i.getLocationOnScreen(locationCard);
-//        s.getLocationOnScreen(location);
-//        s2.getLocationOnScreen(location2);
-//        stackHeight = s.getHeight();
-//        stackWidth = s.getWidth();
-////        stackX[0] = s.getLeft();
-////        stackY[0] = s.getTop();
-////        stackX[1] = s2.getLeft();
-////        stackY[1] = s2.getTop();
-//    }
-//
-//    private boolean myTouch(View v, MotionEvent e, Card c, Stack[] stacks) {
-//        v.bringToFront();
-//        x = e.getRawX();
-//        y = e.getRawY();
-//        setStacksLocation(stacks);
-//        switch (e.getAction()) {
-//            case MotionEvent.ACTION_DOWN:
-//                actionDown(v, e, c.getImageView());
-////                        Log.d(msg, ""+event.getRawX());
-////                        Log.d(msg, ""+event.getRawY());
-////                        Log.d(msg, ""+card1.getImageView().getX());
-////                        Log.d(msg, ""+card1.getImageView().getY());
-//                break;
-//            case MotionEvent.ACTION_MOVE:
-//                actionMove(c.getImageView());
-//                break;
-//            case MotionEvent.ACTION_UP:
-////                        Log.d(msg, "Action Up");
-//                actionUp(c);
-//                break;
-//            default:
-//                Log.d(msg, "Default");
-//                return false;
-//        }
-//        return true;
-//    }
 
     // Method works, but need to put it somewhere after onCreate(), or it won't work.
     private void setStacksLocation(Stack[] s) {
@@ -440,8 +237,6 @@ public class EasyLevelGameActivity extends AppCompatActivity {
             s[i].getImageView().getLocationOnScreen(location);
             s[i].setSize(s[i].getImageView().getWidth(), s[i].getImageView().getHeight());
             s[i].setXYCoordinates(location[0], location[1]);
-//            Log.d("", "Stack " + i + " is at " + s[i].getLeftSideLocation() + " " + s[i].getTopSideLocation());
-//            Log.d("", "Stack " + i + " has height " + s[i].getHeight() + ", and width " + s[i].getWidth());
             DragDrop.main(cards, stacks);
         }
     }
