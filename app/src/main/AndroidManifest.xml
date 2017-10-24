@@ -28,6 +28,12 @@
             </intent-filter>
             android:parentActivityName=".DisplayDifficultyPageActivity" >
         </activity>
+        <activity android:name=".Instruction">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            android:parentActivityName=".MainPageActivity" >
+        </activity>
     </application>
 
 </manifest>
