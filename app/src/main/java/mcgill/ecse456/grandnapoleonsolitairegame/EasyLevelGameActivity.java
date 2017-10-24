@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
-import android.os.SystemClock;
 import android.widget.ImageView;
 import android.content.Context;
 import android.widget.TextView;
@@ -36,7 +35,6 @@ public class EasyLevelGameActivity extends AppCompatActivity {
     Card[] cards = new Card[52];
     final Context context = this;
     private Button pauseButton;
-    private long timeDiff = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +43,15 @@ public class EasyLevelGameActivity extends AppCompatActivity {
 
         final Chronometer timer = (Chronometer) findViewById(R.id.chronometer1); // initiate a chronometer
         timer.start(); // Start the time counter
+        displayCards(cards, stacks);
 
         // When Pause button trigger
         pauseButton = (Button) findViewById(R.id.pause);
         Pause pause = new Pause(context, pauseButton,timer);
         pause.popUp();
+    }
 
+    public void displayCards(Card[] cards, Stack[] stacks){
         Log.d("ELGActivity", "onCreate was called");
         // Create 53 stacks
         for (int i = 0; i < stacks.length; i++) {

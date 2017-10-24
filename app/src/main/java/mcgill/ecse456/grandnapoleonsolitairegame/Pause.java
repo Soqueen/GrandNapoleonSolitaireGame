@@ -1,5 +1,6 @@
 package mcgill.ecse456.grandnapoleonsolitairegame;
 
+import android.support.v7.app.AppCompatActivity;
 import android.app.Dialog;
 import android.content.Context;
 import android.view.View;
@@ -8,11 +9,13 @@ import android.widget.Chronometer;
 import android.os.SystemClock;
 
 
-public class Pause {
+
+public class Pause extends AppCompatActivity{
     private Context context;
     private Button pauseButton;
     private Chronometer timer;
     private long timeDiff;
+
     public Pause(Context context, Button pauseButton, Chronometer timer) {
         this.context = context;
         this.pauseButton = pauseButton;
@@ -29,32 +32,65 @@ public class Pause {
                 // custom dialog
                 final Dialog dialog = new Dialog(context);
                 dialog.setContentView(R.layout.pause_dialog);
-                dialog.setTitle("Pause");
+
 
                 Button resumeButton = (Button) dialog.findViewById(R.id.resume_button);
-                Button restartButton = (Button) dialog.findViewById(R.id.restart_button);
+//                Button restartButton = (Button) dialog.findViewById(R.id.restart_button);
                 Button quitButton = (Button) dialog.findViewById(R.id.quit_button);
                 Button settingButton = (Button) dialog.findViewById(R.id.setting_button);
                 Button instructionButton = (Button) dialog.findViewById(R.id.instruction_button);
 
-                // if resume button is clicked, close the custom dialog
-                resumeButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        //resume timer
-                        timer.setBase(SystemClock.elapsedRealtime() + timeDiff);
-                        timer.start();
-                        dialog.dismiss();
-                        // TODO - Pause timer
-                    }
-                });
-                // TODO - Restart , quit, setting, instruction
                 // Pause timer
                 timeDiff = timer.getBase()- SystemClock.elapsedRealtime();
                 timer.stop();
                 dialog.show();
+
+                // Check if the resume button is clicked
+                resumeButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                    //resume timer
+                    timer.setBase(SystemClock.elapsedRealtime() + timeDiff);
+                    timer.start();
+                    dialog.dismiss();
+                    // TODO - Pause timer
+                    }
+                });
+
+//                // Check if the restart button is clicked
+//                restartButton.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//
+//                    }
+//                });
+
+                // Check if the quit button is clicked, it return to level page
+                quitButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // doesn't seem to save state here
+                        finish();
+                        System.exit(0);
+                    }
+                });
+
+                // Check if the setting menu button is clicked
+                settingButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+
+                // Check if the instruction menu button is clicked
+                instructionButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
             }
         });
     }
-
 }
