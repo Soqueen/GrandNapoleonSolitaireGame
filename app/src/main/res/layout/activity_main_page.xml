@@ -72,6 +72,7 @@
             android:layout_marginTop="30dp"
             android:background="@color/green_light"
             android:text="Instructions"
+            android:onClick="instructionNavigate"
             android:textAppearance="@style/TextAppearance.AppCompat.Button"
             android:textSize="24sp" />
 

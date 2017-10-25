@@ -39,6 +39,17 @@ public class MainPageActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * Navigate to Instruction page when the user click on Instruction button
+     *
+     * @return None
+     * @params view
+     */
+    public void instructionNavigate(View view) {
+        Intent intent = new Intent(this, Instruction.class);
+        startActivity(intent);
+    }
+
     /* Closed GNS app when the user click on closed button */
     public void closedApp (View view){
         finish();
