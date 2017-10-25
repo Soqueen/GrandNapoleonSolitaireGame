@@ -35,6 +35,7 @@ public class EasyLevelGameActivity extends AppCompatActivity {
     Card[] cards = new Card[52];
     final Context context = this;
     private Button pauseButton;
+    private TextView stepCounter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +62,7 @@ public class EasyLevelGameActivity extends AppCompatActivity {
         while (numb == 0) {
             numb = rand.nextInt(14);
         }
-        Log.d("", "Number gene  rated is " + numb);
+        Log.d("", "Number generated is " + numb);
         int suit = 1;
         for (int i = 20; i < 24; i++) {
             cards[i] = new Card(suit, numb);
@@ -247,6 +248,9 @@ public class EasyLevelGameActivity extends AppCompatActivity {
         cards[50].setImageView((ImageView) findViewById(R.id.card50));
         cards[51].setImageView((ImageView) findViewById(R.id.card51));
         for (int i = 0; i < cards.length; i++) {
+            if (i < 4 || ((i > 39) && (i < 45)) || i == 51) {
+                cards[i].setCanMove(true);
+            }
             if (i < 48) {
                 stacks[i].addCardToStack(cards[i]);
             }
@@ -434,13 +438,14 @@ public class EasyLevelGameActivity extends AppCompatActivity {
 
     // Method works, but need to put it somewhere after onCreate(), or it won't work.
     private void setStacksLocation(Stack[] s) {
+        stepCounter = (TextView)findViewById(R.id.step_counter);
         for (int i = 0; i < s.length; i++) {
             s[i].getImageView().getLocationOnScreen(location);
             s[i].setSize(s[i].getImageView().getWidth(), s[i].getImageView().getHeight());
             s[i].setXYCoordinates(location[0], location[1]);
 //            Log.d("", "Stack " + i + " is at " + s[i].getLeftSideLocation() + " " + s[i].getTopSideLocation());
 //            Log.d("", "Stack " + i + " has height " + s[i].getHeight() + ", and width " + s[i].getWidth());
-            DragDrop.main(cards, stacks);
+            DragDrop.main(cards, stacks, stepCounter);
         }
     }
 

@@ -4,6 +4,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import static java.lang.Math.abs;
 
@@ -14,9 +15,12 @@ public class DragDrop {
     public static float[] columnYCoordinates = new float[5];
     public static Card[] cards;
     public static Stack[] stacks;
-    public static void main(Card[] c, Stack[] s) {
+    public static TextView stepCounter;
+    public static int numSteps = 0;
+    public static void main(Card[] c, Stack[] s, TextView counter) {
         cards = c;
         stacks = s;
+        stepCounter = counter;
         String d = "";
         for (int i = 0; i < rowXCoordinates.length; i++) {
             rowXCoordinates[i] = stacks[(i*4)].getLeftSideLocation();
@@ -385,6 +389,8 @@ public class DragDrop {
 //        Log.d("", "x is " + x + " y is " + y + ", touch stack number " + whichStack + " Stacks array length is " + stacks.length + " Card moving is from stack " + card.getCurrentStackID() + " and the card is " + card.convertToString());
         boolean a = canStack(card, whichStack, stacks);
         if (a) {
+            numSteps++;
+            stepCounter.setText(numSteps + " steps");
             if (card.getCurrentStackID() != whichStack) {
                 if (stacks[whichStack].getCurrentCards().size() == 0) {
                     stacks[whichStack].addCardToStack(card);
@@ -415,34 +421,40 @@ public class DragDrop {
     }
 
     public static boolean myTouch(View v, MotionEvent e, Card c, Stack[] stacks) {
-        v.bringToFront();
-        x = e.getRawX();
-        y = e.getRawY();
-        switch (e.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                actionDown(v, e, c, stacks);
-//                        Log.d(msg, ""+event.getRawX());
-//                        Log.d(msg, ""+event.getRawY());
-//                        Log.d(msg, ""+card1.getImageView().getX());
-//                        Log.d(msg, ""+card1.getImageView().getY());
-                break;
-            case MotionEvent.ACTION_MOVE:
-                actionMove(c.getImageView());
-                break;
-            case MotionEvent.ACTION_UP:
-//                        Log.d(msg, "Action Up");
-                actionUp(c, x, y);
-                break;
-            default:
-                Log.d("", "Default");
-                return false;
+        if (c.getCanMove()) {
+            v.bringToFront();
+            x = e.getRawX();
+            y = e.getRawY();
+            switch (e.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    actionDown(v, e, c, stacks);
+                    //                        Log.d(msg, ""+event.getRawX());
+                    //                        Log.d(msg, ""+event.getRawY());
+                    //                        Log.d(msg, ""+card1.getImageView().getX());
+                    //                        Log.d(msg, ""+card1.getImageView().getY());
+                    break;
+                case MotionEvent.ACTION_MOVE:
+                    actionMove(c.getImageView());
+                    break;
+                case MotionEvent.ACTION_UP:
+                    //                        Log.d(msg, "Action Up");
+                    actionUp(c, x, y);
+                    break;
+                default:
+                    Log.d("", "Default");
+                    return false;
+            }
+            return true;
+        } else {
+            return true;
         }
-        return true;
     }
 
     private static boolean canStack(Card c, int whichStack, Stack[] s) {
         Log.d("", "" + whichStack);
-        if (whichStack >= 0 && whichStack < 20) {
+        if (whichStack < 0) {
+            return false;
+        } else if (whichStack >= 0 && whichStack < 20) {
             if (whichStack < 4) {
                 Log.d("", "First column");
                 return true;
@@ -468,8 +480,7 @@ public class DragDrop {
             }
         } else if (whichStack >= 20 && whichStack < 24) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
