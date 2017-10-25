@@ -21,6 +21,7 @@ public class Card {
     private int[] drawables;// values for the image of the card
     private ImageView view;
     private int currentStackID = 0;
+    private boolean canMove;
 
     // constants for retrieving the image of diamond cards
     public final static int[] drawablesDiamonds = {
@@ -368,5 +369,6 @@ public class Card {
     public void setCurrentStackID(int id) {
         this.currentStackID = id;
     }
-
+    public boolean getCanMove() { return this.canMove; }
+    public void setCanMove(boolean canMove) { this.canMove = canMove; }
 }
