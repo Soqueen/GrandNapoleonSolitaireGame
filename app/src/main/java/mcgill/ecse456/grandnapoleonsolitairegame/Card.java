@@ -22,6 +22,7 @@ public class Card {
     private ImageView view;
     private int currentStackID = 0;
     private boolean canMove;
+    public int style = 0;
 
     // constants for retrieving the image of diamond cards
     public final static int[] drawablesDiamonds = {
@@ -46,6 +47,31 @@ public class Card {
             R.drawable.abstract_spades_1, R.drawable.abstract_spades_2, R.drawable.abstract_spades_3, R.drawable.abstract_spades_4, R.drawable.abstract_spades_5,
             R.drawable.abstract_spades_6, R.drawable.abstract_spades_7, R.drawable.abstract_spades_8, R.drawable.abstract_spades_9, R.drawable.abstract_spades_10,
             R.drawable.abstract_spades_11, R.drawable.abstract_spades_12, R.drawable.abstract_spades_13,
+    };
+
+    // constants for retrieving the image of diamond cards
+    public final static int[] simpleDiamonds = {
+            R.drawable.simple_diamond_1, R.drawable.simple_diamond_2, R.drawable.simple_diamond_3, R.drawable.simple_diamond_4, R.drawable.simple_diamond_5,
+            R.drawable.simple_diamond_6, R.drawable.simple_diamond_7, R.drawable.simple_diamond_8, R.drawable.simple_diamond_9, R.drawable.simple_diamond_10,
+            R.drawable.simple_diamond_11, R.drawable.simple_diamond_12, R.drawable.simple_diamond_13,
+    };
+    // constants for retrieving the image of club cards
+    public final static int[] simpleClubs = {
+            R.drawable.simple_club_1, R.drawable.simple_club_2, R.drawable.simple_club_3, R.drawable.simple_club_4, R.drawable.simple_club_5,
+            R.drawable.simple_club_6, R.drawable.simple_club_7, R.drawable.simple_club_8, R.drawable.simple_club_9, R.drawable.simple_club_10,
+            R.drawable.simple_club_11, R.drawable.simple_club_12, R.drawable.simple_club_13,
+    };
+    // constants for retrieving the image of heart cards
+    public final static int[] simpleHearts = {
+            R.drawable.simple_heart_1, R.drawable.simple_heart_2, R.drawable.simple_heart_3, R.drawable.simple_heart_4, R.drawable.simple_heart_5,
+            R.drawable.simple_heart_6, R.drawable.simple_heart_7, R.drawable.simple_heart_8, R.drawable.simple_heart_9, R.drawable.simple_heart_10,
+            R.drawable.simple_heart_11, R.drawable.simple_heart_12, R.drawable.simple_heart_13,
+    };
+    // constants for retrieving the image of spade cards
+    public final static int[] simpleSpades = {
+            R.drawable.simple_spade_1, R.drawable.simple_spade_2, R.drawable.simple_spade_3, R.drawable.simple_spade_4, R.drawable.simple_spade_5,
+            R.drawable.simple_spade_6, R.drawable.simple_spade_7, R.drawable.simple_spade_8, R.drawable.simple_spade_9, R.drawable.simple_spade_10,
+            R.drawable.simple_spade_11, R.drawable.simple_spade_12, R.drawable.simple_spade_13,
     };
 
     /**
@@ -100,7 +126,11 @@ public class Card {
         // case switch to set suit
         switch (suit) {
             case 1:
-                drawables = drawablesDiamonds;
+                if (style == 1) {
+                    drawables = drawablesDiamonds;
+                } else {
+                   drawables = simpleDiamonds;
+                }
                 // select the correct image depending on the number
                 switch (number) {
                     case 1:
@@ -147,7 +177,11 @@ public class Card {
                 }
                 break;
             case 2:
-                drawables = drawablesClubs;
+                if (style == 1) {
+                    drawables = drawablesClubs;
+                } else {
+                    drawables = simpleClubs;
+                }
                 // select the correct image depending on the number
                 switch (number) {
                     case 1:
@@ -194,7 +228,11 @@ public class Card {
                 }
                 break;
             case 3:
-                drawables = drawablesHearts;
+                if (style == 1) {
+                    drawables = drawablesHearts;
+                } else {
+                    drawables = simpleHearts;
+                }
                 // select the correct image depending on the number
                 switch (number) {
                     case 1:
@@ -241,7 +279,11 @@ public class Card {
                 }
                 break;
             case 4:
-                drawables = drawablesSpades;
+                if (style == 1) {
+                    drawables = drawablesSpades;
+                } else {
+                    drawables = simpleSpades;
+                }
                 // select the correct image depending on the number
                 switch (number) {
                     case 1:
@@ -371,4 +413,7 @@ public class Card {
     }
     public boolean getCanMove() { return this.canMove; }
     public void setCanMove(boolean canMove) { this.canMove = canMove; }
+
+    public int getStyle() { return this.style; }
+    public void setStyle(int style) { this.style = style; }
 }

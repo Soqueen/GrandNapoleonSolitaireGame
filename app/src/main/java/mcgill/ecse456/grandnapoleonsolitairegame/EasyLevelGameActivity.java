@@ -69,6 +69,7 @@ public class EasyLevelGameActivity extends AppCompatActivity {
         int suit = 1;
         for (int i = 20; i < 24; i++) {
             cards[i] = new Card(suit, numb);
+
             suit++;
         }
 
@@ -219,9 +220,9 @@ public class EasyLevelGameActivity extends AppCompatActivity {
         cards[50].setImageView((ImageView) findViewById(R.id.card50));
         cards[51].setImageView((ImageView) findViewById(R.id.card51));
         for (int i = 0; i < cards.length; i++) {
-            if (i < 4 || ((i > 39) && (i < 45)) || i == 51) {
+//            if (i < 4 || ((i > 39) && (i < 45)) || i == 51) {
                 cards[i].setCanMove(true);
-            }
+//            }
             if (i < 48) {
                 stacks[i].addCardToStack(cards[i]);
             }
