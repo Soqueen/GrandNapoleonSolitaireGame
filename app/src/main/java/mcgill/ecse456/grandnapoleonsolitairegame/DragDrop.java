@@ -1,5 +1,6 @@
 package mcgill.ecse456.grandnapoleonsolitairegame;
 
+import android.graphics.Color;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -347,6 +348,11 @@ public class DragDrop {
                 return myTouch(v, event, cards[51], stacks);
             }
         });
+        View.OnClickListener hintButton = new View.OnClickListener() {
+            public void onClick(View v) {
+                cards[0].getImageView().setColorFilter(Color.argb(50, 0, 0, 0));
+            }
+        };
     }
 
     private static void actionDown(View v, MotionEvent event, Card c, Stack[] s) {

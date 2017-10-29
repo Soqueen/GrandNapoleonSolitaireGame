@@ -1,6 +1,7 @@
 package mcgill.ecse456.grandnapoleonsolitairegame;
 
 import android.app.Dialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -35,6 +36,7 @@ public class EasyLevelGameActivity extends AppCompatActivity {
     Card[] cards = new Card[52];
     final Context context = this;
     private Button pauseButton;
+    private Button hintButton;
     private TextView stepCounter;
 
     @Override
@@ -50,6 +52,10 @@ public class EasyLevelGameActivity extends AppCompatActivity {
         pauseButton = (Button) findViewById(R.id.pause);
         Pause pause = new Pause(context, pauseButton,timer);
         pause.popUp();
+
+        hintButton = (Button) findViewById(R.id.hint);
+        Hint hint = new Hint(hintButton, cards, stacks);
+        hint.clicked();
     }
 
     public void displayCards(Card[] cards, Stack[] stacks){
@@ -251,11 +257,10 @@ public class EasyLevelGameActivity extends AppCompatActivity {
         }
     }
 
+
     // Temporary solution to actually finding location of ImageViews.
     @Override
     public void onWindowFocusChanged (boolean hasFocus) {
         setStacksLocation(stacks);
     }
-
-
 }
