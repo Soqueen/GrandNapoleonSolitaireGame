@@ -40,6 +40,7 @@ public class EasyLevelGameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.game_page);
 
         final Chronometer timer = (Chronometer) findViewById(R.id.chronometer1); // initiate a chronometer

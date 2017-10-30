@@ -849,6 +849,7 @@
         android:layout_marginStart="38dp"
         android:background="@color/turquoise"
         android:text="Undo"
+        android:textColor="@color/Grey"
         android:layout_below="@+id/stack0"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -858,6 +859,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hint"
+        android:textColor="@color/Grey"
         android:background="@color/turquoise"
         android:layout_alignLeft="@+id/undo"
         android:layout_alignStart="@+id/undo"
@@ -871,6 +873,7 @@
         android:background="@color/turquoise"
         android:layout_alignLeft="@+id/hint"
         android:layout_alignStart="@+id/hint"
+        android:textColor="@color/Grey"
         android:text="Pause" />
 
     <Chronometer
