@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import java.lang.reflect.Array;
+
 /**
  * GNS Android Game Application
  * Instruction.java
@@ -24,16 +26,15 @@ public class Instruction extends AppCompatActivity {
         recursiveNavigate();
     }
     public void recursiveNavigate (){
-        Button next = (Button) findViewById(R.id.inst_next);
-        Button closed = (Button) findViewById(R.id.inst_closed);
-        next.setOnClickListener(new View.OnClickListener() {
+        Button[] b = initButton();
+        b[1].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setContentView(R.layout.instruction_page2);
                 anotherRecursive();
             }
         });
-        closed.setOnClickListener(new View.OnClickListener() {
+        b[2].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 System.exit(0);
@@ -41,37 +42,41 @@ public class Instruction extends AppCompatActivity {
         });
     }
     public void anotherRecursive(){
-        Button next = (Button) findViewById(R.id.inst_next);
-        Button closed = (Button) findViewById(R.id.inst_closed);
-        Button prev = (Button) findViewById(R.id.inst_prev);
-        closed.setOnClickListener(new View.OnClickListener() {
+        Button[] b = initButton();
+        b[2].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 System.exit(0);
             }
         });
-        next.setOnClickListener(new View.OnClickListener() {
+        b[1].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setContentView(R.layout.instruction_page3);
-                Button closed = (Button) findViewById(R.id.inst_closed);
-                Button prev = (Button) findViewById(R.id.inst_prev);
-                closed.setOnClickListener(new View.OnClickListener() {
+                Button[] b = initButton();
+                b[2].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         System.exit(0);
                     }
                 });
-                prev.setOnClickListener(new View.OnClickListener() {
+                b[0].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         setContentView(R.layout.instruction_page2);
                         anotherRecursive();
                     }
                 });
+                b[1].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setContentView(R.layout.instruction_page4);
+                        anotherRecursive3();
+                    }
+                });
             }
         });
-        prev.setOnClickListener(new View.OnClickListener() {
+        b[0].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setContentView(R.layout.instruction_page1);
@@ -79,4 +84,182 @@ public class Instruction extends AppCompatActivity {
             }
         });
     }
+    public void anotherRecursive3(){
+        Button[] b = initButton();
+        b[2].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.exit(0);
+            }
+        });
+        b[1].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setContentView(R.layout.instruction_page5);
+                Button[] b = initButton();
+                b[2].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        System.exit(0);
+                    }
+                });
+                b[0].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setContentView(R.layout.instruction_page4);
+                        anotherRecursive3();
+                    }
+                });
+                b[1].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setContentView(R.layout.instruction_page6);
+                        anotherRecursive4();
+                    }
+                });
+            }
+        });
+        b[0].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setContentView(R.layout.instruction_page3);
+                Button[] b = initButton();
+                b[2].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        System.exit(0);
+                    }
+                });
+                b[0].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setContentView(R.layout.instruction_page2);
+                        anotherRecursive();
+                    }
+                });
+                b[1].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setContentView(R.layout.instruction_page4);
+                        anotherRecursive3();
+                    }
+                });
+            }
+        });
+    }
+
+    public void anotherRecursive4(){
+        Button[] b = initButton();
+        b[2].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.exit(0);
+            }
+        });
+        b[1].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setContentView(R.layout.instruction_page7);
+                Button[] b = initButton();
+                b[2].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        System.exit(0);
+                    }
+                });
+                b[0].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setContentView(R.layout.instruction_page6);
+                        anotherRecursive4();
+                    }
+                });
+                b[1].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setContentView(R.layout.instruction_page8);
+                        anotherRecursive5();
+                    }
+                });
+            }
+        });
+        b[0].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setContentView(R.layout.instruction_page4);
+                anotherRecursive3();
+            }
+        });
+    }
+
+    public void anotherRecursive5(){
+        Button[] b = initButton();
+        b[2].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.exit(0);
+            }
+        });
+        b[1].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setContentView(R.layout.instruction_page9);
+                Button[] b = initButton();
+                b[2].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        System.exit(0);
+                    }
+                });
+                b[0].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setContentView(R.layout.instruction_page8);
+                        anotherRecursive5();
+                    }
+                });
+
+            }
+        });
+        b[0].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setContentView(R.layout.instruction_page7);
+                Button[] b = initButton();
+                b[2].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        System.exit(0);
+                    }
+                });
+                b[0].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setContentView(R.layout.instruction_page6);
+                        anotherRecursive4();
+                    }
+                });
+                b[1].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setContentView(R.layout.instruction_page8);
+                        anotherRecursive5();
+                    }
+                });
+            }
+        });
+    }
+
+    public Button[] initButton(){
+        Button[] b = new Button[3];
+        Button closed = (Button) findViewById(R.id.inst_closed);
+        Button prev = (Button) findViewById(R.id.inst_prev);
+        Button next = (Button) findViewById(R.id.inst_next);
+        b[0] = prev;
+        b[1] = next;
+        b[2] = closed;
+        return b;
+    }
+
+
 }

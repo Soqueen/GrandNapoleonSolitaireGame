@@ -3,41 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:id="@+id/instruction5">
+    android:id="@+id/instruction9">
 
     <Button
         android:id="@+id/inst_prev"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Previous"
-        android:layout_marginRight="29dp"
-        android:layout_marginEnd="29dp"
         android:layout_alignBaseline="@+id/inst_closed"
         android:layout_alignBottom="@+id/inst_closed"
-        android:layout_toLeftOf="@+id/inst_closed"
-        android:layout_toStartOf="@+id/inst_closed" />
+        android:layout_alignLeft="@+id/imageView2"
+        android:layout_alignStart="@+id/imageView2"
+        android:layout_marginLeft="131dp"
+        android:layout_marginStart="131dp" />
 
     <Button
         android:id="@+id/inst_closed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Close"
-        android:layout_marginBottom="35dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
-
-
-    <Button
-        android:id="@+id/inst_next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Next"
-        android:layout_alignBaseline="@+id/inst_closed"
-        android:layout_alignBottom="@+id/inst_closed"
-        android:layout_toRightOf="@+id/inst_closed"
-        android:layout_toEndOf="@+id/inst_closed"
-        android:layout_marginLeft="21dp"
-        android:layout_marginStart="21dp" />
+        android:layout_marginRight="124dp"
+        android:layout_marginEnd="124dp"
+        android:layout_marginTop="29dp"
+        android:layout_below="@+id/imageView2"
+        android:layout_alignRight="@+id/imageView2"
+        android:layout_alignEnd="@+id/imageView2" />
 
 
     <ImageView
@@ -46,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        app:srcCompat="@drawable/step5" />
+        app:srcCompat="@drawable/step9" />
 
 
 </RelativeLayout>

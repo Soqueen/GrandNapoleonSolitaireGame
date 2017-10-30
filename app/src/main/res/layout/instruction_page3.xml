@@ -3,59 +3,49 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:id="@+id/instruction1">
+    android:id="@+id/instruction3">
 
     <Button
         android:id="@+id/inst_prev"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Previous"
-        android:layout_marginBottom="70dp"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/imageView6"
-        android:layout_toStartOf="@+id/imageView6" />
-
+        android:layout_marginRight="29dp"
+        android:layout_marginEnd="29dp"
+        android:layout_alignBaseline="@+id/inst_closed"
+        android:layout_alignBottom="@+id/inst_closed"
+        android:layout_toLeftOf="@+id/inst_closed"
+        android:layout_toStartOf="@+id/inst_closed" />
 
     <Button
         android:id="@+id/inst_closed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Close"
-        android:layout_marginLeft="81dp"
-        android:layout_marginStart="81dp"
-        android:layout_alignBaseline="@+id/inst_prev"
-        android:layout_alignBottom="@+id/inst_prev"
-        android:layout_toRightOf="@+id/inst_prev"
-        android:layout_toEndOf="@+id/inst_prev" />
-
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/abstract_clubs_2"
-        android:layout_marginRight="110dp"
-        android:layout_marginEnd="110dp"
-        android:layout_centerVertical="true"
-        android:layout_toLeftOf="@+id/imageView6"
-        android:layout_toStartOf="@+id/imageView6" />
-
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/abstract_clubs_12"
-        android:layout_alignTop="@+id/imageView5"
+        android:layout_marginBottom="35dp"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
-    <ImageView
-        android:id="@+id/imageView7"
+
+    <Button
+        android:id="@+id/inst_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/abstract_clubs_4"
-        android:layout_alignTop="@+id/imageView6"
+        android:text="Next"
+        android:layout_alignBaseline="@+id/inst_closed"
+        android:layout_alignBottom="@+id/inst_closed"
         android:layout_toRightOf="@+id/inst_closed"
         android:layout_toEndOf="@+id/inst_closed"
-        android:layout_marginLeft="57dp"
-        android:layout_marginStart="57dp" />
+        android:layout_marginLeft="21dp"
+        android:layout_marginStart="21dp" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        app:srcCompat="@drawable/step3" />
+
 
 </RelativeLayout>
