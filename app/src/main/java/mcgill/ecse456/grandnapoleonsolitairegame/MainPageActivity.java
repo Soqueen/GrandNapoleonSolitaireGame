@@ -50,6 +50,17 @@ public class MainPageActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * Navigate to about page when the user click on about button
+     *
+     * @return None
+     * @params view
+     */
+    public void displayAbout(View view) {
+        Intent intent = new Intent(this, AboutPageActivity.class);
+        startActivity(intent);
+    }
+
     /* Closed GNS app when the user click on closed button */
     public void closedApp (View view){
         finish();

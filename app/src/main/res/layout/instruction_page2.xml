@@ -10,6 +10,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Previous"
+        android:layout_marginRight="29dp"
+        android:layout_marginEnd="29dp"
         android:layout_alignBaseline="@+id/inst_closed"
         android:layout_alignBottom="@+id/inst_closed"
         android:layout_toLeftOf="@+id/inst_closed"
@@ -20,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Close"
-        android:layout_marginBottom="78dp"
+        android:layout_marginBottom="35dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
@@ -33,37 +35,16 @@
         android:layout_alignBaseline="@+id/inst_closed"
         android:layout_alignBottom="@+id/inst_closed"
         android:layout_toRightOf="@+id/inst_closed"
-        android:layout_toEndOf="@+id/inst_closed" />
+        android:layout_toEndOf="@+id/inst_closed"
+        android:layout_marginLeft="21dp"
+        android:layout_marginStart="21dp" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/abstract_clubs_2"
+        android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_toLeftOf="@+id/inst_prev"
-        android:layout_toStartOf="@+id/inst_prev"
-        android:layout_marginRight="49dp"
-        android:layout_marginEnd="49dp" />
-
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/abstract_clubs_12"
-        android:layout_alignTop="@+id/imageView5"
-        android:layout_toLeftOf="@+id/inst_next"
-        android:layout_toStartOf="@+id/inst_next" />
-
-    <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/abstract_clubs_4"
-        android:layout_alignTop="@+id/imageView6"
-        android:layout_toRightOf="@+id/imageView6"
-        android:layout_toEndOf="@+id/imageView6"
-        android:layout_marginLeft="65dp"
-        android:layout_marginStart="65dp" />
+        app:srcCompat="@drawable/step2" />
 
 </RelativeLayout>

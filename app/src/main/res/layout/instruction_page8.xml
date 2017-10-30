@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:id="@+id/instruction3">
+    android:id="@+id/instruction8">
 
     <Button
         android:id="@+id/inst_prev"
@@ -43,9 +43,12 @@
         android:id="@+id/imageView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/step8"
         android:layout_centerVertical="true"
-        app:srcCompat="@drawable/step3" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="99dp"
+        android:layout_marginStart="99dp" />
 
 
 </RelativeLayout>

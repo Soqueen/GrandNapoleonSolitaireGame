@@ -4,7 +4,7 @@
     android:id="@+id/activity_main_page"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@drawable/napoleon3"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -18,32 +18,19 @@
         android:paddingLeft="470px"
         android:paddingRight="470px"
         android:id="@+id/homepage_layout"
-        android:layout_above="@+id/copyright_info"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
-
-        <Button
-            android:id="@+id/resume_button"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
-            android:background="@color/grey_light"
-            android:text="Resume"
-            android:textAppearance="@style/TextAppearance.AppCompat.Button"
-            android:textSize="24sp" />
 
         <Button
             android:id="@+id/start_button"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/resume_button"
             android:layout_alignParentTop="true"
-            android:layout_alignStart="@+id/resume_button"
-            android:layout_below="@+id/resume_button"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="60dp"
             android:background="@color/blue"
-            android:text="Start Game"
             android:onClick="difficultyPageNavigate"
+            android:text="Start Game"
             android:textAppearance="@style/TextAppearance.AppCompat.Button"
             android:textSize="24sp" />
 
@@ -51,9 +38,6 @@
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/setting_button"
-            android:layout_alignStart="@+id/setting_button"
-            android:layout_below="@+id/setting_button"
             android:layout_marginTop="30dp"
             android:background="@color/Lemon"
             android:fontFeatureSettings="@string/app_name"
@@ -63,12 +47,20 @@
             android:textSize="24sp" />
 
         <Button
+            android:id="@+id/about_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:background="@color/grey_light"
+            android:text="About"
+            android:onClick="displayAbout"
+            android:textAppearance="@style/TextAppearance.AppCompat.Button"
+            android:textSize="24sp" />
+
+        <Button
             android:id="@+id/instruction_button"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/start_button"
-            android:layout_alignStart="@+id/start_button"
-            android:layout_below="@+id/start_button"
             android:layout_marginTop="30dp"
             android:background="@color/green_light"
             android:text="Instructions"
@@ -80,9 +72,6 @@
             android:id="@+id/setting_button"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/instruction_button"
-            android:layout_alignStart="@+id/instruction_button"
-            android:layout_below="@+id/instruction_button"
             android:layout_marginTop="30dp"
             android:background="@color/grey_medium"
             android:text="Setting"
@@ -93,13 +82,10 @@
             android:id="@+id/closed_button"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/setting_button"
-            android:layout_alignStart="@+id/setting_button"
-            android:layout_below="@+id/setting_button"
             android:layout_marginTop="30dp"
             android:background="@color/red"
-            android:text="Close"
             android:onClick="closedApp"
+            android:text="Close"
             android:textAppearance="@style/TextAppearance.AppCompat.Button"
             android:textSize="24sp" />
 
@@ -109,26 +95,26 @@
         android:id="@+id/developer_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
+        android:ems="12"
         android:fontFamily="serif-monospace"
-        android:text="Developed by: \n     Sok Heng Lim \n     Andrew Lin"
-        android:textColor="@android:color/darker_gray"
-        android:textSize="22sp"
+        android:text="Supervisor:Professor\n      Joseph Vybihal"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:textSize="21sp"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/copyright_info"
-        android:layout_toEndOf="@+id/copyright_info"
-        android:layout_marginLeft="193dp"
-        android:layout_marginStart="193dp" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:id="@+id/author_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
+        android:ems="11"
         android:fontFamily="serif-monospace"
-        android:text="Author: Professor \n    Gerald Ratzer"
-        android:textColor="@android:color/darker_gray"
-        android:textSize="22sp"
+        android:text="Author:Professor \n      Gerald Ratzer"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -138,9 +124,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="serif-monospace"
-        android:text="Copyright Information"
-        android:textColor="@android:color/darker_gray"
-        android:textSize="24sp"
+        android:text="Developed by: \nSok Heng Lim \nAndrew Lin"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
