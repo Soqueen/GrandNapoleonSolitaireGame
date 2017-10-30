@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import java.lang.reflect.Array;
-
 /**
  * GNS Android Game Application
  * Instruction.java
@@ -31,7 +29,7 @@ public class Instruction extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 setContentView(R.layout.instruction_page2);
-                anotherRecursive();
+                recursive1();
             }
         });
         b[2].setOnClickListener(new View.OnClickListener() {
@@ -41,7 +39,7 @@ public class Instruction extends AppCompatActivity {
             }
         });
     }
-    public void anotherRecursive(){
+    public void recursive1(){
         Button[] b = initButton();
         b[2].setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,14 +62,14 @@ public class Instruction extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         setContentView(R.layout.instruction_page2);
-                        anotherRecursive();
+                        recursive1();
                     }
                 });
                 b[1].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         setContentView(R.layout.instruction_page4);
-                        anotherRecursive3();
+                        recursive2();
                     }
                 });
             }
@@ -84,7 +82,7 @@ public class Instruction extends AppCompatActivity {
             }
         });
     }
-    public void anotherRecursive3(){
+    public void recursive2(){
         Button[] b = initButton();
         b[2].setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,14 +105,14 @@ public class Instruction extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         setContentView(R.layout.instruction_page4);
-                        anotherRecursive3();
+                        recursive2();
                     }
                 });
                 b[1].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         setContentView(R.layout.instruction_page6);
-                        anotherRecursive4();
+                        recursive3();
                     }
                 });
             }
@@ -134,21 +132,21 @@ public class Instruction extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         setContentView(R.layout.instruction_page2);
-                        anotherRecursive();
+                        recursive1();
                     }
                 });
                 b[1].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         setContentView(R.layout.instruction_page4);
-                        anotherRecursive3();
+                        recursive2();
                     }
                 });
             }
         });
     }
 
-    public void anotherRecursive4(){
+    public void recursive3(){
         Button[] b = initButton();
         b[2].setOnClickListener(new View.OnClickListener() {
             @Override
@@ -171,14 +169,14 @@ public class Instruction extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         setContentView(R.layout.instruction_page6);
-                        anotherRecursive4();
+                        recursive3();
                     }
                 });
                 b[1].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         setContentView(R.layout.instruction_page8);
-                        anotherRecursive5();
+                        recursive4();
                     }
                 });
             }
@@ -187,12 +185,12 @@ public class Instruction extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 setContentView(R.layout.instruction_page4);
-                anotherRecursive3();
+                recursive2();
             }
         });
     }
 
-    public void anotherRecursive5(){
+    public void recursive4(){
         Button[] b = initButton();
         b[2].setOnClickListener(new View.OnClickListener() {
             @Override
@@ -215,7 +213,7 @@ public class Instruction extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         setContentView(R.layout.instruction_page8);
-                        anotherRecursive5();
+                        recursive4();
                     }
                 });
 
@@ -236,14 +234,14 @@ public class Instruction extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         setContentView(R.layout.instruction_page6);
-                        anotherRecursive4();
+                        recursive3();
                     }
                 });
                 b[1].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         setContentView(R.layout.instruction_page8);
-                        anotherRecursive5();
+                        recursive4();
                     }
                 });
             }
