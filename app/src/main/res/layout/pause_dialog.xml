@@ -23,17 +23,6 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
-    <!--<Button-->
-        <!--android:id="@+id/restart_button"-->
-        <!--android:background="@color/Lemon"-->
-        <!--android:layout_width="110dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignLeft="@+id/resume_button"-->
-        <!--android:layout_alignStart="@+id/resume_button"-->
-        <!--android:layout_below="@+id/resume_button"-->
-        <!--android:layout_marginTop="71dp"-->
-        <!--android:text="Restart" />-->
-
     <Button
         android:id="@+id/instruction_button"
         android:layout_width="110dp"
