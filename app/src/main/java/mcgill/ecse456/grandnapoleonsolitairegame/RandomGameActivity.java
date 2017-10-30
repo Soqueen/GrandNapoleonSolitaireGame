@@ -17,14 +17,14 @@ import java.util.Random;
 
 /**
  * GNS Android Game Application
- * EasyLevelGameActivity.java
+ * RandomGameActivity.java
  * Purpose: Contains the logic of the game page features.
  *
  * @author Sok Heng Lim
  * @author Andrew Lin
  * @version 1.0 03/15/2017
  */
-public class EasyLevelGameActivity extends AppCompatActivity {
+public class RandomGameActivity extends AppCompatActivity {
     String msg;
     private float dx, dy, x , y, initialX, initialY;
     private int stackHeight, stackWidth;

@@ -31,7 +31,7 @@ public class DisplayDifficultyPageActivity extends AppCompatActivity {
      * @params view
      */
     public void randomGameNavigate(View view) {
-        Intent intent = new Intent(this, EasyLevelGameActivity.class);
+        Intent intent = new Intent(this, RandomGameActivity.class);
         startActivity(intent);
     }
 }
