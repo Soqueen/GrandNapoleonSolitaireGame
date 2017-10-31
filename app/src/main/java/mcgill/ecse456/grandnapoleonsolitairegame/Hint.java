@@ -25,7 +25,7 @@ public class Hint {
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cards[0].getImageView().setColorFilter(Color.argb(100, 255, 0, 0));
+                stacks[0].getLastCard().getImageView().setColorFilter(Color.argb(0, 255, 0, 0));
                 stacks[48].getImageView().setColorFilter(Color.argb(100, 255, 255, 255));
 //                ArrayList<Card> temp = new ArrayList<Card>();
 //                for (int i = 0; i < stacks.length; i++) {

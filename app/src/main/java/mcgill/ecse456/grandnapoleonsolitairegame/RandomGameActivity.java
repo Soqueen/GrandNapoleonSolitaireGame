@@ -2,10 +2,12 @@ package mcgill.ecse456.grandnapoleonsolitairegame;
 
 import android.app.Dialog;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageView;
@@ -253,7 +255,11 @@ public class RandomGameActivity extends AppCompatActivity {
             s[i].setXYCoordinates(location[0], location[1]);
 //            Log.d("", "Stack " + i + " is at " + s[i].getLeftSideLocation() + " " + s[i].getTopSideLocation());
 //            Log.d("", "Stack " + i + " has height " + s[i].getHeight() + ", and width " + s[i].getWidth());
-            DragDrop.main(cards, stacks, stepCounter);
+            Rect rectgle= new Rect();
+            Window window= getWindow();
+            window.getDecorView().getWindowVisibleDisplayFrame(rectgle);
+            int StatusBarHeight= rectgle.top;
+            DragDrop.main(cards, stacks, stepCounter, StatusBarHeight);
 
         }
     }
