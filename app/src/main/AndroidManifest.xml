@@ -28,7 +28,7 @@
             </intent-filter>
             android:parentActivityName=".MainPageActivity" >
         </activity>
-        <activity android:name=".RandomGameActivity"
+        <activity android:name=".GameActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />

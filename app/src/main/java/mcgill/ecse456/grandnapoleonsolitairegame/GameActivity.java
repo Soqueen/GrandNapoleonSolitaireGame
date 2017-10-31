@@ -1,10 +1,8 @@
 package mcgill.ecse456.grandnapoleonsolitairegame;
 
-import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageView;
@@ -15,30 +13,29 @@ import java.util.Random;
 
 /**
  * GNS Android Game Application
- * RandomGameActivity.java
+ * GameActivity.java
  * Purpose: Contains the logic of the game page features.
  *
  * @author Sok Heng Lim
  * @author Andrew Lin
  * @version 1.0 03/15/2017
  */
-public class RandomGameActivity extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity {
     private int[] location = new int[2];
     Stack[] stacks = new Stack[53];
     Card[] cards = new Card[52];
     final Context context = this;
     private Button pauseButton;
     private TextView stepCounter;
-    //private int type = 1; // 1: random, 2: predetermined
+    private int type = 1; // 1: random game or 2: predetermined game
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_page);
         Bundle b = getIntent().getExtras();
-        int type = 1;
         if(b != null) {
-            type = b.getInt("id");
+            this.type = b.getInt("id");
         }
 
         final Chronometer timer = (Chronometer) findViewById(R.id.chronometer1); // initiate a chronometer
@@ -52,8 +49,7 @@ public class RandomGameActivity extends AppCompatActivity {
     }
 
     public void displayCards(int type, Card[] cards, Stack[] stacks){
-        Log.d("ELGActivity", "onCreate was called");
-        Log.d("type", String.valueOf(type));
+        Log.d("Type of game", String.valueOf(type));
 
         // Create 53 stacks
         for (int i = 0; i < stacks.length; i++) {
@@ -278,9 +274,7 @@ public class RandomGameActivity extends AppCompatActivity {
         cards[50].setImageView((ImageView) findViewById(R.id.card50));
         cards[51].setImageView((ImageView) findViewById(R.id.card51));
         for (int i = 0; i < cards.length; i++) {
-            //            if (i < 4 || ((i > 39) && (i < 45)) || i == 51) {
             cards[i].setCanMove(true);
-            //            }
             if (i < 48) {
                 stacks[i].addCardToStack(cards[i]);
             } else {
@@ -301,8 +295,7 @@ public class RandomGameActivity extends AppCompatActivity {
             s[i].getImageView().getLocationOnScreen(location);
             s[i].setSize(s[i].getImageView().getWidth(), s[i].getImageView().getHeight());
             s[i].setXYCoordinates(location[0], location[1]);
-//            Log.d("", "Stack " + i + " is at " + s[i].getLeftSideLocation() + " " + s[i].getTopSideLocation());
-//            Log.d("", "Stack " + i + " has height " + s[i].getHeight() + ", and width " + s[i].getWidth());
+
             DragDrop.main(cards, stacks, stepCounter);
 
         }

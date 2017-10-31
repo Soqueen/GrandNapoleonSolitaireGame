@@ -31,7 +31,7 @@ public class DisplayDifficultyPageActivity extends AppCompatActivity {
      * @params view
      */
     public void randomGameNavigate(View view) {
-        Intent intent = new Intent(this, RandomGameActivity.class);
+        Intent intent = new Intent(this, GameActivity.class);
         intent.putExtra("id", 1);
         startActivity(intent);
     }
@@ -42,7 +42,7 @@ public class DisplayDifficultyPageActivity extends AppCompatActivity {
      * @params view
      */
     public void predeterminedGameNavigate(View view) {
-        Intent intent = new Intent(this, RandomGameActivity.class);
+        Intent intent = new Intent(this, GameActivity.class);
         intent.putExtra("id", 2);
         startActivity(intent);
     }
