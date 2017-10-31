@@ -1,5 +1,6 @@
 package mcgill.ecse456.grandnapoleonsolitairegame;
 
+import android.graphics.Color;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -17,10 +18,12 @@ public class DragDrop {
     public static Stack[] stacks;
     public static TextView stepCounter;
     public static int numSteps = 0;
-    public static void main(Card[] c, Stack[] s, TextView counter) {
+    public static int statusBar;
+    public static void main(Card[] c, Stack[] s, TextView counter, int statusBarHeight) {
         cards = c;
         stacks = s;
         stepCounter = counter;
+        statusBar = statusBarHeight;
         String d = "";
         for (int i = 0; i < rowXCoordinates.length; i++) {
             rowXCoordinates[i] = stacks[(i*4)].getLeftSideLocation();
@@ -347,6 +350,12 @@ public class DragDrop {
                 return myTouch(v, event, cards[51], stacks);
             }
         });
+        View.OnClickListener hintButton = new View.OnClickListener() {
+            public void onClick(View v) {
+                cards[0].getImageView().setColorFilter(Color.argb(50, 0, 0, 0));
+            }
+        };
+        numSteps = 0;
     }
 
     private static void actionDown(View v, MotionEvent event, Card c, Stack[] s) {
@@ -389,33 +398,41 @@ public class DragDrop {
 //        Log.d("", "x is " + x + " y is " + y + ", touch stack number " + whichStack + " Stacks array length is " + stacks.length + " Card moving is from stack " + card.getCurrentStackID() + " and the card is " + card.convertToString());
         boolean a = canStack(card, whichStack, stacks);
         if (a) {
-            numSteps++;
-            stepCounter.setText(numSteps + " steps");
             if (card.getCurrentStackID() != whichStack) {
                 if (stacks[whichStack].getCurrentCards().size() == 0) {
                     stacks[whichStack].addCardToStack(card);
                     card.getImageView().setX(rowXCoordinates[column]);
-                    card.getImageView().setY(columnYCoordinates[row] - 88); //TODO: Fix this line. Y coordinate not aligned due to top bar.
+//                    card.getImageView().setY(columnYCoordinates[row] - 88); //TODO: Fix this line. Y coordinate not aligned due to top bar.
+                    card.getImageView().setY(columnYCoordinates[row]-statusBar);
+                    numSteps++;
+                    stepCounter.setText(numSteps + " steps");
                 } else if (card.getSuit() == stacks[whichStack].getLastCard().getSuit() && ((abs(card.getNumber() - stacks[whichStack].getLastCard().getNumber()) == 1) || (abs(card.getNumber() - stacks[whichStack].getLastCard().getNumber()) == 12))) {
                     stacks[whichStack].addCardToStack(card);
                     card.getImageView().setX(rowXCoordinates[column]);
                     if (whichStack >= 20 && whichStack < 24) {
-                        card.getImageView().setY(columnYCoordinates[row] - 108); //TODO: Fix this line. Y coordinate not aligned due to top bar.
+//                        card.getImageView().setY(columnYCoordinates[row] - 108); //TODO: Fix this line. Y coordinate not aligned due to top bar.
+                        card.getImageView().setY(columnYCoordinates[row]-statusBar);
                     } else {
-                        card.getImageView().setY(columnYCoordinates[row] - 88); //TODO: Fix this line. Y coordinate not aligned due to top bar.
+//                        card.getImageView().setY(columnYCoordinates[row] - 88); //TODO: Fix this line. Y coordinate not aligned due to top bar.
+                        card.getImageView().setY(columnYCoordinates[row]-statusBar);
                     }
+                    numSteps++;
+                    stepCounter.setText(numSteps + " steps");
                     Log.d("", "Setting X as " + rowXCoordinates[column] + " and Y as " + columnYCoordinates[row]);
                 } else {
                     card.getImageView().setX(stacks[card.getCurrentStackID()].getLeftSideLocation());
-                    card.getImageView().setY(stacks[card.getCurrentStackID()].getTopSideLocation() - 88);
+//                    card.getImageView().setY(stacks[card.getCurrentStackID()].getTopSideLocation() - 88);
+                    card.getImageView().setY(stacks[card.getCurrentStackID()].getTopSideLocation()-statusBar);
                 }
             } else {
                 card.getImageView().setX(stacks[card.getCurrentStackID()].getLeftSideLocation());
-                card.getImageView().setY(stacks[card.getCurrentStackID()].getTopSideLocation() - 88);
+//                card.getImageView().setY(stacks[card.getCurrentStackID()].getTopSideLocation() - 88);
+                card.getImageView().setY(stacks[card.getCurrentStackID()].getTopSideLocation()-statusBar);
             }
         } else {
             card.getImageView().setX(stacks[card.getCurrentStackID()].getLeftSideLocation());
-            card.getImageView().setY(stacks[card.getCurrentStackID()].getTopSideLocation() - 88);
+//            card.getImageView().setY(stacks[card.getCurrentStackID()].getTopSideLocation() - 88);
+            card.getImageView().setY(stacks[card.getCurrentStackID()].getTopSideLocation()-statusBar);
             Log.d("", "Cannot stack");
         }
     }
