@@ -29,6 +29,7 @@
         android:layout_marginTop="60dp"
         android:background="@color/blue"
         android:text="Predetermined"
+        android:onClick="predeterminedGameNavigate"
         android:textAppearance="@style/TextAppearance.AppCompat.Button"
         android:textSize="24sp" />
 

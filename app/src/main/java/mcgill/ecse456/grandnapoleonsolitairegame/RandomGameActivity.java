@@ -11,8 +11,6 @@ import android.widget.ImageView;
 import android.content.Context;
 import android.widget.TextView;
 
-
-import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -25,27 +23,27 @@ import java.util.Random;
  * @version 1.0 03/15/2017
  */
 public class RandomGameActivity extends AppCompatActivity {
-    String msg;
-    private float dx, dy, x , y, initialX, initialY;
-    private int stackHeight, stackWidth;
-    //    private int[] stackX = new int[2], stackY = new int[2];
-    private int[] location = new int[2], locationCard = new int[2], location2 = new int[2];
+    private int[] location = new int[2];
     Stack[] stacks = new Stack[53];
-    ArrayList<Stack> stackslist = new ArrayList<>();
     Card[] cards = new Card[52];
     final Context context = this;
     private Button pauseButton;
     private TextView stepCounter;
+    //private int type = 1; // 1: random, 2: predetermined
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.game_page);
+        Bundle b = getIntent().getExtras();
+        int type = 1;
+        if(b != null) {
+            type = b.getInt("id");
+        }
 
         final Chronometer timer = (Chronometer) findViewById(R.id.chronometer1); // initiate a chronometer
         timer.start(); // Start the time counter
-        displayCards(cards, stacks);
+        displayCards(type, cards, stacks);
 
         // When Pause button trigger
         pauseButton = (Button) findViewById(R.id.pause);
@@ -53,64 +51,123 @@ public class RandomGameActivity extends AppCompatActivity {
         pause.popUp();
     }
 
-    public void displayCards(Card[] cards, Stack[] stacks){
+    public void displayCards(int type, Card[] cards, Stack[] stacks){
         Log.d("ELGActivity", "onCreate was called");
+        Log.d("type", String.valueOf(type));
+
         // Create 53 stacks
         for (int i = 0; i < stacks.length; i++) {
             stacks[i] = new Stack(i);
         }
+        if (type == 1) {
+            // Randomly pick a number for base, and fill base with those cards in alternating suit color.
+            Random rand = new Random();
+            int numb = 0;
+            while (numb == 0) {
+                numb = rand.nextInt(14);
+            }
+            Log.d("", "Number generated is " + numb);
+            int suit = 1;
+            for (int i = 20; i < 24; i++) {
+                cards[i] = new Card(suit, numb);
 
-        // Randomly pick a number for base, and fill base with those cards in alternating suit color.
-        Random rand = new Random();
-        int numb = 0;
-        while (numb == 0) {
-            numb = rand.nextInt(14);
-        }
-        Log.d("", "Number generated is " + numb);
-        int suit = 1;
-        for (int i = 20; i < 24; i++) {
-            cards[i] = new Card(suit, numb);
+                suit++;
+            }
 
-            suit++;
-        }
-
-        // Fill stacks with cards except cellar
-        int index = 0;
-        int bound = 14;
-        if (numb == 13) {
-            bound = numb;
-        }
-        for (suit = 1; suit < 5; suit++) {
-            for (int num = 1; num < bound; num++) {
-                if (num == numb) {
-                    num++;
+            // Fill stacks with cards except cellar
+            int index = 0;
+            int bound = 14;
+            if (numb == 13) {
+                bound = numb;
+            }
+            for (suit = 1; suit < 5; suit++) {
+                for (int num = 1; num < bound; num++) {
+                    if (num == numb) {
+                        num++;
+                    }
+                    if (index == 20) {
+                        index = index + 4;
+                    }
+                    cards[index] = new Card(suit, num);
+                    index++;
                 }
-                if (index == 20) {
-                    index = index+4;
+            }
+
+            // Shuffle Cards
+            for (int i = 0; i < cards.length; i++) {
+                // Skip base cards
+                if (i == 20) {
+                    i = i + 4;
                 }
-                cards[index] = new Card(suit, num);
-                index++;
+                // Generate random number
+                Random r = new Random();
+                int randomCard = r.nextInt(cards.length);
+                // Skip base cards
+                while (randomCard > 19 && randomCard < 24) {
+                    randomCard = r.nextInt(cards.length);
+                }
+                Log.d("RandomNumberGenerator: ", "" + randomCard);
+                // Swap the two selected cards
+                Card tempCard = cards[i];
+                cards[i] = cards[randomCard];
+                cards[randomCard] = tempCard;
             }
         }
-
-        // Shuffle Cards
-        for (int i = 0; i < cards.length; i++) {
-            // Skip base cards
-            if (i == 20) {
-                i = i + 4;
-            }
-            // Generate random number
-            Random r = new Random();
-            int randomCard = r.nextInt(cards.length);
-            // Skip base cards
-            while (randomCard > 19 && randomCard < 24) {
-                randomCard = r.nextInt(cards.length);
-            }
-            Log.d("RandomNumberGenerator: ", "" + randomCard);
-            // Swap the two selected cards
-            Card tempCard = cards[i];
-            cards[i] = cards[randomCard];
-            cards[randomCard] = tempCard;
+        else if (type == 2) {
+            // when predetermined selected - by place card into stack associated
+            // TODO - Find at least a layout of solving game - Below is just a dummy layout
+            cards[0] = new Card(1, 1);
+            cards[1] = new Card(1, 2);
+            cards[2] = new Card(1, 3);
+            cards[3] = new Card(1, 4);
+            cards[4] = new Card(1, 5);
+            cards[5] = new Card(1, 6);
+            cards[6] = new Card(1, 7);
+            cards[7] = new Card(1, 8);
+            cards[8] = new Card(2, 8);
+            cards[9] = new Card(1, 10);
+            cards[10] = new Card(1, 11);
+            cards[11] = new Card(1, 12);
+            cards[12] = new Card(1, 13);
+            cards[13] = new Card(2, 1);
+            cards[14] = new Card(2, 2);
+            cards[15] = new Card(2, 3);
+            cards[16] = new Card(2, 4);
+            cards[17] = new Card(2, 5);
+            cards[18] = new Card(2, 6);
+            cards[19] = new Card(2, 7);
+            cards[20] = new Card(1, 9);
+            cards[21] = new Card(2, 9);
+            cards[22] = new Card(3, 9);
+            cards[23] = new Card(4, 9);
+            cards[24] = new Card(2, 12);
+            cards[25] = new Card(2, 13);
+            cards[26] = new Card(3, 1);
+            cards[27] = new Card(3, 2);
+            cards[28] = new Card(3, 4);
+            cards[29] = new Card(3, 5);
+            cards[30] = new Card(3, 6);
+            cards[31] = new Card(3, 7);
+            cards[32] = new Card(3, 8);
+            cards[33] = new Card(2, 10);
+            cards[34] = new Card(3, 10);
+            cards[35] = new Card(3, 11);
+            cards[36] = new Card(3, 12);
+            cards[37] = new Card(3, 13);
+            cards[38] = new Card(4, 1);
+            cards[39] = new Card(4, 2);
+            cards[40] = new Card(4, 3);
+            cards[41] = new Card(4, 4);
+            cards[42] = new Card(4, 5);
+            cards[43] = new Card(4, 6);
+            cards[44] = new Card(4, 7);
+            cards[45] = new Card(4, 8);
+            cards[46] = new Card(2, 11);
+            cards[47] = new Card(4, 10);
+            cards[48] = new Card(4, 11);
+            cards[49] = new Card(4, 12);
+            cards[50] = new Card(4, 13);
+            cards[51] = new Card(3, 3);
         }
 
         stacks[0].setImageView((ImageView) findViewById(R.id.stack0));
@@ -221,14 +278,13 @@ public class RandomGameActivity extends AppCompatActivity {
         cards[50].setImageView((ImageView) findViewById(R.id.card50));
         cards[51].setImageView((ImageView) findViewById(R.id.card51));
         for (int i = 0; i < cards.length; i++) {
-//            if (i < 4 || ((i > 39) && (i < 45)) || i == 51) {
-                cards[i].setCanMove(true);
-//            }
+            //            if (i < 4 || ((i > 39) && (i < 45)) || i == 51) {
+            cards[i].setCanMove(true);
+            //            }
             if (i < 48) {
                 stacks[i].addCardToStack(cards[i]);
-            }
-            else {
-                stacks[i+1].addCardToStack(cards[i]);
+            } else {
+                stacks[i + 1].addCardToStack(cards[i]);
             }
             Log.d("", "Card number " + i + " has StackID " + cards[i].getCurrentStackID());
         }
