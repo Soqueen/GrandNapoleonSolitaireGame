@@ -25,13 +25,26 @@ public class DisplayDifficultyPageActivity extends AppCompatActivity {
     }
 
     /**
-     * Navigate to Easy game when the user click on Easy button
+     * Navigate to Random game when the user click on Random/predetermined button
      *
      * @return None
      * @params view
      */
     public void randomGameNavigate(View view) {
-        Intent intent = new Intent(this, RandomGameActivity.class);
+        Intent intent = new Intent(this, GameActivity.class);
+        intent.putExtra("id", 1);
         startActivity(intent);
     }
+    /**
+     * Navigate to Random game when the user click on Random/predetermined button
+     *
+     * @return None
+     * @params view
+     */
+    public void predeterminedGameNavigate(View view) {
+        Intent intent = new Intent(this, GameActivity.class);
+        intent.putExtra("id", 2);
+        startActivity(intent);
+    }
+
 }
