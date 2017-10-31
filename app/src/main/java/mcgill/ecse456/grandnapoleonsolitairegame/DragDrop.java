@@ -411,10 +411,10 @@ public class DragDrop {
                     card.getImageView().setX(rowXCoordinates[column]);
                     if (whichStack >= 20 && whichStack < 24) {
 //                        card.getImageView().setY(columnYCoordinates[row] - 108); //TODO: Fix this line. Y coordinate not aligned due to top bar.
-                        card.getImageView().setY(columnYCoordinates[row]-statusBar);
+                        card.getImageView().setY(columnYCoordinates[row]-(statusBar+20));
                     } else {
 //                        card.getImageView().setY(columnYCoordinates[row] - 88); //TODO: Fix this line. Y coordinate not aligned due to top bar.
-                        card.getImageView().setY(columnYCoordinates[row]-statusBar);
+                        card.getImageView().setY(columnYCoordinates[row]-(statusBar+20));
                     }
                     numSteps++;
                     stepCounter.setText(numSteps + " steps");

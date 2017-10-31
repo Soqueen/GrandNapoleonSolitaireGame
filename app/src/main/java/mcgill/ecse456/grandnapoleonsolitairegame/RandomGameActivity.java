@@ -1,6 +1,7 @@
 package mcgill.ecse456.grandnapoleonsolitairegame;
 
 import android.app.Dialog;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -260,10 +261,8 @@ public class RandomGameActivity extends AppCompatActivity {
             window.getDecorView().getWindowVisibleDisplayFrame(rectgle);
             int StatusBarHeight= rectgle.top;
             DragDrop.main(cards, stacks, stepCounter, StatusBarHeight);
-
         }
     }
-
 
     // Temporary solution to actually finding location of ImageViews.
     @Override
