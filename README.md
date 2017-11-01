@@ -4,11 +4,11 @@
 This is a single player card game, which involves evaluation of options and forward planning. While the initial deal and layout of the tableau with a matrix of 52 cards is random, the play of the hand ranges from easy to impossible. The GNS App will shuffle a regular deck of cards and deal the tableau. The play will be on an Android tablet using a drag and drop interface. The development of GNS will be in Java and enforce the strict set of GNS rules and logic.
 
 #### Set up difficulty:
-You can set up two different type of games: `Ramdome` and `Predetermined`.  
+You can set up two different types of game: `Ramdom` and `Predetermined`.  
 	**Random:** 
-	*The application generate a random layout of game. Some games are harder than another; whereas some others can be 	 unsolvable. This game type is target the medium/advanced players.*
+*The application generates a random layout of the game. Some games are harder than anothers. While some others can be also unsolvable. This game type is target the medium/advanced players.*
 	**Predetermined:** 
-	*The game layout is already pregenerated in advanced. The difficulty of this game is easy. This game layout is target 	     the beginner level and also to ensure the player that the game is solvable.*
+*The game layout is already pregenerated in advanced by the developers. The difficulty of this game is easy. This game layout is target the beginner level and also to ensure the player that the game is solvable.*
 
 #### Automatic saving:
 The current game will be saved every time you pause or close the app. So you can continue your game where you left it.
