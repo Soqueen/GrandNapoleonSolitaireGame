@@ -12,7 +12,7 @@
         android:id="@+id/easy_button"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="240dp"
+        android:layout_marginTop="150dp"
         android:background="@color/red"
         android:onClick="randomGameNavigate"
         android:text="Random"
@@ -28,8 +28,8 @@
         android:layout_below="@+id/medium_button"
         android:layout_marginTop="60dp"
         android:background="@color/blue"
-        android:text="Predetermined"
         android:onClick="predeterminedGameNavigate"
+        android:text="Predetermined"
         android:textAppearance="@style/TextAppearance.AppCompat.Button"
         android:textSize="24sp" />
 

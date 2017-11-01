@@ -10,33 +10,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Previous"
-        android:layout_alignBaseline="@+id/inst_closed"
-        android:layout_alignBottom="@+id/inst_closed"
+        android:layout_marginLeft="132dp"
+        android:layout_marginStart="132dp"
+        android:layout_alignParentBottom="true"
         android:layout_alignLeft="@+id/imageView2"
-        android:layout_alignStart="@+id/imageView2"
-        android:layout_marginLeft="131dp"
-        android:layout_marginStart="131dp" />
+        android:layout_alignStart="@+id/imageView2" />
 
     <Button
         android:id="@+id/inst_closed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Close"
-        android:layout_marginRight="124dp"
-        android:layout_marginEnd="124dp"
-        android:layout_marginTop="29dp"
-        android:layout_below="@+id/imageView2"
+        android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/imageView2"
-        android:layout_alignEnd="@+id/imageView2" />
+        android:layout_alignEnd="@+id/imageView2"
+        android:layout_marginRight="131dp"
+        android:layout_marginEnd="131dp" />
 
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        app:srcCompat="@drawable/step9" />
+        app:srcCompat="@drawable/step9"
+        android:layout_above="@+id/inst_closed"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>

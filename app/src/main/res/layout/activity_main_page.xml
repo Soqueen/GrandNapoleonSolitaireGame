@@ -18,76 +18,74 @@
         android:paddingLeft="470px"
         android:paddingRight="470px"
         android:id="@+id/homepage_layout"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentTop="true">
 
         <Button
             android:id="@+id/start_button"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="15dp"
             android:background="@color/blue"
             android:onClick="difficultyPageNavigate"
             android:text="Start Game"
             android:textAppearance="@style/TextAppearance.AppCompat.Button"
-            android:textSize="24sp" />
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15dp"
             android:background="@color/Lemon"
             android:fontFeatureSettings="@string/app_name"
             android:onClick="ScoreTable"
             android:text="Score Table"
             android:textAppearance="@style/TextAppearance.AppCompat.Button"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/about_button"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15dp"
             android:background="@color/grey_light"
             android:text="About"
             android:onClick="displayAbout"
             android:textAppearance="@style/TextAppearance.AppCompat.Button"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/instruction_button"
-            android:layout_width="fill_parent"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15dp"
             android:background="@color/green_light"
             android:text="Instructions"
             android:onClick="instructionNavigate"
             android:textAppearance="@style/TextAppearance.AppCompat.Button"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/setting_button"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15dp"
             android:background="@color/grey_medium"
             android:text="Setting"
             android:textAppearance="@style/TextAppearance.AppCompat.Button"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/closed_button"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15dp"
             android:background="@color/red"
             android:onClick="closedApp"
             android:text="Close"
             android:textAppearance="@style/TextAppearance.AppCompat.Button"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 
@@ -100,7 +98,7 @@
         android:text="Supervisor:Professor\n      Joseph Vybihal"
         android:textStyle="bold"
         android:textColor="@android:color/white"
-        android:textSize="21sp"
+        android:textSize="18sp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
@@ -111,10 +109,10 @@
         android:layout_height="wrap_content"
         android:ems="11"
         android:fontFamily="serif-monospace"
-        android:text="Author:Professor \n      Gerald Ratzer"
+        android:text="Author:Professor \n    Gerald Ratzer"
         android:textStyle="bold"
         android:textColor="@android:color/white"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -127,7 +125,7 @@
         android:text="Developed by: \nSok Heng Lim \nAndrew Lin"
         android:textStyle="bold"
         android:textColor="@android:color/white"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 

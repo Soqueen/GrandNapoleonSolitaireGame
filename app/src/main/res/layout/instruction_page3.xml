@@ -10,10 +10,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Previous"
-        android:layout_marginRight="29dp"
-        android:layout_marginEnd="29dp"
-        android:layout_alignBaseline="@+id/inst_closed"
-        android:layout_alignBottom="@+id/inst_closed"
+        android:layout_marginRight="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@+id/inst_closed"
         android:layout_toStartOf="@+id/inst_closed" />
 
@@ -22,7 +21,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Close"
-        android:layout_marginBottom="35dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
@@ -43,9 +41,9 @@
         android:id="@+id/imageView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        app:srcCompat="@drawable/step3" />
+        app:srcCompat="@drawable/step3"
+        android:layout_above="@+id/inst_prev"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>
