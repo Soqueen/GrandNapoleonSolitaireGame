@@ -1,19 +1,16 @@
 package mcgill.ecse456.grandnapoleonsolitairegame;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.app.Dialog;
 import android.content.Context;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.os.SystemClock;
 
 
-
-public class Pause extends AppCompatActivity{
+public class Pause extends AppCompatActivity {
     private Context context;
     private Button pauseButton;
     private Chronometer timer;
@@ -29,11 +26,6 @@ public class Pause extends AppCompatActivity{
         this.timer = timer;
         this.timeDiff = 0;
     }
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.pause_dialog);
-    }
 
 
     public void popUp() {
@@ -44,6 +36,7 @@ public class Pause extends AppCompatActivity{
 
                 // custom dialog
                 final Dialog dialog = new Dialog(context);
+                MusicManager.gamePlayer.stop();
                 dialog.setContentView(R.layout.pause_dialog);
 
 
@@ -53,19 +46,25 @@ public class Pause extends AppCompatActivity{
                 Button instructionButton = (Button) dialog.findViewById(R.id.instruction_button);
 
                 // Pause timer
-                timeDiff = timer.getBase()- SystemClock.elapsedRealtime();
+                timeDiff = timer.getBase() - SystemClock.elapsedRealtime();
                 timer.stop();
+
                 dialog.show();
 
                 // Check if the resume button is clicked
                 resumeButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                    //resume timer
-                    timer.setBase(SystemClock.elapsedRealtime() + timeDiff);
-                    timer.start();
-                    dialog.dismiss();
-                    // TODO - Pause timer
+                        //resume timer
+                        timer.setBase(SystemClock.elapsedRealtime() + timeDiff);
+                        timer.start();
+                        MusicManager.gamePlayer.release();
+                        MusicManager.gamePlayer = null;
+                        MusicManager.GamePlayer(context);
+                        MusicManager.clickPlayer.start();
+                        MusicManager.gamePlayer.start();
+                        dialog.dismiss();
+                        // TODO - Pause timer
                     }
                 });
 
@@ -75,6 +74,7 @@ public class Pause extends AppCompatActivity{
                     @Override
                     public void onClick(View v) {
                         // doesn't seem to save state here
+                        MusicManager.clickPlayer.start();
                         finish();
                         System.exit(0);
                     }
@@ -84,6 +84,7 @@ public class Pause extends AppCompatActivity{
                 settingButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        MusicManager.clickPlayer.start();
                         Intent intent = new Intent(context, SettingActivity.class);
                         context.startActivity(intent);
                     }
@@ -93,6 +94,7 @@ public class Pause extends AppCompatActivity{
                 instructionButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        MusicManager.clickPlayer.start();
                         Intent intent = new Intent(context, Instruction.class);
                         context.startActivity(intent);
                     }
