@@ -40,6 +40,18 @@
             </intent-filter>
             android:parentActivityName=".MainPageActivity" >
         </activity>
+        <activity android:name=".Pause">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            android:parentActivityName=".GameActivity" >
+        </activity>
+        <activity android:name=".SettingActivity">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            android:parentActivityName=".MainPageActivity" >
+        </activity>
     </application>
 
 </manifest>

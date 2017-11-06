@@ -73,6 +73,7 @@
             android:layout_marginTop="15dp"
             android:background="@color/grey_medium"
             android:text="Setting"
+            android:onClick="settingNavigate"
             android:textAppearance="@style/TextAppearance.AppCompat.Button"
             android:textSize="18sp" />
 
