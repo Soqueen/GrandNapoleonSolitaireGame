@@ -23,7 +23,6 @@ public class DisplayDifficultyPageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MusicManager.GamePlayer(this);
         setContentView(R.layout.activity_display_difficulty_page);
     }
 
@@ -34,10 +33,12 @@ public class DisplayDifficultyPageActivity extends AppCompatActivity {
      * @params view
      */
     public void randomGameNavigate(View view) {
-        MusicManager.clickPlayer.start();
-        if (MusicManager.gamePlayer.isPlaying()){
-            MusicManager.gamePlayer.stop();
+        if (MusicManager.gamePlayer != null) {
+            MusicManager.gamePlayer.release();
+            MusicManager.gamePlayer = null;
         }
+        MusicManager.GamePlayer(this);
+        MusicManager.clickPlayer.start();
         MusicManager.gamePlayer.start();
         Intent intent = new Intent(this, GameActivity.class);
         intent.putExtra("id", 1);
@@ -50,10 +51,12 @@ public class DisplayDifficultyPageActivity extends AppCompatActivity {
      * @params view
      */
     public void predeterminedGameNavigate(View view) {
-        MusicManager.clickPlayer.start();
-        if (MusicManager.gamePlayer.isPlaying()){
-            MusicManager.gamePlayer.stop();
+        if (MusicManager.gamePlayer != null) {
+            MusicManager.gamePlayer.release();
+            MusicManager.gamePlayer = null;
         }
+        MusicManager.GamePlayer(this);
+        MusicManager.clickPlayer.start();
         MusicManager.gamePlayer.start();
         Intent intent = new Intent(this, GameActivity.class);
         intent.putExtra("id", 2);

@@ -19,7 +19,7 @@ public class MusicManager {
         clickPlayer.setLooping(false); // Set looping
         clickPlayer.setVolume(100, 100);
     }
-    
+
 
 
 }
