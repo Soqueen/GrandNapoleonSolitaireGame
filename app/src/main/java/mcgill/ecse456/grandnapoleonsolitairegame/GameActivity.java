@@ -1,10 +1,13 @@
 package mcgill.ecse456.grandnapoleonsolitairegame;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.graphics.Rect;
+import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.Chronometer;
@@ -31,6 +34,8 @@ public class GameActivity extends AppCompatActivity {
     private Button hintButton;
     private TextView stepCounter;
     private int type = 1; // 1: random game or 2: predetermined game
+    public static final String GNS_PREFS = "MyPref";
+
 
 
     @Override
@@ -320,5 +325,24 @@ public class GameActivity extends AppCompatActivity {
     @Override
     public void onWindowFocusChanged (boolean hasFocus) {
         setStacksLocation(stacks);
+    }
+
+    // TODO - Once the same is complete, then the app need to call this function for user to input
+    // their name and save their time and number of step in share reference file
+    public void saveScore(View view){
+        // 0. How to set up GNS_PREF
+        // Create SharedPreference file
+        SharedPreferences pref = getApplicationContext().getSharedPreferences(GNS_PREFS, MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        // 1. Need a pop up diaglog to input user name
+        // 2. Save this input, time and #step into share preference file.
+        editor.putString("name", "sokheng" );        // Saving user name
+        editor.putString("time", "15:02");    // Saving time in string
+        editor.putInt("step", 45);      // Saving integer
+
+// Save the changes in SharedPreferences
+        editor.commit(); // commit changes
+        Intent intent = new Intent(context, ScoreTableActivity.class);
+        context.startActivity(intent);
     }
 }

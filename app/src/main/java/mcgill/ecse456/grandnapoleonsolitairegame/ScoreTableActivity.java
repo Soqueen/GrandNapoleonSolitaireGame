@@ -1,6 +1,7 @@
 package mcgill.ecse456.grandnapoleonsolitairegame;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +15,8 @@ import android.widget.TextView;
 public class ScoreTableActivity extends AppCompatActivity{
 
     public void init() {
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
         TableLayout stk = (TableLayout) findViewById(R.id.table_main);
         TableRow tbrow0 = new TableRow(this);
         TextView tv0 = new TextView(this);
@@ -42,23 +45,22 @@ public class ScoreTableActivity extends AppCompatActivity{
             t1v.setGravity(Gravity.CENTER);
             tbrow.addView(t1v);
             TextView t2v = new TextView(this);
-            t2v.setText(""+ i); // input from user
+            t2v.setText(""+ pref.getString("name", null)); // input from user
             t2v.setTextColor(Color.WHITE);
             t2v.setGravity(Gravity.CENTER);
             tbrow.addView(t2v);
             TextView t3v = new TextView(this);
-            t3v.setText(""+i); // input from page
+            t3v.setText(""+ pref.getString("time", "00:00")); // input from page
             t3v.setTextColor(Color.WHITE);
             t3v.setGravity(Gravity.CENTER);
             tbrow.addView(t3v);
             TextView t4v = new TextView(this);
-            t4v.setText(""+i); // input from page
+            t4v.setText(""+ pref.getInt("step", 0)); // input from page
             t4v.setTextColor(Color.WHITE);
             t4v.setGravity(Gravity.CENTER);
             tbrow.addView(t4v);
             stk.addView(tbrow);
         }
-
     }
 
     @Override
