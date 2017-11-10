@@ -52,6 +52,12 @@
             </intent-filter>
             android:parentActivityName=".MainPageActivity" >
         </activity>
+        <activity android:name=".ScoreTableActivity">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            android:parentActivityName=".MainPageActivity" >
+        </activity>
     </application>
 
 </manifest>

@@ -69,6 +69,12 @@ public class MainPageActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void scoreTableNavigate(View view) {
+        MusicManager.clickPlayer.start();
+        Intent intent = new Intent(this, ScoreTableActivity.class);
+        startActivity(intent);
+    }
+
     /* Closed GNS app when the user click on closed button */
     public void closedApp (View view){
         finish();

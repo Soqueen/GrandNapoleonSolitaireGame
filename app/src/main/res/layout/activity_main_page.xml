@@ -34,7 +34,7 @@
             android:layout_marginTop="15dp"
             android:background="@color/Lemon"
             android:fontFeatureSettings="@string/app_name"
-            android:onClick="ScoreTable"
+            android:onClick="scoreTableNavigate"
             android:text="Score Table"
             android:textAppearance="@style/TextAppearance.AppCompat.Button"
             android:textSize="18sp" />
