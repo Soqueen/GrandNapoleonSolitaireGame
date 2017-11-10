@@ -7,19 +7,15 @@
     android:orientation="vertical"
     android:id="@+id/game_layout"
     android:weightSum="1">
+
     <ImageView
         android:id="@+id/stack0"
         android:layout_width="52dp"
         android:layout_height="72dp"
         app:srcCompat="@drawable/background_stack"
-        android:layout_marginLeft="48dp"
-        android:layout_marginStart="48dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:layout_toRightOf="@+id/left_side"
-        android:layout_toEndOf="@+id/left_side"
-        android:layout_marginTop="70dp" />
+        android:layout_above="@+id/left_side"
+        android:layout_alignLeft="@+id/card0"
+        android:layout_alignStart="@+id/card0" />
 
     <ImageView
         android:id="@+id/stack1"
@@ -486,9 +482,11 @@
         android:id="@+id/card0"
         android:layout_width="52dp"
         android:layout_height="72dp"
+        android:layout_marginLeft="31dp"
+        android:layout_marginStart="31dp"
         android:layout_alignTop="@+id/stack0"
-        android:layout_alignLeft="@+id/stack0"
-        android:layout_alignStart="@+id/stack0" />
+        android:layout_toRightOf="@+id/left_side"
+        android:layout_toEndOf="@+id/left_side" />
 
     <ImageView
         android:id="@+id/card1"
@@ -768,7 +766,7 @@
         android:layout_width="52dp"
         android:layout_height="72dp"
         android:layout_alignTop="@id/stack40"
-        android:layout_alignLeft="@id/stack40" />
+        android:layout_alignLeft="@id/stack40"/>
 
     <ImageView
         android:id="@+id/card41"
@@ -847,6 +845,7 @@
         android:layout_alignTop="@id/stack52"
         android:layout_alignLeft="@id/stack52"/>
 
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -911,4 +910,5 @@
             android:layout_height="wrap_content"
             android:text="#Steps" />
     </LinearLayout>
+
 </RelativeLayout>
