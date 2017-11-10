@@ -2,23 +2,24 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/greenBackground"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/game_layout"
     android:weightSum="1">
-
     <ImageView
         android:id="@+id/stack0"
         android:layout_width="52dp"
         android:layout_height="72dp"
         app:srcCompat="@drawable/background_stack"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="23dp"
-        android:layout_marginStart="23dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginStart="48dp"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/undo"
-        android:layout_toEndOf="@+id/undo" />
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_toRightOf="@+id/left_side"
+        android:layout_toEndOf="@+id/left_side"
+        android:layout_marginTop="70dp" />
 
     <ImageView
         android:id="@+id/stack1"
@@ -767,7 +768,7 @@
         android:layout_width="52dp"
         android:layout_height="72dp"
         android:layout_alignTop="@id/stack40"
-        android:layout_alignLeft="@id/stack40"/>
+        android:layout_alignLeft="@id/stack40" />
 
     <ImageView
         android:id="@+id/card41"
@@ -846,62 +847,68 @@
         android:layout_alignTop="@id/stack52"
         android:layout_alignLeft="@id/stack52"/>
 
-    <Button
-        android:id="@+id/undo"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/turquoise"
-        android:text="Undo"
-        android:textColor="@color/Grey"
-        android:layout_marginLeft="15dp"
-        android:layout_marginStart="15dp"
-        android:layout_below="@+id/stack0"
+        android:orientation="vertical"
+        android:id="@+id/left_side"
+        android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true">
 
-    <Button
-        android:id="@+id/hint"
+        <Button
+            android:id="@+id/undo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/turquoise"
+            android:text="Undo"
+            android:textColor="@color/Grey" />
+
+        <Button
+            android:id="@+id/hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hint"
+            android:layout_marginTop="50dp"
+            android:textColor="@color/Grey"
+            android:background="@color/turquoise"
+            android:layout_alignLeft="@+id/undo"
+            android:layout_alignStart="@+id/undo" />
+
+        <Button
+            android:id="@+id/pause"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/turquoise"
+            android:textColor="@color/Grey"
+            android:text="Pause"
+            android:layout_marginTop="50dp"
+            android:layout_alignLeft="@+id/hint"
+            android:layout_alignStart="@+id/hint" />
+    </LinearLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hint"
-        android:textColor="@color/Grey"
-        android:background="@color/turquoise"
-        android:layout_below="@+id/stack1"
-        android:layout_alignLeft="@+id/undo"
-        android:layout_alignStart="@+id/undo" />
-
-    <Button
-        android:id="@+id/pause"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/turquoise"
-        android:textColor="@color/Grey"
-        android:text="Pause"
-        android:layout_below="@+id/stack2"
-        android:layout_alignLeft="@+id/hint"
-        android:layout_alignStart="@+id/hint" />
-
-    <Chronometer
-        android:id="@+id/chronometer1"
-        android:textSize="@dimen/counter"
-        android:drawableLeft="@drawable/time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/stack21"
+        android:orientation="vertical"
+        android:id="@+id/right_side"
+        android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="22dp"
-        android:layout_marginEnd="22dp" />
+        android:layout_alignParentEnd="true">
 
-    <TextView
-        android:id="@+id/step_counter"
-        android:textSize="@dimen/counter"
-        android:drawableLeft="@drawable/step"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="#Steps"
-        android:layout_below="@+id/hint"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        <Chronometer
+            android:id="@+id/chronometer1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/time"
+            android:textSize="@dimen/counter" />
 
+        <TextView
+            android:id="@+id/step_counter"
+            android:textSize="@dimen/counter"
+            android:drawableLeft="@drawable/step"
+            android:layout_marginTop="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="#Steps" />
+    </LinearLayout>
 </RelativeLayout>

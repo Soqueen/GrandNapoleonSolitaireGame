@@ -10,27 +10,22 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="mcgill.ecse456.grandnapoleonsolitairegame.MainPageActivity">
-
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingLeft="470px"
-        android:paddingRight="470px"
-        android:id="@+id/homepage_layout"
-        android:layout_alignParentTop="true">
-
+        android:weightSum="1"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
         <Button
             android:id="@+id/start_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="15dp"
             android:background="@color/blue"
             android:onClick="difficultyPageNavigate"
             android:text="Start Game"
             android:textAppearance="@style/TextAppearance.AppCompat.Button"
-            android:textSize="20sp" />
+            android:textSize="18sp"/>
 
         <Button
             android:id="@+id/button"
@@ -57,18 +52,18 @@
 
         <Button
             android:id="@+id/instruction_button"
-            android:layout_width="130dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:background="@color/green_light"
             android:text="Instructions"
             android:onClick="instructionNavigate"
             android:textAppearance="@style/TextAppearance.AppCompat.Button"
-            android:textSize="18sp" />
+            android:textSize="18sp"/>
 
         <Button
             android:id="@+id/setting_button"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:background="@color/grey_medium"
@@ -79,7 +74,7 @@
 
         <Button
             android:id="@+id/closed_button"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:background="@color/red"
@@ -87,9 +82,7 @@
             android:text="Close"
             android:textAppearance="@style/TextAppearance.AppCompat.Button"
             android:textSize="18sp" />
-
     </LinearLayout>
-
     <TextView
         android:id="@+id/developer_text"
         android:layout_width="wrap_content"
@@ -114,6 +107,8 @@
         android:textStyle="bold"
         android:textColor="@android:color/white"
         android:textSize="18sp"
+        android:layout_marginLeft="26dp"
+        android:layout_marginStart="26dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -129,5 +124,4 @@
         android:textSize="18sp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
-
 </RelativeLayout>

@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:id="@+id/instruction5">
-
-    <Button
-        android:id="@+id/inst_prev"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Previous"
-        android:layout_marginRight="35dp"
-        android:layout_marginEnd="35dp"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/inst_closed"
-        android:layout_toStartOf="@+id/inst_closed" />
+        android:orientation="vertical"
+        android:weightSum="1"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/linearLayout">
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/inst_prev"
+            android:layout_centerHorizontal="true"
+            app:srcCompat="@drawable/step5" />
+    </LinearLayout>
     <Button
         android:id="@+id/inst_closed"
         android:layout_width="wrap_content"
@@ -23,33 +27,26 @@
         android:text="Close"
         android:onClick="closedInstruction"
         android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/inst_prev"
+        android:layout_toStartOf="@+id/inst_prev"
+        android:layout_marginRight="69dp"
+        android:layout_marginEnd="69dp" />
+    <Button
+        android:id="@+id/inst_prev"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Previous"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
-
 
     <Button
         android:id="@+id/inst_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Next"
-        android:layout_alignBaseline="@+id/inst_closed"
-        android:layout_alignBottom="@+id/inst_closed"
-        android:layout_toRightOf="@+id/inst_closed"
-        android:layout_toEndOf="@+id/inst_closed"
-        android:layout_marginLeft="21dp"
-        android:layout_marginStart="21dp" />
-
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/step5"
-        android:layout_marginBottom="15dp"
-        android:layout_above="@+id/inst_prev"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="201dp"
-        android:layout_marginStart="201dp" />
-
-
+        android:layout_marginLeft="71dp"
+        android:layout_marginStart="71dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/inst_prev"
+        android:layout_toEndOf="@+id/inst_prev" />
 </RelativeLayout>
