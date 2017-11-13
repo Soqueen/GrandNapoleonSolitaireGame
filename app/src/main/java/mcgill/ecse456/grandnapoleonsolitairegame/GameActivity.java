@@ -1,9 +1,9 @@
 package mcgill.ecse456.grandnapoleonsolitairegame;
 
-import android.app.Dialog;
 import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.Color;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
