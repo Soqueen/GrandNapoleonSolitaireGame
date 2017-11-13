@@ -15,7 +15,7 @@ import android.widget.TextView;
 public class ScoreTableActivity extends AppCompatActivity{
 
     public void init() {
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("GNSPref", MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
         TableLayout stk = (TableLayout) findViewById(R.id.table_main);
         TableRow tbrow0 = new TableRow(this);

@@ -34,7 +34,7 @@ public class GameActivity extends AppCompatActivity {
     private Button hintButton;
     private TextView stepCounter;
     private int type = 1; // 1: random game or 2: predetermined game
-    public static final String GNS_PREFS = "MyPref";
+    public static final String GNS_PREFS = "GNSPref";
 
 
 
