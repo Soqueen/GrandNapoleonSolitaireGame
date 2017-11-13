@@ -29,6 +29,7 @@ public class DragDrop {
         stackHeight = stacks[0].getHeight();    // Set stack height
         stackWidth = stacks[0].getWidth();      // Set stack width
         numSteps = 0;   // Reset numSteps to 0
+        baseStackOrder = false;
 
         // Empty string for debug
         String d = "";
@@ -99,6 +100,12 @@ public class DragDrop {
                             stacks[22].setStackingOrder(0);
                             stacks[23].setStackingOrder(0);
                         }
+                        stacks[whichStack].addCardToStack(card);
+                        card.getImageView().setX(tempX);
+                        card.getImageView().setY(tempY-statusBar);
+                        numSteps++;
+                        stepCounter.setText(numSteps + " steps");
+                        Log.d("", "Setting X as " + tempX + " and Y as " + tempY);
                     } else if (whichStack >= 20 && whichStack < 24) {
                         int stackOrder = card.getNumber() - stacks[whichStack].getLastCard().getNumber();
                         if ((stackOrder == 1 || stackOrder == -12) && stacks[whichStack].getStackingOrder() == 2) {
@@ -119,6 +126,13 @@ public class DragDrop {
                             card.getImageView().setX(stacks[card.getCurrentStackID()].getLeftSideLocation());
                             card.getImageView().setY(stacks[card.getCurrentStackID()].getTopSideLocation()-statusBar);
                         }
+                    } else if (card.getSuit() == stacks[whichStack].getLastCard().getSuit() && ((abs(card.getNumber() - stacks[whichStack].getLastCard().getNumber()) == 1) || (abs(card.getNumber() - stacks[whichStack].getLastCard().getNumber()) == 12))) {
+                        stacks[whichStack].addCardToStack(card);
+                        card.getImageView().setX(tempX);
+                        card.getImageView().setY(tempY-statusBar);
+                        numSteps++;
+                        stepCounter.setText(numSteps + " steps");
+                        Log.d("", "Setting X as " + tempX + " and Y as " + tempY);
                     }
                 } else {
                     card.getImageView().setX(stacks[card.getCurrentStackID()].getLeftSideLocation());
