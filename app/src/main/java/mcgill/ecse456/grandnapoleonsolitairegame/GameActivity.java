@@ -67,6 +67,7 @@ public class GameActivity extends AppCompatActivity {
         // Create 53 stacks
         for (int i = 0; i < stacks.length; i++) {
             stacks[i] = new Stack(i);
+            stacks[i].setStackingOrder(1);
         }
         if (type == 1) {
             // Randomly pick a number for base, and fill base with those cards in alternating suit color.
@@ -231,7 +232,6 @@ public class GameActivity extends AppCompatActivity {
         stacks[49].setImageView((ImageView) findViewById(R.id.stack49));
         stacks[50].setImageView((ImageView) findViewById(R.id.stack50));
         stacks[51].setImageView((ImageView) findViewById(R.id.stack51));
-        // Cella place at stack52
         stacks[52].setImageView((ImageView) findViewById(R.id.stack52));
 
         cards[0].setImageView((ImageView) findViewById(R.id.card0));
@@ -316,10 +316,8 @@ public class GameActivity extends AppCompatActivity {
             window.getDecorView().getWindowVisibleDisplayFrame(rectgle);
             int StatusBarHeight= rectgle.top;
             DragDrop.main(cards, stacks, stepCounter, StatusBarHeight);
-
         }
     }
-
 
     // Temporary solution to actually finding location of ImageViews.
     @Override

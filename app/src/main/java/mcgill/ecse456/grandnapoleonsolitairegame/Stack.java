@@ -21,6 +21,7 @@ public class Stack {
     private int leftSideLocation, topSideLocation;
     private int[] location = new int[2];
     private float height, width;
+    private int stackingOrder;  // 0 for descending, 1 for both, 2 for ascending
 
     /**
      * Public constructor Stack to easily access by other classes.
@@ -74,6 +75,11 @@ public class Stack {
         this.width = width;
         this.height = height;
     }
+
+    public void setStackingOrder(int stackingOrder) {
+        this.stackingOrder = stackingOrder;
+    }
+
 
     /**
      * Get the ImageView.
@@ -163,10 +169,14 @@ public class Stack {
         return this.topSideLocation;
     }
 
+    public int getStackingOrder() { return this.stackingOrder; }
+
     public float getHeight() {
         return this.height;
     }
+
     public float getWidth() {
         return this.width;
     }
+
 }
