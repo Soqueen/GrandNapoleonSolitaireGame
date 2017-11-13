@@ -4,19 +4,11 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.app.Dialog;
-import android.content.res.Resources;
-import android.graphics.Color;
 import android.graphics.Rect;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageView;
-import android.content.Context;
 import android.widget.TextView;
 
 import java.util.Random;
@@ -39,6 +31,7 @@ public class GameActivity extends AppCompatActivity {
     private Button hintButton;
     private TextView stepCounter;
     private int type = 1; // 1: random game or 2: predetermined game
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
