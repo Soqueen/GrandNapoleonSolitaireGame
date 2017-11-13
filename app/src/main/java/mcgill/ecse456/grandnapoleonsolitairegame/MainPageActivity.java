@@ -3,12 +3,9 @@ package mcgill.ecse456.grandnapoleonsolitairegame;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.EditText;
+
 
 
 /**
@@ -21,10 +18,12 @@ import android.widget.EditText;
  * @version 1.0 03/10/2017
  */
 public class MainPageActivity extends AppCompatActivity {
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        MusicManager.GamePlayer(this);
         setContentView(R.layout.activity_main_page);
     }
 
@@ -35,6 +34,7 @@ public class MainPageActivity extends AppCompatActivity {
      * @params view
      */
     public void difficultyPageNavigate(View view) {
+        MusicManager.clickPlayer.start();
         Intent intent = new Intent(this, DisplayDifficultyPageActivity.class);
         startActivity(intent);
     }
@@ -46,6 +46,7 @@ public class MainPageActivity extends AppCompatActivity {
      * @params view
      */
     public void instructionNavigate(View view) {
+        MusicManager.clickPlayer.start();
         Intent intent = new Intent(this, Instruction.class);
         startActivity(intent);
     }
@@ -57,7 +58,14 @@ public class MainPageActivity extends AppCompatActivity {
      * @params view
      */
     public void displayAbout(View view) {
+        MusicManager.clickPlayer.start();
         Intent intent = new Intent(this, AboutPageActivity.class);
+        startActivity(intent);
+    }
+
+    public void settingNavigate(View view) {
+        MusicManager.clickPlayer.start();
+        Intent intent = new Intent(this, SettingActivity.class);
         startActivity(intent);
     }
 

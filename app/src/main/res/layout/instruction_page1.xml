@@ -1,41 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:id="@+id/instruction1">
-
-    <Button
-        android:id="@+id/inst_closed"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Close"
-        android:layout_marginBottom="37dp"
-        android:layout_marginRight="215dp"
-        android:layout_marginEnd="215dp"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/inst_next"
-        android:layout_toStartOf="@+id/inst_next" />
-
-  
-    <Button
-        android:id="@+id/inst_next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Next"
-        android:layout_marginRight="430dp"
-        android:layout_marginEnd="430dp"
-        android:layout_alignBaseline="@+id/inst_closed"
-        android:layout_alignBottom="@+id/inst_closed"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:orientation="vertical"
+        android:weightSum="1"
         android:layout_centerVertical="true"
-        app:srcCompat="@drawable/step1" />
+        android:layout_centerHorizontal="true"
+        android:id="@+id/linearLayout">
 
+        <ImageView
+            android:id="@+id/pag1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/inst_closed"
+            android:layout_centerHorizontal="true"
+            app:srcCompat="@drawable/step1" />
+    </LinearLayout>
+        <Button
+            android:id="@+id/inst_closed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Close"
+            android:onClick="closedInstruction"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@+id/inst_next"
+            android:layout_toStartOf="@+id/inst_next"
+            android:layout_marginRight="94dp"
+            android:layout_marginEnd="94dp" />
+
+
+        <Button
+            android:id="@+id/inst_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Next"
+            android:layout_alignParentBottom="true"
+            android:layout_alignRight="@+id/linearLayout"
+            android:layout_alignEnd="@+id/linearLayout"
+            android:layout_marginRight="132dp"
+            android:layout_marginEnd="132dp" />
 </RelativeLayout>
