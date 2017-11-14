@@ -3,6 +3,7 @@ package mcgill.ecse456.grandnapoleonsolitairegame;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -11,9 +12,12 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.Chronometer;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -35,7 +39,9 @@ public class GameActivity extends AppCompatActivity {
     private TextView stepCounter;
     private int type = 1; // 1: random game or 2: predetermined game
     public static final String GNS_PREFS = "GNSPref";
-
+    TextView edtName, edtStep;
+    Chronometer edtTime;
+    DatabaseHelper dbHandler;
 
 
     @Override
@@ -59,6 +65,8 @@ public class GameActivity extends AppCompatActivity {
         hintButton = (Button) findViewById(R.id.hint);
         Hint hint = new Hint(hintButton, cards, stacks);
         hint.clicked();
+
+
     }
 
     public void displayCards(int type, Card[] cards, Stack[] stacks){
@@ -324,23 +332,33 @@ public class GameActivity extends AppCompatActivity {
     public void onWindowFocusChanged (boolean hasFocus) {
         setStacksLocation(stacks);
     }
-
-    // TODO - Once the same is complete, then the app need to call this function for user to input
-    // their name and save their time and number of step in share reference file
+    
     public void saveScore(View view){
-        // 0. How to set up GNS_PREF
-        // Create SharedPreference file
-        SharedPreferences pref = getApplicationContext().getSharedPreferences(GNS_PREFS, MODE_PRIVATE);
-        SharedPreferences.Editor editor = pref.edit();
-        // 1. Need a pop up diaglog to input user name
-        // 2. Save this input, time and #step into share preference file.
-        editor.putString("name", "sokheng" );        // Saving user name
-        editor.putString("time", "15:02");    // Saving time in string
-        editor.putInt("step", 45);      // Saving integer
 
-// Save the changes in SharedPreferences
-        editor.commit(); // commit changes
+        edtName = (TextView)findViewById(R.id.step_counter) ;
+        edtTime = (Chronometer) findViewById(R.id.chronometer1);
+        edtStep = (TextView)findViewById(R.id.step_counter);
+        dbHandler = new DatabaseHelper(this, null,null, 1);
+        // Add a scoreRecord to database
+        ScoreTable scoreRecord = new ScoreTable(edtName.getText().toString().trim(), edtTime.getText().toString().trim(), edtStep.getText().toString().trim());
+        dbHandler.addScoreRecord(scoreRecord);
+        Cursor data = dbHandler.getData();
+        // Populate database in the arraylist for each column
+        ArrayList<String> listName = new ArrayList<>();
+        ArrayList<String> listTime = new ArrayList<>();
+        ArrayList<String> listStep = new ArrayList<>();
+        while(data.moveToNext()){
+            listName.add(data.getString(1)); //Name
+            listTime.add(data.getString(2)); // Time column
+            listStep.add(data.getString(3)); // Counter step column
+        }
+        // Display on the score table activity
         Intent intent = new Intent(context, ScoreTableActivity.class);
+        intent.putExtra("name", listName);
+        intent.putExtra("time", listTime);
+        intent.putExtra("step", listStep);
         context.startActivity(intent);
     }
+
+
 }
