@@ -1,5 +1,6 @@
 package mcgill.ecse456.grandnapoleonsolitairegame;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -15,53 +17,57 @@ import java.util.ArrayList;
 
 public class ScoreTableActivity extends AppCompatActivity{
     private ArrayList<String> nameDB, timeDB, stepDB;
-
+    private Button clearButton;
+    DatabaseHelper dbHandler;
+    private boolean empty = false;
     public void init() {
 //        SharedPreferences pref = getApplicationContext().getSharedPreferences("GNSPref", MODE_PRIVATE);
 //        SharedPreferences.Editor editor = pref.edit();
         TableLayout stk = (TableLayout) findViewById(R.id.table_main);
         TableRow tbrow0 = new TableRow(this);
         TextView tv0 = new TextView(this);
-        tv0.setText("No.");
+        tv0.setText("   NO   ");
         tv0.setTextColor(Color.WHITE);
         tbrow0.addView(tv0);
         TextView tv1 = new TextView(this);
-        tv1.setText(" Name ");
+        tv1.setText("   PLAYER NAME   ");
         tv1.setTextColor(Color.WHITE);
         tbrow0.addView(tv1);
         TextView tv2 = new TextView(this);
-        tv2.setText(" Time ");
+        tv2.setText("   TIME   ");
         tv2.setTextColor(Color.WHITE);
         tbrow0.addView(tv2);
         TextView tv3 = new TextView(this);
-        tv3.setText(" # Steps ");
+        tv3.setText("  NUMBER OF STEP  ");
         tv3.setTextColor(Color.WHITE);
         tbrow0.addView(tv3);
         stk.addView(tbrow0);
         // TODO - Figure out how to the sharepreference and pass it to the display table
-        for (int i = 0; i < nameDB.size(); i++) { // take till the lenght of data save
-            TableRow tbrow = new TableRow(this);
-            TextView t1v = new TextView(this);
-            t1v.setText("" + i);
-            t1v.setTextColor(Color.WHITE);
-            t1v.setGravity(Gravity.CENTER);
-            tbrow.addView(t1v);
-            TextView t2v = new TextView(this);
-            t2v.setText(""+ nameDB.get(i)); // input from user
-            t2v.setTextColor(Color.WHITE);
-            t2v.setGravity(Gravity.CENTER);
-            tbrow.addView(t2v);
-            TextView t3v = new TextView(this);
-            t3v.setText(""+ timeDB.get(i)); // input from page
-            t3v.setTextColor(Color.WHITE);
-            t3v.setGravity(Gravity.CENTER);
-            tbrow.addView(t3v);
-            TextView t4v = new TextView(this);
-            t4v.setText(""+ stepDB.get(i)); // input from page
-            t4v.setTextColor(Color.WHITE);
-            t4v.setGravity(Gravity.CENTER);
-            tbrow.addView(t4v);
-            stk.addView(tbrow);
+        if (!empty){
+            for (int i = 0; i < nameDB.size(); i++) { // take till the lenght of data save
+                TableRow tbrow = new TableRow(this);
+                TextView t1v = new TextView(this);
+                t1v.setText("  " + i);
+                t1v.setTextColor(Color.WHITE);
+                t1v.setGravity(Gravity.CENTER);
+                tbrow.addView(t1v);
+                TextView t2v = new TextView(this);
+                t2v.setText("  " + nameDB.get(i)); // input from user
+                t2v.setTextColor(Color.WHITE);
+                t2v.setGravity(Gravity.CENTER);
+                tbrow.addView(t2v);
+                TextView t3v = new TextView(this);
+                t3v.setText("  " + timeDB.get(i)); // input from time
+                t3v.setTextColor(Color.WHITE);
+                t3v.setGravity(Gravity.CENTER);
+                tbrow.addView(t3v);
+                TextView t4v = new TextView(this);
+                t4v.setText("  " + stepDB.get(i).replace("steps", "")); // input from step counter
+                t4v.setTextColor(Color.WHITE);
+                t4v.setGravity(Gravity.CENTER);
+                tbrow.addView(t4v);
+                stk.addView(tbrow);
+            }
         }
     }
 
@@ -75,12 +81,32 @@ public class ScoreTableActivity extends AppCompatActivity{
             this.nameDB = b.getStringArrayList("name");
             this.timeDB = b.getStringArrayList("time");
             this.stepDB = b.getStringArrayList("step");
+            this.empty = false;
         }
+        else {
+            this.empty = true;
+        }
+        clearButton = (Button) findViewById(R.id.clear);
+        dbHandler = new DatabaseHelper(this, null, null, 1);
         init();
     }
     public void closedScoreTable (View view){
         MusicManager.clickPlayer.start();
-        super.onBackPressed();
+        if (empty){
+            Intent intent = new Intent(this, MainPageActivity.class);
+            startActivity(intent);
+        }
+        else {
+//            Intent intent = new Intent(this, DisplayDifficultyPageActivity.class);
+//            startActivity(intent);
+            finish(); //to be remove
+        }
+    }
+
+    public void deleteScoreRecord(View view){
+        dbHandler.deleteScoreRecord();
+        Intent intent = new Intent(this, ScoreTableActivity.class);
+        startActivity(intent);
     }
 }
 

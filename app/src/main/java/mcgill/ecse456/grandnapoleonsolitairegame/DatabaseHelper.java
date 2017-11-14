@@ -59,11 +59,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     // Delete a scoreRecord from database
-    public void deleteScoreRecord(String scoreRecordName, String time, String step) {
+    public void deleteScoreRecord() {
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("DELETE FROM " + TABLE_NAME + " WHERE " + C_NAME + "=\"" + scoreRecordName + "\";");
-        db.execSQL("DELETE FROM " + TABLE_NAME + " WHERE " + C_TIME + "=\"" + time + "\";");
-        db.execSQL("DELETE FROM " + TABLE_NAME + " WHERE " + C_STEP + "=\"" + step + "\";");
+        db.execSQL("DELETE FROM "+TABLE_NAME);
     }
 
     public Cursor getData(){

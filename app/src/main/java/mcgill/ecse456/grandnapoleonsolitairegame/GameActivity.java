@@ -52,6 +52,7 @@ public class GameActivity extends AppCompatActivity {
         if(b != null) {
             this.type = b.getInt("id");
         }
+        dbHandler = new DatabaseHelper(this, null,null, 1);
 
         final Chronometer timer = (Chronometer) findViewById(R.id.chronometer1); // initiate a chronometer
         timer.start(); // Start the time counter
@@ -332,15 +333,15 @@ public class GameActivity extends AppCompatActivity {
     public void onWindowFocusChanged (boolean hasFocus) {
         setStacksLocation(stacks);
     }
-    
+
     public void saveScore(View view){
 
-        edtName = (TextView)findViewById(R.id.step_counter) ;
+//        edtName = (TextView)findViewById(R.id.step_counter) ;
         edtTime = (Chronometer) findViewById(R.id.chronometer1);
         edtStep = (TextView)findViewById(R.id.step_counter);
-        dbHandler = new DatabaseHelper(this, null,null, 1);
         // Add a scoreRecord to database
-        ScoreTable scoreRecord = new ScoreTable(edtName.getText().toString().trim(), edtTime.getText().toString().trim(), edtStep.getText().toString().trim());
+        //TODO- Have popup dialog to store player name and pass 'here' instead of 'sokheng'
+        ScoreTable scoreRecord = new ScoreTable("SokHeng", edtTime.getText().toString().trim(), edtStep.getText().toString().trim());
         dbHandler.addScoreRecord(scoreRecord);
         Cursor data = dbHandler.getData();
         // Populate database in the arraylist for each column
@@ -359,6 +360,5 @@ public class GameActivity extends AppCompatActivity {
         intent.putExtra("step", listStep);
         context.startActivity(intent);
     }
-
 
 }
