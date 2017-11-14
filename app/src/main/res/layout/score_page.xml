@@ -33,33 +33,38 @@
             </RelativeLayout>
         </HorizontalScrollView>
     </ScrollView>
-
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:layout_centerInParent="true"
+    android:layout_alignParentBottom="true">
     <Button
         android:id="@+id/close"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/Grey"
         android:background="@color/grey_light"
-        android:layout_marginBottom="35dp"
         android:text="Closed"
         android:onClick="closedScoreTable"
+        android:layout_marginRight="323dp"
+        android:layout_marginEnd="323dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="298dp"
-        android:layout_marginEnd="298dp" />
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:id="@+id/clear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="112dp"
-        android:layout_marginRight="112dp"
+        android:layout_marginEnd="151dp"
+        android:layout_marginRight="151dp"
         android:background="@color/grey_light"
         android:onClick= "deleteScoreRecord"
         android:text="Clear All"
         android:textColor="@color/Grey"
+        android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@+id/close"
-        android:layout_toStartOf="@+id/close"
-        android:layout_alignBottom="@+id/close" />
+        android:layout_toStartOf="@+id/close" />
+</RelativeLayout>
 </RelativeLayout>
