@@ -23,6 +23,8 @@ public class Card {
     private int currentStackID = 0;
     private boolean canMove;
     public int style = 0;
+    private float xPosition;
+    private float yPosition;
 
     // constants for retrieving the image of diamond cards
     public final static int[] drawablesDiamonds = {
@@ -411,9 +413,17 @@ public class Card {
     public void setCurrentStackID(int id) {
         this.currentStackID = id;
     }
+
     public boolean getCanMove() { return this.canMove; }
+
     public void setCanMove(boolean canMove) { this.canMove = canMove; }
 
+    public void setXYPositions(float x, float y) {
+        this.xPosition = x;
+        this.yPosition = y;
+    }
+    public float getXPosition() { return xPosition; }
+    public float getYPosition() {return yPosition; }
     public int getStyle() { return this.style; }
     public void setStyle(int style) { this.style = style; }
 }
