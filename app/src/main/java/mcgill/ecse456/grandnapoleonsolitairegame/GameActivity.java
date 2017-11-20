@@ -317,6 +317,10 @@ public class GameActivity extends AppCompatActivity {
             s[i].getImageView().getLocationOnScreen(location);
             s[i].setSize(s[i].getImageView().getWidth(), s[i].getImageView().getHeight());
             s[i].setXYCoordinates(location[0], location[1]);
+            if (i < 51) {
+                cards[i].setXYPositions(s[cards[i].getCurrentStackID()].getLeftSideLocation(), s[cards[i].getCurrentStackID()].getTopSideLocation());
+            }
+
 
 //            Log.d("", "Stack " + i + " is at " + s[i].getLeftSideLocation() + " " + s[i].getTopSideLocation());
 //            Log.d("", "Stack " + i + " has height " + s[i].getHeight() + ", and width " + s[i].getWidth());
