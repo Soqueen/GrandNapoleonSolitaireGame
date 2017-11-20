@@ -38,5 +38,13 @@
             android:textColor="@color/colorPrimary"
             android:textSize="19dp" />
 
+        <Button
+            android:id="@+id/close"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/Lemon"
+            android:onClick="closedAbout"
+            android:text="Button" />
+
     </LinearLayout>
 </RelativeLayout>

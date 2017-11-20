@@ -3,6 +3,7 @@ package mcgill.ecse456.grandnapoleonsolitairegame;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 /**
@@ -31,10 +32,14 @@ public class DisplayDifficultyPageActivity extends AppCompatActivity {
      * @params view
      */
     public void randomGameNavigate(View view) {
+        boolean isMute = false;
         if (MusicManager.gamePlayer != null) {
+            isMute = MusicManager.isMute;
             MusicManager.gamePlayer.release();
             MusicManager.gamePlayer = null;
         }
+        MusicManager.isMute = isMute;
+        Log.d("___music state", ""+isMute);
         MusicManager.GamePlayer(this);
         MusicManager.clickPlayer.start();
         MusicManager.gamePlayer.start();
@@ -49,16 +54,23 @@ public class DisplayDifficultyPageActivity extends AppCompatActivity {
      * @params view
      */
     public void predeterminedGameNavigate(View view) {
+
+//        boolean isMute = false;
         if (MusicManager.gamePlayer != null) {
+//            isMute = MusicManager.isMute;
             MusicManager.gamePlayer.release();
             MusicManager.gamePlayer = null;
         }
-        MusicManager.GamePlayer(this);
+//        MusicManager.isMute = isMute;
         MusicManager.clickPlayer.start();
         MusicManager.gamePlayer.start();
         Intent intent = new Intent(this, GameActivity.class);
         intent.putExtra("id", 2);
         startActivity(intent);
+    }
+
+    public void closedDifficulty (View view){
+        finish();
     }
 
 }

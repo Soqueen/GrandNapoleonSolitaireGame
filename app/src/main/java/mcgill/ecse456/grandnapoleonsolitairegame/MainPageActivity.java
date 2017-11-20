@@ -1,11 +1,13 @@
 package mcgill.ecse456.grandnapoleonsolitairegame;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 
 import java.util.ArrayList;
 
@@ -25,7 +27,11 @@ public class MainPageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences preferences = getApplicationContext().getSharedPreferences("GNS_GAME", android.content.Context.MODE_PRIVATE);
+        boolean is_Mute = preferences.getBoolean("enable_music", false);
+        Log.d("----oncreate--", ""+(is_Mute));
         MusicManager.GamePlayer(this);
+        Log.d("----oncreateMusic--", ""+(MusicManager.isMute));
         setContentView(R.layout.activity_main_page);
     }
 
@@ -98,6 +104,9 @@ public class MainPageActivity extends AppCompatActivity {
     @Override
     protected void onResume(){
         super.onResume();
+        SharedPreferences preferences = getApplicationContext().getSharedPreferences("GNS_GAME", android.content.Context.MODE_PRIVATE);
+        boolean is_Mute = preferences.getBoolean("enable_music", false);
+        Log.d("----onRESUME--", ""+(is_Mute));
         Log.d("MainPageActivity", "onResume was called");
     }
 

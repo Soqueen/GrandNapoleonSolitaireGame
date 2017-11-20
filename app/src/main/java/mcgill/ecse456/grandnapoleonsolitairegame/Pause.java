@@ -58,7 +58,7 @@ public class Pause extends AppCompatActivity {
                         //resume timer
                         timer.setBase(SystemClock.elapsedRealtime() + timeDiff);
                         timer.start();
-                        boolean state = true;
+                        boolean state = false;
                         if (MusicManager.gamePlayer != null) {
                             MusicManager.gamePlayer.release();
                             state = MusicManager.isMute;

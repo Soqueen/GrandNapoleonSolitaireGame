@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -62,7 +63,10 @@ public class ScoreTableActivity extends AppCompatActivity{
                 t3v.setGravity(Gravity.CENTER);
                 tbrow.addView(t3v);
                 TextView t4v = new TextView(this);
-                t4v.setText("  " + stepDB.get(i).replace("steps", "")); // input from step counter
+                if (stepDB.get(i).equals("#Steps"))
+                    t4v.setText("  " + stepDB.get(i).replace("#Steps", "0"));
+                else
+                    t4v.setText("  " + stepDB.get(i).replace("steps", "")); // input from step counter
                 t4v.setTextColor(Color.WHITE);
                 t4v.setGravity(Gravity.CENTER);
                 tbrow.addView(t4v);

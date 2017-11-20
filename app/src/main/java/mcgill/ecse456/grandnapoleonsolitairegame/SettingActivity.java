@@ -1,7 +1,9 @@
 package mcgill.ecse456.grandnapoleonsolitairegame;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CheckBox;
@@ -30,35 +32,18 @@ public class SettingActivity extends AppCompatActivity implements CompoundButton
         MusicManager.clickPlayer.start();
         finish();
     }
-//    public void selectItem (View view)
-//    {
-//        boolean checked= ((CheckBox) view).isChecked();
-//        switch (view.getId()) {
-//            case R.id.enable_hint :
-//                // disable hint
-//                break;
-//            case R.id.enable_undo:
-//                // disable undo
-//                break;
-//            case R.id.enable_music:
-//                if (checked)
-//                    MusicManager.mute();
-//                else
-//                    MusicManager.unMute();
-//                break;
-//
-//        }
-//    }
+
     private boolean getFromSP(String key){
-        SharedPreferences preferences = getApplicationContext().getSharedPreferences("GNS", android.content.Context.MODE_PRIVATE);
+        SharedPreferences preferences = getApplicationContext().getSharedPreferences("GNS_GAME", android.content.Context.MODE_PRIVATE);
         return preferences.getBoolean(key, false);
     }
     private void saveInSp(String key,boolean value){
-        SharedPreferences preferences = getApplicationContext().getSharedPreferences("GNS", android.content.Context.MODE_PRIVATE);
+        SharedPreferences preferences = getApplicationContext().getSharedPreferences("GNS_GAME", android.content.Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putBoolean(key, value);
         editor.commit();
     }
+
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
