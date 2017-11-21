@@ -36,6 +36,7 @@ public class GameActivity extends AppCompatActivity {
     final Context context = this;
     private Button pauseButton;
     private Button hintButton;
+    private Button undoButton;
     private TextView stepCounter;
     private int type = 1; // 1: random game or 2: predetermined game
     public static final String GNS_PREFS = "GNSPref";
@@ -66,7 +67,6 @@ public class GameActivity extends AppCompatActivity {
         hintButton = (Button) findViewById(R.id.hint);
         Hint hint = new Hint(hintButton, cards, stacks);
         hint.clicked();
-
 
     }
 
@@ -328,7 +328,7 @@ public class GameActivity extends AppCompatActivity {
             Window window= getWindow();
             window.getDecorView().getWindowVisibleDisplayFrame(rectgle);
             int StatusBarHeight= rectgle.top;
-            DragDrop.main(cards, stacks, stepCounter, StatusBarHeight);
+            DragDrop.main(cards, stacks, stepCounter, StatusBarHeight, (Button)findViewById(R.id.undo));
         }
     }
 
