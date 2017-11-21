@@ -8,27 +8,10 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
-        <Spinner
-            android:id="@+id/change_card"
-            android:layout_width="101dp"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_alignLeft="@+id/change_bg"
-            android:layout_alignStart="@+id/change_bg" />
-        <Spinner
-            android:id="@+id/change_bg"
-            android:layout_width="101dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="153dp"
-            android:layout_marginStart="153dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="129dp" />
     </RelativeLayout>
     <Button
         android:id="@+id/closed"
@@ -45,19 +28,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Check to turn OFF UNDO"
-        android:layout_marginTop="47dp"
         android:background="@color/Lemon"
-        android:layout_marginLeft="87dp"
-        android:layout_marginStart="87dp"
+        android:textSize="24dp"
+
+        android:layout_marginTop="57dp"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/closed"
-        android:layout_toEndOf="@+id/closed" />
+        android:layout_centerHorizontal="true" />
 
     <CheckBox
         android:id="@+id/enable_music"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="107dp"
+        android:textSize="24dp"
         android:text="Check to turn OFF MUSIC"
         android:background="@color/Lemon"
         android:layout_below="@+id/enable_hint"
@@ -69,6 +52,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="106dp"
+        android:textSize="24dp"
+
         android:text="Check to turn OFF HINT"
         android:background="@color/Lemon"
         android:layout_below="@+id/enable_undo"

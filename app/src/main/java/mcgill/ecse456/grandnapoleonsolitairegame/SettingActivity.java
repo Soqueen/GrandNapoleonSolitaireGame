@@ -29,7 +29,6 @@ public class SettingActivity extends AppCompatActivity implements CompoundButton
         enableMusic.setOnCheckedChangeListener(this);
     }
     public void closedSetting (View view){
-        MusicManager.clickPlayer.start();
         finish();
     }
 
@@ -56,11 +55,11 @@ public class SettingActivity extends AppCompatActivity implements CompoundButton
                 break;
 
             case R.id.enable_music:
+                saveInSp("enableMusic",isChecked);
                 if (isChecked)
                     MusicManager.mute();
                 else
                     MusicManager.unMute();
-                saveInSp("enableMusic",isChecked);
                 break;
         }
 

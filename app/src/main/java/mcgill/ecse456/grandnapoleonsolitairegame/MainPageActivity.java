@@ -28,7 +28,7 @@ public class MainPageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SharedPreferences preferences = getApplicationContext().getSharedPreferences("GNS_GAME", android.content.Context.MODE_PRIVATE);
-        boolean is_Mute = preferences.getBoolean("enable_music", false);
+        boolean is_Mute = preferences.getBoolean("enableMusic", false);
         Log.d("----oncreate--", ""+(is_Mute));
         MusicManager.GamePlayer(this);
         Log.d("----oncreateMusic--", ""+(MusicManager.isMute));
@@ -105,7 +105,7 @@ public class MainPageActivity extends AppCompatActivity {
     protected void onResume(){
         super.onResume();
         SharedPreferences preferences = getApplicationContext().getSharedPreferences("GNS_GAME", android.content.Context.MODE_PRIVATE);
-        boolean is_Mute = preferences.getBoolean("enable_music", false);
+        boolean is_Mute = preferences.getBoolean("enableMusic", false);
         Log.d("----onRESUME--", ""+(is_Mute));
         Log.d("MainPageActivity", "onResume was called");
     }

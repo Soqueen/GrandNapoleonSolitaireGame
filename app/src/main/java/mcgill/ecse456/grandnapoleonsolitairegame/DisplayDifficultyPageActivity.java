@@ -39,7 +39,6 @@ public class DisplayDifficultyPageActivity extends AppCompatActivity {
             MusicManager.gamePlayer = null;
         }
         MusicManager.isMute = isMute;
-        Log.d("___music state", ""+isMute);
         MusicManager.GamePlayer(this);
         MusicManager.clickPlayer.start();
         MusicManager.gamePlayer.start();
@@ -55,13 +54,14 @@ public class DisplayDifficultyPageActivity extends AppCompatActivity {
      */
     public void predeterminedGameNavigate(View view) {
 
-//        boolean isMute = false;
+        boolean isMute = false;
         if (MusicManager.gamePlayer != null) {
-//            isMute = MusicManager.isMute;
+            isMute = MusicManager.isMute;
             MusicManager.gamePlayer.release();
             MusicManager.gamePlayer = null;
         }
-//        MusicManager.isMute = isMute;
+        MusicManager.isMute = isMute;
+        MusicManager.GamePlayer(this);
         MusicManager.clickPlayer.start();
         MusicManager.gamePlayer.start();
         Intent intent = new Intent(this, GameActivity.class);
