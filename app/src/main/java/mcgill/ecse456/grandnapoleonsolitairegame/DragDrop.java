@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,7 +21,13 @@ public class DragDrop {
     private static float stackHeight;
     private static float stackWidth;
     private static boolean baseStackOrder = false;
-    public static void main(Card[] c, Stack[] s, TextView counter, int statusBarHeight) {
+
+    // Variables for Undo
+    public static float previousX, previousY;
+    public static Card previousCard;
+    public static int previousStack;
+
+    public static void main(Card[] c, Stack[] s, TextView counter, int statusBarHeight, Button undo) {
         // Assignment for variables used in Drag and Drop
         cards = c;
         stacks = s;
@@ -30,6 +37,24 @@ public class DragDrop {
         stackWidth = stacks[0].getWidth();      // Set stack width
         numSteps = 0;   // Reset numSteps to 0
         baseStackOrder = false;
+        Button undoButton = undo;
+        undoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (previousCard != null) {
+                    if (previousCard.getXPosition() != previousX && previousCard.getYPosition() != previousY && previousCard.getCurrentStackID() != previousStack) {
+                        Log.d("", "Undo-ing");
+                        stacks[previousCard.getCurrentStackID()].removeCardFromStack(previousCard);
+                        stacks[previousStack].addCardToStack(previousCard);
+                        previousCard.setXYPositions(previousX, previousY);
+                        previousCard.getImageView().setX(previousX);
+                        previousCard.getImageView().setY(previousY - statusBar);
+                    }
+                } else {
+                    Log.d("", "Cannot undo");
+                }
+            }
+        });
 
         // Empty string for debug
         String d = "";
@@ -40,6 +65,7 @@ public class DragDrop {
         for (int i = 0; i < s.length; i++) {
             s[i].setStackingOrder(1);
         }
+
     }
 
     private static void actionDown(View v, MotionEvent event, Card c) {
@@ -86,6 +112,10 @@ public class DragDrop {
         if (validStack) {
             if (card.getCurrentStackID() != whichStack) {
                 if (stacks[whichStack].getCurrentCards().size() == 0) {
+                    previousStack = card.getCurrentStackID();
+                    previousCard = card;
+                    previousX = card.getXPosition();
+                    previousY = card.getYPosition();
                     stacks[whichStack].addCardToStack(card);
                     cardImage.setX(tempX);
                     cardImage.setY(tempY-statusBar);
@@ -118,6 +148,10 @@ public class DragDrop {
                                 stacks[22].setStackingOrder(0);
                                 stacks[23].setStackingOrder(0);
                             }
+                            previousStack = card.getCurrentStackID();
+                            previousCard = card;
+                            previousX = card.getXPosition();
+                            previousY = card.getYPosition();
                             stacks[whichStack].addCardToStack(card);
                             cardImage.setX(xToSet);
                             cardImage.setY(yToSet);
@@ -135,6 +169,10 @@ public class DragDrop {
                                 validStack = false;
                             }
                             if (validStack) {
+                                previousStack = card.getCurrentStackID();
+                                previousCard = card;
+                                previousX = card.getXPosition();
+                                previousY = card.getYPosition();
                                 stacks[whichStack].addCardToStack(card);
                                 cardImage.setX(xToSet);
                                 cardImage.setY(yToSet);
@@ -143,10 +181,15 @@ public class DragDrop {
                                 stepCounter.setText(numSteps + " steps");
                                 Log.d("", "Setting X as " + tempX + " and Y as " + tempY);
                             } else {
+                                stacks[cardID].addCardToStack(card);
                                 card.getImageView().setX(card.getXPosition());
-                                card.getImageView().setY(card.getYPosition());
+                                card.getImageView().setY(card.getYPosition() - statusBar);
                             }
                         } else if (card.getSuit() == stacks[whichStack].getLastCard().getSuit() && ((abs(card.getNumber() - stacks[whichStack].getLastCard().getNumber()) == 1) || (abs(card.getNumber() - stacks[whichStack].getLastCard().getNumber()) == 12))) {
+                            previousStack = card.getCurrentStackID();
+                            previousCard = card;
+                            previousX = card.getXPosition();
+                            previousY = card.getYPosition();
                             stacks[whichStack].addCardToStack(card);
                             cardImage.setX(xToSet);
                             cardImage.setY(yToSet);
@@ -156,19 +199,23 @@ public class DragDrop {
                             Log.d("", "Setting X as " + tempX + " and Y as " + tempY);
                         }
                     } else {
+                        stacks[cardID].addCardToStack(card);
                         card.getImageView().setX(card.getXPosition());
-                        card.getImageView().setY(card.getYPosition());
+                        card.getImageView().setY(card.getYPosition() - statusBar);
                     }
                 }
             } else {
+                stacks[cardID].addCardToStack(card);
                 card.getImageView().setX(card.getXPosition());
-                card.getImageView().setY(card.getYPosition());
+                card.getImageView().setY(card.getYPosition() - statusBar);
             }
         } else {
+            stacks[cardID].addCardToStack(card);
             card.getImageView().setX(card.getXPosition());
-            card.getImageView().setY(card.getYPosition());
+            card.getImageView().setY(card.getYPosition() - statusBar);
             Log.d("", "Cannot stack");
         }
+//        Log.d("", "PreviousX " + previousX + " PreviousY " + previousY + " previousStack " + previousStack + " PreviousCard " + previousCard.getNumber() + " of " + previousCard.getSuit());
     }
 
     public static boolean myTouch(View v, MotionEvent e, Card c) {
