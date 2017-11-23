@@ -20,6 +20,7 @@ public class DragDrop {
     private static float stackHeight;
     private static float stackWidth;
     private static boolean baseStackOrder = false;
+    private static Button undoButton;
 
     // Variables for Undo
     public static float previousX, previousY;
@@ -35,25 +36,8 @@ public class DragDrop {
         stackWidth = stacks[0].getWidth();      // Set stack width
         numSteps = 0;   // Reset numSteps to 0
         baseStackOrder = false;
-        Button undoButton = undo;
-        undoButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (previousCard != null) {
-                    if (previousCard.getXPosition() != previousX && previousCard.getYPosition() != previousY && previousCard.getCurrentStackID() != previousStack) {
-                        Log.d("", "Undo-ing");
-                        stacks[previousCard.getCurrentStackID()].removeCardFromStack(previousCard);
-                        stacks[previousStack].addCardToStack(previousCard);
-                        previousCard.setXYPositions(previousX, previousY);
-                        previousCard.getImageView().setX(previousX);
-                        previousCard.getImageView().setY(previousY);
-                    }
-                } else {
-                    Log.d("", "Cannot undo");
-                }
-            }
-        });
-
+        undoButton = undo;
+        setUpUndo();
         // Empty string for debug
         String d = "";
 
@@ -63,7 +47,6 @@ public class DragDrop {
         for (int i = 0; i < s.length; i++) {
             s[i].setStackingOrder(1);
         }
-
     }
 
     private static void actionDown(View v, MotionEvent event, Card c) {
@@ -425,7 +408,25 @@ public class DragDrop {
         return false;
     }
 
-
+    private static void setUpUndo() {
+        undoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (previousCard != null) {
+                    if (previousCard.getXPosition() != previousX && previousCard.getYPosition() != previousY && previousCard.getCurrentStackID() != previousStack) {
+                        Log.d("", "Undo-ing");
+                        stacks[previousCard.getCurrentStackID()].removeCardFromStack(previousCard);
+                        stacks[previousStack].addCardToStack(previousCard);
+                        previousCard.setXYPositions(previousX, previousY);
+                        previousCard.getImageView().setX(previousX);
+                        previousCard.getImageView().setY(previousY);
+                    }
+                } else {
+                    Log.d("", "Cannot undo");
+                }
+            }
+        });
+    }
     /**
      * Set up touch for all cards
      * @parem none
