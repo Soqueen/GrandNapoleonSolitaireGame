@@ -1,5 +1,6 @@
 package mcgill.ecse456.grandnapoleonsolitairegame;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.graphics.Rect;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.EditText;
@@ -48,6 +50,8 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.game_page);
         Bundle b = getIntent().getExtras();
         if(b != null) {
@@ -85,7 +89,7 @@ public class GameActivity extends AppCompatActivity {
             while (numb == 0) {
                 numb = rand.nextInt(14);
             }
-            Log.d("", "Number generated is " + numb);
+//            Log.d("", "Number generated is " + numb);
             int suit = 1;
             for (int i = 20; i < 24; i++) {
                 cards[i] = new Card(suit, numb);
@@ -125,7 +129,7 @@ public class GameActivity extends AppCompatActivity {
                 while (randomCard > 19 && randomCard < 24) {
                     randomCard = r.nextInt(cards.length);
                 }
-                Log.d("RandomNumberGenerator: ", "" + randomCard);
+//                Log.d("RandomNumberGenerator: ", "" + randomCard);
                 // Swap the two selected cards
                 Card tempCard = cards[i];
                 cards[i] = cards[randomCard];
@@ -296,46 +300,52 @@ public class GameActivity extends AppCompatActivity {
         cards[50].setImageView((ImageView) findViewById(R.id.card50));
         cards[51].setImageView((ImageView) findViewById(R.id.card51));
         for (int i = 0; i < cards.length; i++) {
-            cards[i].setCanMove(true);
+            if (i < 4 || (i >= 40 && i < 45) || i == 51) {
+                cards[i].setCanMove(true);
+//                Log.d("", "Card " + i + " is set to true");
+            } else {
+                cards[i].setCanMove(false);
+//                Log.d("", "Card " + i + " is set to false");
+            }
             if (i < 48) {
                 stacks[i].addCardToStack(cards[i]);
             } else {
                 stacks[i + 1].addCardToStack(cards[i]);
             }
-            Log.d("", "Card number " + i + " has StackID " + cards[i].getCurrentStackID());
+            //Log.d("", "Card number " + i + " has StackID " + cards[i].getCurrentStackID());
         }
 
-        for (int i = 0; i < stacks.length; i++) {
-            Log.d("", "Stack number " + i + " has " + stacks[i].getListOfCards());
-        }
+//        for (int i = 0; i < stacks.length; i++) {
+//            Log.d("", "Stack number " + i + " has " + stacks[i].getListOfCards());
+//        }
     }
 
     // Method works, but need to put it somewhere after onCreate(), or it won't work.
-    private void setStacksLocation(Stack[] s) {
-        stepCounter = (TextView)findViewById(R.id.step_counter);
-        for (int i = 0; i < s.length; i++) {
-            s[i].getImageView().getLocationOnScreen(location);
-            s[i].setSize(s[i].getImageView().getWidth(), s[i].getImageView().getHeight());
-            s[i].setXYCoordinates(location[0], location[1]);
-            if (i < 51) {
-                cards[i].setXYPositions(s[cards[i].getCurrentStackID()].getLeftSideLocation(), s[cards[i].getCurrentStackID()].getTopSideLocation());
-            }
-
-
+    private void setStacksLocation() {
+        stepCounter = (TextView) findViewById(R.id.step_counter);
+        for (int i = 0; i < stacks.length; i++) {
+            stacks[i].getImageView().getLocationOnScreen(location);
+            stacks[i].setSize(stacks[i].getImageView().getWidth(), stacks[i].getImageView().getHeight());
+            stacks[i].setXYCoordinates(location[0], location[1]);
+        }
+        for (int i = 0; i < cards.length; i++) {
+            int tempID = cards[i].getCurrentStackID();
+            cards[i].setXYPositions(stacks[tempID].getLeftSideLocation(), stacks[tempID].getTopSideLocation());
+//            Log.d("", "Card " + i + " is at " + cards[i].getXPosition() + " " + cards[i].getYPosition());
+        }
 //            Log.d("", "Stack " + i + " is at " + s[i].getLeftSideLocation() + " " + s[i].getTopSideLocation());
 //            Log.d("", "Stack " + i + " has height " + s[i].getHeight() + ", and width " + s[i].getWidth());
-            Rect rectgle= new Rect();
-            Window window= getWindow();
-            window.getDecorView().getWindowVisibleDisplayFrame(rectgle);
-            int StatusBarHeight= rectgle.top;
-            DragDrop.main(cards, stacks, stepCounter, StatusBarHeight, (Button)findViewById(R.id.undo));
-        }
+//        Rect rectgle = new Rect();
+//        Window window = getWindow();
+//        window.getDecorView().getWindowVisibleDisplayFrame(rectgle);
+//        int StatusBarHeight = rectgle.top;
+        DragDrop.main(cards, stacks, stepCounter, (Button) findViewById(R.id.undo));
     }
 
     // Temporary solution to actually finding location of ImageViews.
     @Override
     public void onWindowFocusChanged (boolean hasFocus) {
-        setStacksLocation(stacks);
+        setStacksLocation();
     }
 
     public void saveScore(View view){

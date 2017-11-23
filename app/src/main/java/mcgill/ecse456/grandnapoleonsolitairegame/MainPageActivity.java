@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.CheckBox;
 
 import java.util.ArrayList;
@@ -27,6 +29,8 @@ public class MainPageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         SharedPreferences preferences = getApplicationContext().getSharedPreferences("GNS_GAME", android.content.Context.MODE_PRIVATE);
         boolean is_Mute = preferences.getBoolean("enableMusic", false);
         Log.d("----oncreate--", ""+(is_Mute));
