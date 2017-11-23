@@ -90,8 +90,10 @@ public class DragDrop {
         boolean validStack = canStack(whichStack, card.getCurrentStackID());   // Check if the stack can be stacked.
         float xToSet = 0;
         float yToSet = 0;
+        // Check if target stack is valid for putting cards on
         if (validStack) {
             if (whichStack == 48 && stacks[whichStack].getCurrentCards().size() == 0) {
+                Log.d ("", "Does this ever happen?");
                 previousCard = card;
                 previousX = card.getXPosition();
                 previousY = card.getYPosition();
@@ -104,6 +106,8 @@ public class DragDrop {
                 card.setXYPositions(xToSet, yToSet);
                 numSteps++;
                 stepCounter.setText(numSteps + " steps");
+                cardMoveCheck(previousStack);
+                card.setCanMove(false);
             } else {
                 Card stackCard = stacks[whichStack].getLastCard();
                 Log.d("", "Stack is valid");
@@ -159,6 +163,7 @@ public class DragDrop {
 //                    Log.d("", "Card position is " + card.getXPosition() + " " + card.getYPosition());
                     numSteps++;
                     stepCounter.setText(numSteps + " steps");
+                    cardMoveCheck(previousStack);
                 } else {
                     stacks[card.getCurrentStackID()].addCardToStack(card);
                     cardImage.setX(card.getXPosition());
@@ -172,8 +177,12 @@ public class DragDrop {
             cardImage.setX(xToSet);
             cardImage.setY(yToSet);
         }
-        Log.d("", "Last stack " + previousStack + " has " + stacks[previousStack].getListOfCards());
-        Log.d("", "Current stack " + card.getCurrentStackID() + " has " + stacks[card.getCurrentStackID()].getListOfCards());
+        for (int i = 0; i < stacks.length; i++) {
+            Log.d("", "Stack " + i + " has " + stacks[i].getListOfCards());
+        }
+//        Log.d("", "Target stack " + whichStack + " has " + stacks[whichStack].getListOfCards());
+//        Log.d("", "Last stack " + previousStack + " has " + stacks[previousStack].getListOfCards());
+//        Log.d("", "Current stack " + card.getCurrentStackID() + " has " + stacks[card.getCurrentStackID()].getListOfCards());
     }
 //        if (validStack) {
 //            if (card.getCurrentStackID() != whichStack) {
@@ -289,13 +298,19 @@ public class DragDrop {
         y = e.getRawY();
         switch (e.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                actionDown(v, e, c);
+                if (c.getCanMove()) {
+                    actionDown(v, e, c);
+                }
                 break;
             case MotionEvent.ACTION_MOVE:
-                actionMove(c.getImageView());
+                if (c.getCanMove()) {
+                    actionMove(c.getImageView());
+                }
                 break;
             case MotionEvent.ACTION_UP:
-                actionUp(c, x, y);
+                if (c.getCanMove()) {
+                    actionUp(c, x, y);
+                }
                 break;
             default:
                 return false;
@@ -370,12 +385,14 @@ public class DragDrop {
             if (haveCards) {
 //                Log.d("", "Stack < 40, have cards" );
                 for (int i = 1; i <= whichStack / 4; i++) {
-                    if (stacks[(whichStack + 4 * i)].getCurrentCards().size() != 0) {
-//                        Log.d("", "Stack < 44, stacks to right have cards" );
-                        return false;
+                    if (whichStack + 4 * i < 44) {
+                        if (stacks[(whichStack + 4 * i)].getCurrentCards().size() != 0) {
+                            Log.d("", "Stack < 40, stacks to right have cards" );
+                            return false;
+                        }
                     }
                 }
-//                Log.d("", "Stack < 40, stacks to right no cards" );
+                Log.d("", "Stack < 40, stacks to right no cards" );
                 return true;
             } else {
 //                Log.d("", "Stack < 40, no cards" );
@@ -399,6 +416,26 @@ public class DragDrop {
                 }
             } else {
                 return false;
+            }
+        }
+    }
+
+    private static void cardMoveCheck(int stackID) {
+        if (stackID < 16) {
+            for (int i = 0; i < stacks[stackID + 4].getCurrentCards().size(); i++) {
+                stacks[stackID + 4].getCurrentCards().get(i).setCanMove(true);
+            }
+        } else if (stackID >= 24 && stackID < 44) {
+            for (int i = 0; i < stacks[stackID - 4].getCurrentCards().size(); i++) {
+                stacks[stackID - 4].getCurrentCards().get(i).setCanMove(true);
+            }
+        } else if (stackID >= 44 && stackID < 48 ) {
+            for (int i = 0; i < stacks[stackID + 1].getCurrentCards().size(); i++) {
+                stacks[stackID + 1].getCurrentCards().get(i).setCanMove(true);
+            }
+        } else if (stackID > 48) {
+            for (int i = 0; i < stacks[stackID - 1].getCurrentCards().size(); i++) {
+                stacks[stackID - 1].getCurrentCards().get(i).setCanMove(true);
             }
         }
     }

@@ -176,10 +176,10 @@ public class GameActivity extends AppCompatActivity {
             cards[34] = new Card(3, 10);
             cards[35] = new Card(3, 11);
             cards[36] = new Card(3, 12);
-            cards[37] = new Card(3, 13);
-            cards[38] = new Card(4, 1);
-            cards[39] = new Card(4, 2);
-            cards[40] = new Card(4, 3);
+            cards[37] = new Card(4, 1);
+            cards[38] = new Card(4, 12);
+            cards[39] = new Card(3, 4);
+            cards[40] = new Card(3, 2);
             cards[41] = new Card(4, 4);
             cards[42] = new Card(4, 5);
             cards[43] = new Card(4, 6);
