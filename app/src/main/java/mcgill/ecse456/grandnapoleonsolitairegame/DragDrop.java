@@ -102,6 +102,8 @@ public class DragDrop {
                 cardImage.setX(xToSet);
                 cardImage.setY(yToSet);
                 card.setXYPositions(xToSet, yToSet);
+                numSteps++;
+                stepCounter.setText(numSteps + " steps");
             } else {
                 Card stackCard = stacks[whichStack].getLastCard();
                 Log.d("", "Stack is valid");
@@ -155,6 +157,8 @@ public class DragDrop {
 //                    Log.d("", "X and Y are set to " + xToSet + " " + yToSet);
                     card.setXYPositions(xToSet, yToSet);
 //                    Log.d("", "Card position is " + card.getXPosition() + " " + card.getYPosition());
+                    numSteps++;
+                    stepCounter.setText(numSteps + " steps");
                 } else {
                     stacks[card.getCurrentStackID()].addCardToStack(card);
                     cardImage.setX(card.getXPosition());
@@ -420,6 +424,9 @@ public class DragDrop {
                         previousCard.setXYPositions(previousX, previousY);
                         previousCard.getImageView().setX(previousX);
                         previousCard.getImageView().setY(previousY);
+                        numSteps--;
+                        stepCounter.setText(numSteps + " steps");
+                        previousCard = null;
                     }
                 } else {
                     Log.d("", "Cannot undo");
