@@ -147,7 +147,7 @@ public class GameActivity extends AppCompatActivity {
             cards[5] = new Card(1, 6);
             cards[6] = new Card(1, 7);
             cards[7] = new Card(1, 8);
-            cards[8] = new Card(2, 8);
+            cards[8] = new Card(2, 8);//
             cards[9] = new Card(1, 10);
             cards[10] = new Card(1, 11);
             cards[11] = new Card(1, 12);
@@ -178,8 +178,8 @@ public class GameActivity extends AppCompatActivity {
             cards[36] = new Card(3, 12);
             cards[37] = new Card(4, 1);
             cards[38] = new Card(4, 12);
-            cards[39] = new Card(3, 4);
-            cards[40] = new Card(3, 2);
+            cards[39] = new Card(3, 13);
+            cards[40] = new Card(4, 3);
             cards[41] = new Card(4, 4);
             cards[42] = new Card(4, 5);
             cards[43] = new Card(4, 6);
