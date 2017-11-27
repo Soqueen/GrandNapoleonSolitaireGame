@@ -89,7 +89,6 @@ public class GameActivity extends AppCompatActivity {
             while (numb == 0) {
                 numb = rand.nextInt(14);
             }
-//            Log.d("", "Number generated is " + numb);
             int suit = 1;
             for (int i = 20; i < 24; i++) {
                 cards[i] = new Card(suit, numb);
@@ -129,7 +128,6 @@ public class GameActivity extends AppCompatActivity {
                 while (randomCard > 19 && randomCard < 24) {
                     randomCard = r.nextInt(cards.length);
                 }
-//                Log.d("RandomNumberGenerator: ", "" + randomCard);
                 // Swap the two selected cards
                 Card tempCard = cards[i];
                 cards[i] = cards[randomCard];
@@ -147,7 +145,7 @@ public class GameActivity extends AppCompatActivity {
             cards[5] = new Card(2, 7);
             cards[6] = new Card(3, 7);
             cards[7] = new Card(4, 7);
-            cards[8] = new Card(1, 6);//
+            cards[8] = new Card(1, 6);
             cards[9] = new Card(2, 6);
             cards[10] = new Card(3, 6);
             cards[11] = new Card(4, 6);
@@ -302,22 +300,15 @@ public class GameActivity extends AppCompatActivity {
         for (int i = 0; i < cards.length; i++) {
             if (i < 4 || (i >= 40 && i < 45) || i == 51) {
                 cards[i].setCanMove(true);
-//                Log.d("", "Card " + i + " is set to true");
             } else {
                 cards[i].setCanMove(false);
-//                Log.d("", "Card " + i + " is set to false");
             }
             if (i < 48) {
                 stacks[i].addCardToStack(cards[i]);
             } else {
                 stacks[i + 1].addCardToStack(cards[i]);
             }
-            //Log.d("", "Card number " + i + " has StackID " + cards[i].getCurrentStackID());
         }
-
-//        for (int i = 0; i < stacks.length; i++) {
-//            Log.d("", "Stack number " + i + " has " + stacks[i].getListOfCards());
-//        }
     }
 
     // Method works, but need to put it somewhere after onCreate(), or it won't work.
@@ -331,14 +322,7 @@ public class GameActivity extends AppCompatActivity {
         for (int i = 0; i < cards.length; i++) {
             int tempID = cards[i].getCurrentStackID();
             cards[i].setXYPositions(stacks[tempID].getLeftSideLocation(), stacks[tempID].getTopSideLocation());
-//            Log.d("", "Card " + i + " is at " + cards[i].getXPosition() + " " + cards[i].getYPosition());
         }
-//            Log.d("", "Stack " + i + " is at " + s[i].getLeftSideLocation() + " " + s[i].getTopSideLocation());
-//            Log.d("", "Stack " + i + " has height " + s[i].getHeight() + ", and width " + s[i].getWidth());
-//        Rect rectgle = new Rect();
-//        Window window = getWindow();
-//        window.getDecorView().getWindowVisibleDisplayFrame(rectgle);
-//        int StatusBarHeight = rectgle.top;
         DragDrop.main(cards, stacks, stepCounter, (Button) findViewById(R.id.undo));
     }
 
