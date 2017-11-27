@@ -8,51 +8,51 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainPageActivity" android:screenOrientation="landscape" android:configChanges="keyboardHidden|orientation">
+        <activity android:name=".MainPageActivity" android:screenOrientation="landscape" android:configChanges="orientation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DisplayDifficultyPageActivity">
+        <activity android:name=".DisplayDifficultyPageActivity" android:screenOrientation="landscape" android:configChanges="orientation">
         <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             android:parentActivityName=".MainPageActivity" >
         </activity>
-        <activity android:name=".AboutPageActivity">
+        <activity android:name=".AboutPageActivity" android:screenOrientation="landscape" android:configChanges="orientation">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             android:parentActivityName=".MainPageActivity" >
         </activity>
         <activity android:name=".GameActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+            android:theme="@style/Theme.AppCompat.NoActionBar" android:screenOrientation="landscape" android:configChanges="orientation">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             android:parentActivityName=".DisplayDifficultyPageActivity" >
         </activity>
-        <activity android:name=".Instruction">
+        <activity android:name=".Instruction" android:screenOrientation="landscape" android:configChanges="orientation">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             android:parentActivityName=".MainPageActivity" >
         </activity>
-        <activity android:name=".Pause">
+        <activity android:name=".Pause" android:screenOrientation="landscape" android:configChanges="orientation">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             android:parentActivityName=".GameActivity" >
         </activity>
-        <activity android:name=".SettingActivity">
+        <activity android:name=".SettingActivity" android:screenOrientation="landscape" android:configChanges="orientation">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             android:parentActivityName=".MainPageActivity" >
         </activity>
-        <activity android:name=".ScoreTableActivity">
+        <activity android:name=".ScoreTableActivity" android:screenOrientation="landscape" android:configChanges="orientation">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
