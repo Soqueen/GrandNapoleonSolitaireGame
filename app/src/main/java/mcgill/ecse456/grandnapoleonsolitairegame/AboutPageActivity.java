@@ -16,7 +16,6 @@ public class AboutPageActivity extends AppCompatActivity {
         setContentView(R.layout.about);
     }
     protected void closedAbout(View view) {
-        MusicManager.clickPlayer.start();
         finish();
     }
 }

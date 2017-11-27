@@ -36,16 +36,6 @@ public class DisplayDifficultyPageActivity extends AppCompatActivity {
      * @params view
      */
     public void randomGameNavigate(View view) {
-        boolean isMute = false;
-        if (MusicManager.gamePlayer != null) {
-            isMute = MusicManager.isMute;
-            MusicManager.gamePlayer.release();
-            MusicManager.gamePlayer = null;
-        }
-        MusicManager.isMute = isMute;
-        MusicManager.GamePlayer(this);
-        MusicManager.clickPlayer.start();
-        MusicManager.gamePlayer.start();
         Intent intent = new Intent(this, GameActivity.class);
         intent.putExtra("id", 1);
         startActivity(intent);
@@ -57,17 +47,6 @@ public class DisplayDifficultyPageActivity extends AppCompatActivity {
      * @params view
      */
     public void predeterminedGameNavigate(View view) {
-
-        boolean isMute = false;
-        if (MusicManager.gamePlayer != null) {
-            isMute = MusicManager.isMute;
-            MusicManager.gamePlayer.release();
-            MusicManager.gamePlayer = null;
-        }
-        MusicManager.isMute = isMute;
-        MusicManager.GamePlayer(this);
-        MusicManager.clickPlayer.start();
-        MusicManager.gamePlayer.start();
         Intent intent = new Intent(this, GameActivity.class);
         intent.putExtra("id", 2);
         startActivity(intent);

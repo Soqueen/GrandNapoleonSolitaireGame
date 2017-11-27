@@ -36,7 +36,7 @@ public class Pause extends AppCompatActivity {
 
                 // custom dialog
                 final Dialog dialog = new Dialog(context);
-                MusicManager.gamePlayer.stop();
+                finish();
                 dialog.setContentView(R.layout.pause_dialog);
 
 
@@ -58,16 +58,6 @@ public class Pause extends AppCompatActivity {
                         //resume timer
                         timer.setBase(SystemClock.elapsedRealtime() + timeDiff);
                         timer.start();
-                        boolean state = false;
-                        if (MusicManager.gamePlayer != null) {
-                            MusicManager.gamePlayer.release();
-                            state = MusicManager.isMute;
-                            MusicManager.gamePlayer = null;
-                        }
-                        MusicManager.isMute = state;
-                        MusicManager.GamePlayer(context);
-                        MusicManager.clickPlayer.start();
-                        MusicManager.gamePlayer.start();
                         dialog.dismiss();
                     }
                 });
@@ -78,9 +68,9 @@ public class Pause extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         // doesn't seem to save state here
-                        MusicManager.clickPlayer.start();
                         finish();
-                        System.exit(0);
+                        android.os.Process.killProcess(android.os.Process.myPid());
+                        Pause.super.onDestroy();
                     }
                 });
 
@@ -88,7 +78,6 @@ public class Pause extends AppCompatActivity {
                 settingButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        MusicManager.clickPlayer.start();
                         Intent intent = new Intent(context, SettingActivity.class);
                         context.startActivity(intent);
                     }
@@ -98,7 +87,6 @@ public class Pause extends AppCompatActivity {
                 instructionButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        MusicManager.clickPlayer.start();
                         Intent intent = new Intent(context, Instruction.class);
                         context.startActivity(intent);
                     }

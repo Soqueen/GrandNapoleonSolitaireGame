@@ -30,12 +30,6 @@ public class MainPageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        SharedPreferences preferences = getApplicationContext().getSharedPreferences("GNS_GAME", android.content.Context.MODE_PRIVATE);
-        boolean is_Mute = preferences.getBoolean("enableMusic", false);
-        Log.d("----oncreate--", ""+(is_Mute));
-        MusicManager.GamePlayer(this);
-        Log.d("----oncreateMusic--", ""+(MusicManager.isMute));
         setContentView(R.layout.activity_main_page);
     }
 
@@ -46,7 +40,6 @@ public class MainPageActivity extends AppCompatActivity {
      * @params view
      */
     public void difficultyPageNavigate(View view) {
-        MusicManager.clickPlayer.start();
         Intent intent = new Intent(this, DisplayDifficultyPageActivity.class);
         startActivity(intent);
     }
@@ -58,7 +51,6 @@ public class MainPageActivity extends AppCompatActivity {
      * @params view
      */
     public void instructionNavigate(View view) {
-        MusicManager.clickPlayer.start();
         Intent intent = new Intent(this, Instruction.class);
         startActivity(intent);
     }
@@ -70,19 +62,16 @@ public class MainPageActivity extends AppCompatActivity {
      * @params view
      */
     public void displayAbout(View view) {
-        MusicManager.clickPlayer.start();
         Intent intent = new Intent(this, AboutPageActivity.class);
         startActivity(intent);
     }
 
     public void settingNavigate(View view) {
-        MusicManager.clickPlayer.start();
         Intent intent = new Intent(this, SettingActivity.class);
         startActivity(intent);
     }
 
     public void scoreTableNavigate(View view) {
-        MusicManager.clickPlayer.start();
         DatabaseHelper dbHandler = new DatabaseHelper(this, null,null, 1);
         Cursor data = dbHandler.getData();
         // Populate database in the arraylist for each column
@@ -108,9 +97,6 @@ public class MainPageActivity extends AppCompatActivity {
     @Override
     protected void onResume(){
         super.onResume();
-        SharedPreferences preferences = getApplicationContext().getSharedPreferences("GNS_GAME", android.content.Context.MODE_PRIVATE);
-        boolean is_Mute = preferences.getBoolean("enableMusic", false);
-        Log.d("----onRESUME--", ""+(is_Mute));
         Log.d("MainPageActivity", "onResume was called");
     }
 

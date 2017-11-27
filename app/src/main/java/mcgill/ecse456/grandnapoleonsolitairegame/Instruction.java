@@ -29,7 +29,6 @@ public class Instruction extends AppCompatActivity {
         b[1].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MusicManager.clickPlayer.start();
                 setContentView(R.layout.instruction_page2);
                 recursive1();
             }
@@ -40,13 +39,11 @@ public class Instruction extends AppCompatActivity {
         b[1].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MusicManager.clickPlayer.start();
                 setContentView(R.layout.instruction_page3);
                 Button[] b = initButton();
                 b[0].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        MusicManager.clickPlayer.start();
                         setContentView(R.layout.instruction_page2);
                         recursive1();
                     }
@@ -54,7 +51,6 @@ public class Instruction extends AppCompatActivity {
                 b[1].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        MusicManager.clickPlayer.start();
                         setContentView(R.layout.instruction_page4);
                         recursive2();
                     }
@@ -64,7 +60,6 @@ public class Instruction extends AppCompatActivity {
         b[0].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MusicManager.clickPlayer.start();
                 setContentView(R.layout.instruction_page1);
                 recursiveNavigate();
             }
@@ -75,7 +70,6 @@ public class Instruction extends AppCompatActivity {
         b[1].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MusicManager.clickPlayer.start();
                 setContentView(R.layout.instruction_page5);
                 Button[] b = initButton();
                 b[0].setOnClickListener(new View.OnClickListener() {
@@ -97,13 +91,11 @@ public class Instruction extends AppCompatActivity {
         b[0].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MusicManager.clickPlayer.start();
                 setContentView(R.layout.instruction_page3);
                 Button[] b = initButton();
                 b[0].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        MusicManager.clickPlayer.start();
                         setContentView(R.layout.instruction_page2);
                         recursive1();
                     }
@@ -111,7 +103,6 @@ public class Instruction extends AppCompatActivity {
                 b[1].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        MusicManager.clickPlayer.start();
                         setContentView(R.layout.instruction_page4);
                         recursive2();
                     }
@@ -125,13 +116,11 @@ public class Instruction extends AppCompatActivity {
         b[1].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MusicManager.clickPlayer.start();
                 setContentView(R.layout.instruction_page7);
                 Button[] b = initButton();
                 b[0].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        MusicManager.clickPlayer.start();
                         setContentView(R.layout.instruction_page6);
                         recursive3();
                     }
@@ -139,7 +128,6 @@ public class Instruction extends AppCompatActivity {
                 b[1].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        MusicManager.clickPlayer.start();
                         setContentView(R.layout.instruction_page8);
                         recursive4();
                     }
@@ -149,7 +137,6 @@ public class Instruction extends AppCompatActivity {
         b[0].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MusicManager.clickPlayer.start();
                 setContentView(R.layout.instruction_page4);
                 recursive2();
             }
@@ -161,13 +148,11 @@ public class Instruction extends AppCompatActivity {
         b[1].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MusicManager.clickPlayer.start();
                 setContentView(R.layout.instruction_page9);
                 Button[] b = initButton();
                 b[0].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        MusicManager.clickPlayer.start();
                         setContentView(R.layout.instruction_page8);
                         recursive4();
                     }
@@ -178,13 +163,11 @@ public class Instruction extends AppCompatActivity {
         b[0].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MusicManager.clickPlayer.start();
                 setContentView(R.layout.instruction_page7);
                 Button[] b = initButton();
                 b[0].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        MusicManager.clickPlayer.start();
                         setContentView(R.layout.instruction_page6);
                         recursive3();
                     }
@@ -192,7 +175,6 @@ public class Instruction extends AppCompatActivity {
                 b[1].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        MusicManager.clickPlayer.start();
                         setContentView(R.layout.instruction_page8);
                         recursive4();
                     }
@@ -211,8 +193,7 @@ public class Instruction extends AppCompatActivity {
     }
     
     public void closedInstruction (View view){
-        MusicManager.clickPlayer.start();
-        super.onBackPressed();
+        finish();
     }
 
 
