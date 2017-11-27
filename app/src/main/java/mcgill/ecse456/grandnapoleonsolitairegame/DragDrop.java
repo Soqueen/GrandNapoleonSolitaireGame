@@ -1,5 +1,6 @@
 package mcgill.ecse456.grandnapoleonsolitairegame;
 
+import android.app.AlertDialog;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -93,7 +94,6 @@ public class DragDrop {
         // Check if target stack is valid for putting cards on
         if (validStack) {
             if (whichStack == 48 && stacks[whichStack].getCurrentCards().size() == 0) {
-                Log.d ("", "Does this ever happen?");
                 previousCard = card;
                 previousX = card.getXPosition();
                 previousY = card.getYPosition();
@@ -108,6 +108,20 @@ public class DragDrop {
                 stepCounter.setText(numSteps + " steps");
                 cardMoveCheck(previousStack);
                 card.setCanMove(false);
+            } else if ((whichStack >= 16 && whichStack < 20) || (whichStack >= 24 && whichStack < 28)) {
+                previousCard = card;
+                previousX = card.getXPosition();
+                previousY = card.getYPosition();
+                previousStack = card.getCurrentStackID();
+                stacks[whichStack].addCardToStack(card);
+                xToSet = stacks[whichStack].getLeftSideLocation();
+                yToSet = stacks[whichStack].getTopSideLocation();
+                cardImage.setX(xToSet);
+                cardImage.setY(yToSet);
+                card.setXYPositions(xToSet, yToSet);
+                numSteps++;
+                stepCounter.setText(numSteps + " steps");
+                cardMoveCheck(previousStack);
             } else {
                 Card stackCard = stacks[whichStack].getLastCard();
                 Log.d("", "Stack is valid");
@@ -158,9 +172,10 @@ public class DragDrop {
                     stacks[whichStack].addCardToStack(card);
                     cardImage.setX(xToSet);
                     cardImage.setY(yToSet);
-//                    Log.d("", "X and Y are set to " + xToSet + " " + yToSet);
+                    Log.d("", "X and Y are set to " + xToSet + " " + yToSet);
                     card.setXYPositions(xToSet, yToSet);
-//                    Log.d("", "Card position is " + card.getXPosition() + " " + card.getYPosition());
+                    Log.d("", "Card position is " + card.getXPosition() + " " + card.getYPosition());
+                    Log.d("", "Previous position " + previousX + " " + previousY);
                     numSteps++;
                     stepCounter.setText(numSteps + " steps");
                     cardMoveCheck(previousStack);
@@ -177,120 +192,23 @@ public class DragDrop {
             cardImage.setX(xToSet);
             cardImage.setY(yToSet);
         }
-        for (int i = 0; i < stacks.length; i++) {
-            Log.d("", "Stack " + i + " has " + stacks[i].getListOfCards());
+        if (winConditionCheck()) {
+            // Popup message
+            Log.d("","Done");
+        } else {
+            int cardMissing = 0;
+            for (int i = 20; i < 24; i++) {
+                cardMissing += stacks[i].getCurrentCards().size();
+            }
+            Log.d("", "Missing " + Math.abs(cardMissing - 52));
         }
+//        for (int i = 0; i < stacks.length; i++) {
+//            Log.d("", "Stack " + i + " has " + stacks[i].getListOfCards());
+//        }
 //        Log.d("", "Target stack " + whichStack + " has " + stacks[whichStack].getListOfCards());
 //        Log.d("", "Last stack " + previousStack + " has " + stacks[previousStack].getListOfCards());
 //        Log.d("", "Current stack " + card.getCurrentStackID() + " has " + stacks[card.getCurrentStackID()].getListOfCards());
     }
-//        if (validStack) {
-//            if (card.getCurrentStackID() != whichStack) {
-//                if (stacks[whichStack].getCurrentCards().size() == 0) {
-//                    previousStack = card.getCurrentStackID();
-//                    previousCard = card;
-//                    previousX = card.getXPosition();
-//                    previousY = card.getYPosition();
-//                    stacks[whichStack].addCardToStack(card);
-//                    cardImage.setX(tempX);
-//                    cardImage.setY(tempY-statusBar);
-//                    numSteps++;
-//                    stepCounter.setText(numSteps + " steps");
-//                    Log.d("", "Setting X as " + tempX + " and Y as " + tempY);
-//                } else if (stacks[whichStack].getCurrentCards().size() + 1 > 1){
-//                    if (whichStack < 20) {
-//                        xToSet = stacks[whichStack].getLeftSideLocation() + xSpaceStack;
-//                        yToSet = stacks[whichStack].getTopSideLocation() - statusBar;
-//                    } else if (whichStack >= 20 && whichStack < 24) {
-//                        xToSet = stacks[whichStack].getLeftSideLocation();
-//                        yToSet = stacks[whichStack].getTopSideLocation() - statusBar - ySpaceStack/2;
-//                    } else if (whichStack >= 24) {
-//                        xToSet = stacks[whichStack].getLeftSideLocation() - xSpaceStack;
-//                        yToSet = stacks[whichStack].getTopSideLocation() - statusBar;
-//                    }
-//                    if (card.getSuit() == stacks[whichStack].getLastCard().getSuit() && ((abs(card.getNumber() - stacks[whichStack].getLastCard().getNumber()) == 1) || (abs(card.getNumber() - stacks[whichStack].getLastCard().getNumber()) == 12))) {
-//                        // First time stacking base cards, set the stacking orders for all bases.
-//                        if (whichStack >= 20 && whichStack < 24 && !baseStackOrder) {
-//                            baseStackOrder = true;
-//                            if (card.getNumber() - stacks[whichStack].getLastCard().getNumber() > 0) {
-//                                stacks[20].setStackingOrder(2);
-//                                stacks[21].setStackingOrder(2);
-//                                stacks[22].setStackingOrder(2);
-//                                stacks[23].setStackingOrder(2);
-//                            } else {
-//                                stacks[20].setStackingOrder(0);
-//                                stacks[21].setStackingOrder(0);
-//                                stacks[22].setStackingOrder(0);
-//                                stacks[23].setStackingOrder(0);
-//                            }
-//                            previousStack = card.getCurrentStackID();
-//                            previousCard = card;
-//                            previousX = card.getXPosition();
-//                            previousY = card.getYPosition();
-//                            stacks[whichStack].addCardToStack(card);
-//                            cardImage.setX(xToSet);
-//                            cardImage.setY(yToSet);
-//                            card.setXYPositions(xToSet, yToSet);
-//                            numSteps++;
-//                            stepCounter.setText(numSteps + " steps");
-//                            Log.d("", "Setting X as " + tempX + " and Y as " + tempY);
-//                        } else if (whichStack >= 20 && whichStack < 24) {
-//                            int stackOrder = card.getNumber() - stacks[whichStack].getLastCard().getNumber();
-//                            if ((stackOrder == 1 || stackOrder == -12) && stacks[whichStack].getStackingOrder() == 2) {
-//                                validStack = true;
-//                            } else if ((stackOrder == -1 || stackOrder == 12) && stacks[whichStack].getStackingOrder() == 0) {
-//                                validStack = true;
-//                            } else {
-//                                validStack = false;
-//                            }
-//                            if (validStack) {
-//                                previousStack = card.getCurrentStackID();
-//                                previousCard = card;
-//                                previousX = card.getXPosition();
-//                                previousY = card.getYPosition();
-//                                stacks[whichStack].addCardToStack(card);
-//                                cardImage.setX(xToSet);
-//                                cardImage.setY(yToSet);
-//                                card.setXYPositions(xToSet, yToSet);
-//                                numSteps++;
-//                                stepCounter.setText(numSteps + " steps");
-//                                Log.d("", "Setting X as " + tempX + " and Y as " + tempY);
-//                            } else {
-//                                stacks[cardID].addCardToStack(card);
-//                                card.getImageView().setX(card.getXPosition());
-//                                card.getImageView().setY(card.getYPosition() - statusBar);
-//                            }
-//                        } else if (card.getSuit() == stacks[whichStack].getLastCard().getSuit() && ((abs(card.getNumber() - stacks[whichStack].getLastCard().getNumber()) == 1) || (abs(card.getNumber() - stacks[whichStack].getLastCard().getNumber()) == 12))) {
-//                            previousStack = card.getCurrentStackID();
-//                            previousCard = card;
-//                            previousX = card.getXPosition();
-//                            previousY = card.getYPosition();
-//                            stacks[whichStack].addCardToStack(card);
-//                            cardImage.setX(xToSet);
-//                            cardImage.setY(yToSet);
-//                            card.setXYPositions(xToSet, yToSet);
-//                            numSteps++;
-//                            stepCounter.setText(numSteps + " steps");
-//                            Log.d("", "Setting X as " + tempX + " and Y as " + tempY);
-//                        }
-//                    } else {
-//                        stacks[cardID].addCardToStack(card);
-//                        card.getImageView().setX(card.getXPosition());
-//                        card.getImageView().setY(card.getYPosition() - statusBar);
-//                    }
-//                }
-//            } else {
-//                stacks[cardID].addCardToStack(card);
-//                card.getImageView().setX(card.getXPosition());
-//                card.getImageView().setY(card.getYPosition() - statusBar);
-//            }
-//        } else {
-//            stacks[cardID].addCardToStack(card);
-//            card.getImageView().setX(card.getXPosition());
-//            card.getImageView().setY(card.getYPosition() - statusBar);
-//            Log.d("", "Cannot stack");
-//        }
-//        Log.d("", "PreviousX " + previousX + " PreviousY " + previousY + " previousStack " + previousStack + " PreviousCard " + previousCard.getNumber() + " of " + previousCard.getSuit());
 
     public static boolean myTouch(View v, MotionEvent e, Card c) {
         v.bringToFront();
@@ -440,6 +358,14 @@ public class DragDrop {
         }
     }
 
+    private static boolean winConditionCheck() {
+        for (int i = 20; i < 24; i++) {
+            if (stacks[i].getCurrentCards().size() != 13) {
+                return false;
+            }
+        }
+        return true;
+    }
     private static boolean compareCards(Card c1, Card c2) {
         if (c1.getSuit() == c2.getSuit()) {
             if ((Math.abs(c1.getNumber() - c2.getNumber()) == 1) || (Math.abs(c1.getNumber() - c2.getNumber()) == 12)) {
