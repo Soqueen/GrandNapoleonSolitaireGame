@@ -27,6 +27,7 @@ public class DragDrop {
     public static float previousX, previousY;
     public static Card previousCard;
     public static int previousStack;
+    public static boolean previousCanMove;
 
     public static void main(Card[] c, Stack[] s, TextView counter, Button undo) {
         // Assignment for variables used in Drag and Drop
@@ -98,6 +99,7 @@ public class DragDrop {
                 previousX = card.getXPosition();
                 previousY = card.getYPosition();
                 previousStack = card.getCurrentStackID();
+                previousCanMove = card.getCanMove();
                 stacks[whichStack].addCardToStack(card);
                 xToSet = stacks[whichStack].getLeftSideLocation();
                 yToSet = stacks[whichStack].getTopSideLocation();
@@ -108,11 +110,13 @@ public class DragDrop {
                 stepCounter.setText(numSteps + " steps");
                 cardMoveCheck(previousStack);
                 card.setCanMove(false);
-            } else if ((whichStack >= 16 && whichStack < 20) || (whichStack >= 24 && whichStack < 28)) {
+            } else if (((whichStack >= 16 && whichStack < 20) || (whichStack >= 24 && whichStack < 28)) && stacks[whichStack].getCurrentCards().size() == 0) {
+                Log.d("", "Is it here?");
                 previousCard = card;
                 previousX = card.getXPosition();
                 previousY = card.getYPosition();
                 previousStack = card.getCurrentStackID();
+                previousCanMove = card.getCanMove();
                 stacks[whichStack].addCardToStack(card);
                 xToSet = stacks[whichStack].getLeftSideLocation();
                 yToSet = stacks[whichStack].getTopSideLocation();
@@ -131,6 +135,7 @@ public class DragDrop {
                     previousX = card.getXPosition();
                     previousY = card.getYPosition();
                     previousStack = card.getCurrentStackID();
+                    previousCanMove = card.getCanMove();
                     if (stacks[whichStack].getCurrentCards().size() == 0) {
                         xToSet = stacks[whichStack].getLeftSideLocation();
                         yToSet = stacks[whichStack].getTopSideLocation();
@@ -387,6 +392,7 @@ public class DragDrop {
                         previousCard.setXYPositions(previousX, previousY);
                         previousCard.getImageView().setX(previousX);
                         previousCard.getImageView().setY(previousY);
+                        previousCard.setCanMove(previousCanMove);
                         numSteps--;
                         stepCounter.setText(numSteps + " steps");
                         previousCard = null;
