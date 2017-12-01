@@ -152,8 +152,24 @@ public class Instruction extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 MusicManager.clickPlayer.start();
-                setContentView(R.layout.instruction_page4);
-                recursive2();
+                setContentView(R.layout.instruction_page5);
+                Button[] b = initButton();
+                b[0].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        MusicManager.clickPlayer.start();
+                        setContentView(R.layout.instruction_page4);
+                        recursive2();
+                    }
+                });
+                b[1].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        MusicManager.clickPlayer.start();
+                        setContentView(R.layout.instruction_page6);
+                        recursive3();
+                    }
+                });
             }
         });
     }
@@ -174,12 +190,21 @@ public class Instruction extends AppCompatActivity {
                         recursive4();
                     }
                 });
+                b[1].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        MusicManager.clickPlayer.start();
+                        setContentView(R.layout.instruction_page10);
+                        recursive5();
+                    }
+                });
 
             }
         });
         b[0].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MusicManager.clickPlayer.start();
                 setContentView(R.layout.instruction_page7);
                 Button[] b = initButton();
                 b[0].setOnClickListener(new View.OnClickListener() {
@@ -196,6 +221,50 @@ public class Instruction extends AppCompatActivity {
                         MusicManager.clickPlayer.start();
                         setContentView(R.layout.instruction_page8);
                         recursive4();
+                    }
+                });
+            }
+        });
+    }
+    public void recursive5(){
+        Button[] b = initButton();
+        b[1].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MusicManager.clickPlayer.start();
+                setContentView(R.layout.instruction_page11);
+                Button[] b = initButton();
+                b[0].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        MusicManager.clickPlayer.start();
+                        setContentView(R.layout.instruction_page10);
+                        recursive5();
+                    }
+                });
+
+            }
+        });
+        b[0].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MusicManager.clickPlayer.start();
+                setContentView(R.layout.instruction_page9);
+                Button[] b = initButton();
+                b[0].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        MusicManager.clickPlayer.start();
+                        setContentView(R.layout.instruction_page8);
+                        recursive4();
+                    }
+                });
+                b[1].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        MusicManager.clickPlayer.start();
+                        setContentView(R.layout.instruction_page10);
+                        recursive5();
                     }
                 });
             }

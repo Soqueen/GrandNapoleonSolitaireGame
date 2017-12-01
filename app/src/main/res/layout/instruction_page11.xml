@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/instruction9">
+    android:id="@+id/instruction11">
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,38 +15,32 @@
 
         <ImageView
             android:id="@+id/pag1"
-            android:layout_width="537dp"
-            android:layout_height="365dp"
+            android:layout_width="match_parent"
+            android:layout_height="383dp"
             android:layout_above="@+id/inst_closed"
             android:layout_centerHorizontal="true"
-            app:srcCompat="@drawable/step9" />
+            app:srcCompat="@drawable/step11" />
     </LinearLayout>
-    <Button
-        android:id="@+id/inst_closed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Close"
-        android:onClick="closedInstruction"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/inst_prev"
-        android:layout_toStartOf="@+id/inst_prev"
-        android:layout_marginRight="69dp"
-        android:layout_marginEnd="69dp" />
     <Button
         android:id="@+id/inst_prev"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Previous"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="346dp"
+        android:layout_marginStart="346dp" />
+
 
     <Button
-        android:id="@+id/inst_next"
+        android:id="@+id/inst_closed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Next"
-        android:layout_marginLeft="71dp"
-        android:layout_marginStart="71dp"
+        android:text="Close"
+        android:onClick="closedInstruction"
+        android:layout_marginLeft="90dp"
+        android:layout_marginStart="90dp"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/inst_prev"
         android:layout_toEndOf="@+id/inst_prev" />
