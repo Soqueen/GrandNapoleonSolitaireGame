@@ -353,19 +353,18 @@ public class DragDrop {
         undoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (previousCard != null) {
-                    if (previousCard.getXPosition() != previousX && previousCard.getYPosition() != previousY && previousCard.getCurrentStackID() != previousStack) {
-                        Log.d("", "Undo-ing");
-                        stacks[previousCard.getCurrentStackID()].removeCardFromStack(previousCard);
-                        stacks[previousStack].addCardToStack(previousCard);
-                        previousCard.setXYPositions(previousX, previousY);
-                        previousCard.getImageView().setX(previousX);
-                        previousCard.getImageView().setY(previousY);
-                        previousCard.setCanMove(previousCanMove);
-                        numSteps--;
-                        stepCounter.setText(numSteps + " steps");
-                        previousCard = null;
-                    }
+                    Log.d("UNDO CALLED -----Stack", ""+ previousCard.getCurrentStackID());
+                    stacks[previousCard.getCurrentStackID()].removeCardFromStack(previousCard);
+                    stacks[previousStack].addCardToStack(previousCard);
+                    previousCard.setXYPositions(previousX, previousY);
+                    previousCard.getImageView().setX(previousX);
+                    previousCard.getImageView().setY(previousY);
+                    previousCard.setCanMove(previousCanMove);
+                    numSteps--;
+                    stepCounter.setText(numSteps + " steps");
+                    previousCard = null;
                 } else {
                     Log.d("", "Cannot undo");
                 }
