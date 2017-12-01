@@ -10,14 +10,13 @@
         android:orientation="vertical"
         android:weightSum="1"
         android:id="@+id/linearLayout"
-        android:layout_above="@+id/inst_closed"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="18dp">
+        android:layout_above="@+id/inst_closed">
 
         <ImageView
             android:id="@+id/pag1"
-            android:layout_width="537dp"
-            android:layout_height="365dp"
+            android:layout_width="570dp"
+            android:layout_height="388dp"
             android:layout_above="@+id/inst_closed"
             android:layout_centerHorizontal="true"
             app:srcCompat="@drawable/step10" />
