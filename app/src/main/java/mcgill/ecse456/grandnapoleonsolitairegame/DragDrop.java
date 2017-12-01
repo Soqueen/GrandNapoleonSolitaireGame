@@ -355,16 +355,34 @@ public class DragDrop {
             public void onClick(View v) {
 
                 if (previousCard != null) {
-                    Log.d("UNDO CALLED -----Stack", ""+ previousCard.getCurrentStackID());
-                    stacks[previousCard.getCurrentStackID()].removeCardFromStack(previousCard);
-                    stacks[previousStack].addCardToStack(previousCard);
-                    previousCard.setXYPositions(previousX, previousY);
-                    previousCard.getImageView().setX(previousX);
-                    previousCard.getImageView().setY(previousY);
-                    previousCard.setCanMove(previousCanMove);
-                    numSteps--;
-                    stepCounter.setText(numSteps + " steps");
-                    previousCard = null;
+                    Log.d("UNDO CALLLED --------", ""+ previousCard.getXPosition());
+                    Log.d("UNDO CALLLED --------", ""+ previousX);
+                    Log.d("UNDO CALLLED --------", ""+ previousCard.getYPosition());
+                    Log.d("UNDO CALLLED --------", ""+ previousY);
+                    Log.d("UNDO CALLLED --------", ""+ previousCard.getCurrentStackID());
+                    Log.d("UNDO CALLLED --------", ""+ previousStack);
+
+
+                    if ((previousCard.getXPosition() != previousX && previousCard.getCurrentStackID() != previousStack)||( previousCard.getYPosition() != previousY && previousCard.getCurrentStackID() != previousStack)) {
+                        Boolean currentState = true;
+                        if (previousCard.getYPosition() == previousY && previousCard.getCurrentStackID() != previousStack){
+                            currentState = false;
+                        }
+                        Log.d("", "Undo-ing");
+                        int id = previousCard.getCurrentStackID();
+                        stacks[previousCard.getCurrentStackID()].removeCardFromStack(previousCard);
+                        stacks[previousStack].addCardToStack(previousCard);
+                        previousCard.setXYPositions(previousX, previousY);
+                        previousCard.getImageView().setX(previousX);
+                        previousCard.getImageView().setY(previousY);
+                        previousCard.setCanMove(previousCanMove); //This cause problem after under the stack previous can now move
+                        if (stacks[id] != null && id != 48) {
+                            stacks[id].getFirstCard().setCanMove(currentState);
+                        }
+                        numSteps--;
+                        stepCounter.setText(numSteps + " steps");
+                        previousCard = null;
+                    }
                 } else {
                     Log.d("", "Cannot undo");
                 }
