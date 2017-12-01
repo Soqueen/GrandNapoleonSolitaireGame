@@ -18,13 +18,12 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class ScoreTableActivity extends AppCompatActivity{
-    private ArrayList<String> nameDB, timeDB, stepDB;
+    private ArrayList<String> nameDB, timeDB;
+    private ArrayList<Integer> stepDB;
     private Button clearButton;
     DatabaseHelper dbHandler;
     private boolean empty = false;
     public void init() {
-//        SharedPreferences pref = getApplicationContext().getSharedPreferences("GNSPref", MODE_PRIVATE);
-//        SharedPreferences.Editor editor = pref.edit();
         TableLayout stk = (TableLayout) findViewById(R.id.table_main);
         TableRow tbrow0 = new TableRow(this);
         TextView tv0 = new TextView(this);
@@ -49,7 +48,7 @@ public class ScoreTableActivity extends AppCompatActivity{
             for (int i = 0; i < nameDB.size(); i++) { // take till the lenght of data save
                 TableRow tbrow = new TableRow(this);
                 TextView t1v = new TextView(this);
-                t1v.setText("  " + i);
+                t1v.setText("  " + (i+1));
                 t1v.setTextColor(Color.WHITE);
                 t1v.setGravity(Gravity.CENTER);
                 tbrow.addView(t1v);
@@ -64,10 +63,7 @@ public class ScoreTableActivity extends AppCompatActivity{
                 t3v.setGravity(Gravity.CENTER);
                 tbrow.addView(t3v);
                 TextView t4v = new TextView(this);
-                if (stepDB.get(i).equals("#Steps"))
-                    t4v.setText("  " + stepDB.get(i).replace("#Steps", "0"));
-                else
-                    t4v.setText("  " + stepDB.get(i).replace("steps", "")); // input from step counter
+                t4v.setText("  "+ stepDB.get(i));
                 t4v.setTextColor(Color.WHITE);
                 t4v.setGravity(Gravity.CENTER);
                 tbrow.addView(t4v);
@@ -79,6 +75,7 @@ public class ScoreTableActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        MusicManager.gamePlayer.stop();
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.score_page);
@@ -86,7 +83,7 @@ public class ScoreTableActivity extends AppCompatActivity{
         if(b != null) {
             this.nameDB = b.getStringArrayList("name");
             this.timeDB = b.getStringArrayList("time");
-            this.stepDB = b.getStringArrayList("step");
+            this.stepDB = b.getIntegerArrayList("step");
             this.empty = false;
         }
         else {
@@ -98,18 +95,14 @@ public class ScoreTableActivity extends AppCompatActivity{
     }
     public void closedScoreTable (View view){
         MusicManager.clickPlayer.start();
-        if (empty){
-            Intent intent = new Intent(this, MainPageActivity.class);
-            startActivity(intent);
-        }
-        else {
-//            Intent intent = new Intent(this, DisplayDifficultyPageActivity.class);
-//            startActivity(intent);
-            finish(); //to be remove
-        }
+        finish();
+        Intent intent = new Intent(this, MainPageActivity.class);
+        startActivity(intent);
+
     }
 
     public void deleteScoreRecord(View view){
+        MusicManager.clickPlayer.start();
         dbHandler.deleteScoreRecord();
         Intent intent = new Intent(this, ScoreTableActivity.class);
         startActivity(intent);

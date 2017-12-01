@@ -1,6 +1,6 @@
 package mcgill.ecse456.grandnapoleonsolitairegame;
 
-import android.app.AlertDialog;
+import android.content.Context;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import static java.lang.Math.abs;
 
 
 public class DragDrop {
@@ -28,8 +27,10 @@ public class DragDrop {
     public static Card previousCard;
     public static int previousStack;
     public static boolean previousCanMove;
+    public static int step = 0;
+    public static Context c;
 
-    public static void main(Card[] c, Stack[] s, TextView counter, Button undo) {
+    public void main(Context context, Card[] c, Stack[] s, TextView counter, Button undo) {
         // Assignment for variables used in Drag and Drop
         cards = c;
         stacks = s;
@@ -40,8 +41,8 @@ public class DragDrop {
         baseStackOrder = false;
         undoButton = undo;
         setUpUndo();
-        // Empty string for debug
-        String d = "";
+
+        this.c = context;
 
         // Enable touch for cards
         enableTouch();
@@ -67,7 +68,7 @@ public class DragDrop {
         i.setY(y-dy);
     }
 
-    private static void actionUp(Card card, float x, float y) {
+    private void actionUp(Card card, float x, float y) {
         ImageView cardImage = card.getImageView();
         int cardID = card.getCurrentStackID();
         float xSpaceStack = Math.abs(stacks[0].getLeftSideLocation() + stacks[0].getWidth() - stacks[4].getLeftSideLocation());
@@ -124,6 +125,7 @@ public class DragDrop {
                 cardImage.setY(yToSet);
                 card.setXYPositions(xToSet, yToSet);
                 numSteps++;
+                step = numSteps;
                 stepCounter.setText(numSteps + " steps");
                 cardMoveCheck(previousStack);
             } else {
@@ -179,9 +181,8 @@ public class DragDrop {
                     cardImage.setY(yToSet);
                     Log.d("", "X and Y are set to " + xToSet + " " + yToSet);
                     card.setXYPositions(xToSet, yToSet);
-                    Log.d("", "Card position is " + card.getXPosition() + " " + card.getYPosition());
-                    Log.d("", "Previous position " + previousX + " " + previousY);
                     numSteps++;
+                    step = numSteps;
                     stepCounter.setText(numSteps + " steps");
                     cardMoveCheck(previousStack);
                 } else {
@@ -198,24 +199,12 @@ public class DragDrop {
             cardImage.setY(yToSet);
         }
         if (winConditionCheck()) {
-            // Popup message
-            Log.d("","Done");
-        } else {
-            int cardMissing = 0;
-            for (int i = 20; i < 24; i++) {
-                cardMissing += stacks[i].getCurrentCards().size();
-            }
-            Log.d("", "Missing " + Math.abs(cardMissing - 52));
+            GameActivity.saveScore(step, this.c);
+
         }
-//        for (int i = 0; i < stacks.length; i++) {
-//            Log.d("", "Stack " + i + " has " + stacks[i].getListOfCards());
-//        }
-//        Log.d("", "Target stack " + whichStack + " has " + stacks[whichStack].getListOfCards());
-//        Log.d("", "Last stack " + previousStack + " has " + stacks[previousStack].getListOfCards());
-//        Log.d("", "Current stack " + card.getCurrentStackID() + " has " + stacks[card.getCurrentStackID()].getListOfCards());
     }
 
-    public static boolean myTouch(View v, MotionEvent e, Card c) {
+    public boolean myTouch(View v, MotionEvent e, Card c) {
         v.bringToFront();
         x = e.getRawX();
         y = e.getRawY();
@@ -248,7 +237,6 @@ public class DragDrop {
         }
         // whichStack = -1 means invalid
         if (whichStack < 0) {
-//            Log.d("", "Invalid stack" );
             return false;
         }
         boolean haveCards;
@@ -258,55 +246,40 @@ public class DragDrop {
             haveCards = true;
         }
         if (whichStack < 4) {
-//            Log.d("", "Stack < 4" );
             if (haveCards) {
-//                Log.d("", "Stack < 4, have cards" );
                 return true;
             } else {
-//                Log.d("", "Stack < 4, no cards" );
                 return false;
             }
         } else if (whichStack < 16) {
-//            Log.d("", "Stack < 16" );
             if (haveCards) {
-//                Log.d("", "Stack < 16, have cards" );
                 for (int i = 1; i <= whichStack / 4; i++) {
                     if (stacks[(whichStack - 4 * i)].getCurrentCards().size() != 0) {
-//                        Log.d("", "Stack < 16, stacks to left have cards" );
                         return false;
                     }
                 }
-//                Log.d("", "Stack < 16, stacks to left no cards" );
                 return true;
             } else {
-//                Log.d("", "Stack < 16, no cards" );
                 return false;
             }
         } else if (whichStack < 20) {
-//            Log.d("", "Stack < 20");
             for (int i = 1; i <= whichStack / 4; i++) {
                 if (stacks[(whichStack - 4 * i)].getCurrentCards().size() != 0) {
-//                    Log.d("", "Stack < 20, stacks to left have cards" );
                     return false;
                 }
             }
-//            Log.d("", "Stack < 20, stacks to left no cards" );
             return true;
         } else if (whichStack < 24) {
             return true;
         } else if (whichStack < 28) {
             for (int i = 1; i <= whichStack / 4; i++) {
                 if (stacks[(whichStack + 4 * i)].getCurrentCards().size() != 0) {
-//                    Log.d("", "Stack < 28, stacks to right have cards" );
                     return false;
                 }
             }
-//            Log.d("", "Stack < 28, stacks to right no cards" );
             return true;
         } else if (whichStack < 40) {
-//            Log.d("", "Stack < 40" );
             if (haveCards) {
-//                Log.d("", "Stack < 40, have cards" );
                 for (int i = 1; i <= whichStack / 4; i++) {
                     if (whichStack + 4 * i < 44) {
                         if (stacks[(whichStack + 4 * i)].getCurrentCards().size() != 0) {
@@ -318,16 +291,12 @@ public class DragDrop {
                 Log.d("", "Stack < 40, stacks to right no cards" );
                 return true;
             } else {
-//                Log.d("", "Stack < 40, no cards" );
                 return false;
             }
         } else if (whichStack < 44) {
-//            Log.d("", "Stack < 44" );
             if (haveCards) {
-//                Log.d("", "Stack < 44, have cards" );
                 return true;
             } else {
-//                Log.d("", "Stack < 44, No cards" );
                 return false;
             }
         } else {
@@ -408,7 +377,7 @@ public class DragDrop {
      * @parem none
      * @return none
      */
-    private static void enableTouch() {
+    private void enableTouch() {
         // TODO: Only let outside cards move. All cards can be moved right now.
         cards[0].getImageView().setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -530,33 +499,6 @@ public class DragDrop {
                 return myTouch(v, event, cards[19]);
             }
         });
-// These cards are the base. Not supposed to be moved.
-//        cards[20].getImageView().setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                return myTouch(v, event, cards[20]);
-//            }
-//        });
-//        cards[21].getImageView().setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                return myTouch(v, event, cards[21]);
-//            }
-//        });
-//
-//        cards[22].getImageView().setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                return myTouch(v, event, cards[22]);
-//            }
-//        });
-//
-//        cards[23].getImageView().setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                return myTouch(v, event, cards[23]);
-//            }
-//        });
         cards[24].getImageView().setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {

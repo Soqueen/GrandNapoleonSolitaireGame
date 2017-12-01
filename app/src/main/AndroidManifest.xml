@@ -58,6 +58,12 @@
             </intent-filter>
             android:parentActivityName=".MainPageActivity" >
         </activity>
+        <activity android:name=".WinActivity" android:screenOrientation="landscape" android:configChanges="orientation">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            android:parentActivityName=".GameActivity" >
+        </activity>
     </application>
 
 </manifest>

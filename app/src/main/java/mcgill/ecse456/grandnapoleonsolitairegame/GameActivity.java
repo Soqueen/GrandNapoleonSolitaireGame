@@ -1,24 +1,18 @@
 package mcgill.ecse456.grandnapoleonsolitairegame;
 
-import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.graphics.Rect;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Chronometer;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -35,16 +29,15 @@ public class GameActivity extends AppCompatActivity {
     private int[] location = new int[2];
     Stack[] stacks = new Stack[53];
     Card[] cards = new Card[52];
-    final Context context = this;
-    private Button pauseButton;
-    private Button hintButton;
-    private Button undoButton;
-    private TextView stepCounter;
-    private int type = 1; // 1: random game or 2: predetermined game
-    public static final String GNS_PREFS = "GNSPref";
-    TextView edtName, edtStep;
-    Chronometer edtTime;
-    DatabaseHelper dbHandler;
+    Context context = this;
+    public Button pauseButton;
+    public Button hintButton;
+    public TextView stepCounter;
+    public int type = 1; // 1: random game or 2: predetermined game
+    public static int edtStep;
+    public static Chronometer edtTime, timer;
+    public static DatabaseHelper dbHandler;
+    public static Boolean done = false;
 
 
     @Override
@@ -59,19 +52,18 @@ public class GameActivity extends AppCompatActivity {
         }
         dbHandler = new DatabaseHelper(this, null,null, 1);
 
-        final Chronometer timer = (Chronometer) findViewById(R.id.chronometer1); // initiate a chronometer
+        timer = (Chronometer) findViewById(R.id.chronometer1); // initiate a chronometer
         timer.start(); // Start the time counter
         displayCards(type, cards, stacks);
 
         // When Pause button trigger
         pauseButton = (Button) findViewById(R.id.pause);
-        Pause pause = new Pause(context, pauseButton,timer);
+        Pause pause = new Pause(context, pauseButton,timer, 0); //0  refer to pause dialog
         pause.popUp();
 
         hintButton = (Button) findViewById(R.id.hint);
         Hint hint = new Hint(hintButton, cards, stacks);
         hint.clicked();
-
     }
 
     public void displayCards(int type, Card[] cards, Stack[] stacks){
@@ -311,7 +303,6 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
-    // Method works, but need to put it somewhere after onCreate(), or it won't work.
     private void setStacksLocation() {
         stepCounter = (TextView) findViewById(R.id.step_counter);
         for (int i = 0; i < stacks.length; i++) {
@@ -323,7 +314,8 @@ public class GameActivity extends AppCompatActivity {
             int tempID = cards[i].getCurrentStackID();
             cards[i].setXYPositions(stacks[tempID].getLeftSideLocation(), stacks[tempID].getTopSideLocation());
         }
-        DragDrop.main(cards, stacks, stepCounter, (Button) findViewById(R.id.undo));
+        new DragDrop().main(context, cards, stacks, stepCounter, (Button) findViewById(R.id.undo));
+
     }
 
     // Temporary solution to actually finding location of ImageViews.
@@ -332,31 +324,33 @@ public class GameActivity extends AppCompatActivity {
         setStacksLocation();
     }
 
-    public void saveScore(View view){
 
-//        edtName = (TextView)findViewById(R.id.step_counter) ;
-        edtTime = (Chronometer) findViewById(R.id.chronometer1);
-        edtStep = (TextView)findViewById(R.id.step_counter);
+    public static void saveScore(int step, Context context){
+
+        edtTime = timer;
+        edtStep = step;
         // Add a scoreRecord to database
-        //TODO- Have popup dialog to store player name and pass 'here' instead of 'sokheng'
-        ScoreTable scoreRecord = new ScoreTable("SokHeng", edtTime.getText().toString().trim(), edtStep.getText().toString().trim());
+        //TODO- Have popup dialog to store player name and pass 'here' instead of 'Player'
+        ScoreTable scoreRecord = new ScoreTable("Player", edtTime.getText().toString().trim(), edtStep);
         dbHandler.addScoreRecord(scoreRecord);
         Cursor data = dbHandler.getData();
         // Populate database in the arraylist for each column
         ArrayList<String> listName = new ArrayList<>();
         ArrayList<String> listTime = new ArrayList<>();
-        ArrayList<String> listStep = new ArrayList<>();
+        ArrayList<Integer> listStep = new ArrayList<>();
         while(data.moveToNext()){
             listName.add(data.getString(1)); //Name
             listTime.add(data.getString(2)); // Time column
-            listStep.add(data.getString(3)); // Counter step column
+            listStep.add(data.getInt(3)); // Counter step column
         }
-        // Display on the score table activity
-        Intent intent = new Intent(context, ScoreTableActivity.class);
-        intent.putExtra("name", listName);
-        intent.putExtra("time", listTime);
-        intent.putExtra("step", listStep);
-        context.startActivity(intent);
+        WinActivity winDialog = new WinActivity(context, listName, listTime, listStep);
+        winDialog.popUp();
+    }
+
+    @Override
+    public  void onBackPressed(){
+        MusicManager.gamePlayer.stop();
+        finish();
     }
 
 }

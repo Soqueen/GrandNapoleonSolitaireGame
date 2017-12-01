@@ -3,13 +3,15 @@ package mcgill.ecse456.grandnapoleonsolitairegame;
 
 public class ScoreTable {
     private int _id;
-    private String _name, _time, _step;
+    private String _name;
+    private String _time;
+    private int _step;
 
     public ScoreTable(){
 
     }
 
-    public ScoreTable(String name, String time, String step){
+    public ScoreTable(String name, String time, int step){
         this._name = name;
         this._time = time;
         this._step = step;
@@ -27,7 +29,7 @@ public class ScoreTable {
         this._time = time;
     }
 
-    public void set_step(String step){
+    public void set_step(int step){
         this._step = step;
     }
 
@@ -43,7 +45,7 @@ public class ScoreTable {
         return _time;
     }
 
-    public  String get_step(){
+    public  int get_step(){
         return _step;
     }
 }

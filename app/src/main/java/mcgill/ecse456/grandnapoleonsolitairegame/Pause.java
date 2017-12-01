@@ -15,16 +15,18 @@ public class Pause extends AppCompatActivity {
     private Button pauseButton;
     private Chronometer timer;
     private long timeDiff;
+    private int popUpType;
 
     public Pause() {
         this.timeDiff = 0;
     }
 
-    public Pause(Context context, Button pauseButton, Chronometer timer) {
+    public Pause(Context context, Button pauseButton, Chronometer timer, int type) {
         this.context = context;
         this.pauseButton = pauseButton;
         this.timer = timer;
         this.timeDiff = 0;
+        this.popUpType = type;
     }
 
 
@@ -36,61 +38,99 @@ public class Pause extends AppCompatActivity {
 
                 // custom dialog
                 final Dialog dialog = new Dialog(context);
-                finish();
-                dialog.setContentView(R.layout.pause_dialog);
+                MusicManager.gamePlayer.stop();
+                if (popUpType == 0) { // For pause dialog
+                    dialog.setContentView(R.layout.pause_dialog);
 
 
-                Button resumeButton = (Button) dialog.findViewById(R.id.resume_button);
-                Button quitButton = (Button) dialog.findViewById(R.id.quit_button);
-                Button settingButton = (Button) dialog.findViewById(R.id.setting_button);
-                Button instructionButton = (Button) dialog.findViewById(R.id.instruction_button);
+                    Button resumeButton = (Button) dialog.findViewById(R.id.resume_button);
+                    Button quitButton = (Button) dialog.findViewById(R.id.quit_button);
+                    Button settingButton = (Button) dialog.findViewById(R.id.setting_button);
+                    Button instructionButton = (Button) dialog.findViewById(R.id.instruction_button);
 
-                // Pause timer
-                timeDiff = timer.getBase() - SystemClock.elapsedRealtime();
-                timer.stop();
+                    // Pause timer
+                    timeDiff = timer.getBase() - SystemClock.elapsedRealtime();
+                    timer.stop();
 
-                dialog.show();
+                    dialog.show();
 
-                // Check if the resume button is clicked
-                resumeButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        //resume timer
-                        timer.setBase(SystemClock.elapsedRealtime() + timeDiff);
-                        timer.start();
-                        dialog.dismiss();
-                    }
-                });
+                    // Check if the resume button is clicked
+                    resumeButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            //resume timer
+                            timer.setBase(SystemClock.elapsedRealtime() + timeDiff);
+                            timer.start();
+                            if (MusicManager.gamePlayer != null) {
+                                MusicManager.gamePlayer.release();
+                                MusicManager.gamePlayer = null;
+                            }
+                            MusicManager.GamePlayer(context);
+                            MusicManager.clickPlayer.start();
+                            MusicManager.gamePlayer.start();
+                            dialog.dismiss();
+                        }
+                    });
 
 
-                // Check if the quit button is clicked, it return to level page
-                quitButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        // doesn't seem to save state here
-                        finish();
-                        android.os.Process.killProcess(android.os.Process.myPid());
-                        Pause.super.onDestroy();
-                    }
-                });
+                    // Check if the quit button is clicked, it return to level page
+                    quitButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            // doesn't seem to save state here
+                            MusicManager.clickPlayer.start();
+                            finish();
+                            android.os.Process.killProcess(android.os.Process.myPid());
+                            Pause.super.onDestroy();
+                        }
+                    });
 
-                // Check if the setting menu button is clicked
-                settingButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(context, SettingActivity.class);
-                        context.startActivity(intent);
-                    }
-                });
+                    // Check if the setting menu button is clicked
+                    settingButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            MusicManager.clickPlayer.start();
+                            Intent intent = new Intent(context, SettingActivity.class);
+                            context.startActivity(intent);
+                        }
+                    });
 
-                // Check if the instruction menu button is clicked
-                instructionButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(context, Instruction.class);
-                        context.startActivity(intent);
-                    }
-                });
+                    // Check if the instruction menu button is clicked
+                    instructionButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            MusicManager.clickPlayer.start();
+                            Intent intent = new Intent(context, Instruction.class);
+                            context.startActivity(intent);
+                        }
+                    });
+                }
+                else {
+                    dialog.setContentView(R.layout.win_dialog);
+                    dialog.show();
+                    Button replayGame = (Button) dialog.findViewById(R.id.replay);
+                    Button viewScore = (Button) dialog.findViewById(R.id.score_view);
+                    // Check if the instruction menu button is clicked
+                    replayGame.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            MusicManager.clickPlayer.start();
+                            Intent intent = new Intent(context, Instruction.class);
+                            context.startActivity(intent);
+                        }
+                    });
+                    // Check if the instruction menu button is clicked
+                    viewScore.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            MusicManager.clickPlayer.start();
+                            Intent intent = new Intent(context, ScoreTableActivity.class);
+                            context.startActivity(intent);
+                        }
+                    });
+
+
+                }
             }
         });
 

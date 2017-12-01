@@ -909,14 +909,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="#Steps" />
-        <ImageButton
-            android:background="@color/greenBackground"
-            android:id="@+id/score"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="saveScore"
-            app:srcCompat="@drawable/score"
-            android:layout_marginTop="50dp"/>
 
     </LinearLayout>
 

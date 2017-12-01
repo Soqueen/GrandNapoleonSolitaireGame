@@ -15,8 +15,9 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:weightSum="1"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true">
+        android:layout_above="@+id/copyright_info"
+        android:layout_alignLeft="@+id/copyright_info"
+        android:layout_alignStart="@+id/copyright_info">
         <Button
             android:id="@+id/start_button"
             android:layout_width="match_parent"

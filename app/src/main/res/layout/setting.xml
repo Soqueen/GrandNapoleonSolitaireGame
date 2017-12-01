@@ -23,40 +23,4 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="23dp" />
 
-    <CheckBox
-        android:id="@+id/enable_undo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Check to turn OFF UNDO"
-        android:background="@color/Lemon"
-        android:textSize="24dp"
-
-        android:layout_marginTop="57dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-    <CheckBox
-        android:id="@+id/enable_music"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="107dp"
-        android:textSize="24dp"
-        android:text="Check to turn OFF MUSIC"
-        android:background="@color/Lemon"
-        android:layout_below="@+id/enable_hint"
-        android:layout_alignLeft="@+id/enable_hint"
-        android:layout_alignStart="@+id/enable_hint" />
-
-    <CheckBox
-        android:id="@+id/enable_hint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="106dp"
-        android:textSize="24dp"
-
-        android:text="Check to turn OFF HINT"
-        android:background="@color/Lemon"
-        android:layout_below="@+id/enable_undo"
-        android:layout_alignLeft="@+id/enable_undo"
-        android:layout_alignStart="@+id/enable_undo" />
 </RelativeLayout>

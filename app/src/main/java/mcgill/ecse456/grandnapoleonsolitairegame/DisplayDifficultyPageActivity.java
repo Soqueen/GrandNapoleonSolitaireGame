@@ -36,6 +36,13 @@ public class DisplayDifficultyPageActivity extends AppCompatActivity {
      * @params view
      */
     public void randomGameNavigate(View view) {
+        if (MusicManager.gamePlayer != null) {
+            MusicManager.gamePlayer.release();
+            MusicManager.gamePlayer = null;
+        }
+        MusicManager.GamePlayer(this);
+        MusicManager.clickPlayer.start();
+        MusicManager.gamePlayer.start();
         Intent intent = new Intent(this, GameActivity.class);
         intent.putExtra("id", 1);
         startActivity(intent);
@@ -47,13 +54,21 @@ public class DisplayDifficultyPageActivity extends AppCompatActivity {
      * @params view
      */
     public void predeterminedGameNavigate(View view) {
+        if (MusicManager.gamePlayer != null) {
+            MusicManager.gamePlayer.release();
+            MusicManager.gamePlayer = null;
+        }
+        MusicManager.GamePlayer(this);
+        MusicManager.clickPlayer.start();
+        MusicManager.gamePlayer.start();
         Intent intent = new Intent(this, GameActivity.class);
         intent.putExtra("id", 2);
         startActivity(intent);
     }
 
     public void closedDifficulty (View view){
+        MusicManager.clickPlayer.start();
+        MusicManager.gamePlayer.stop();
         finish();
     }
-
 }
