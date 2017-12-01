@@ -33,6 +33,7 @@ public class WinActivity extends AppCompatActivity {
         final Dialog dialog = new Dialog(context);
         MusicManager.gamePlayer.stop();
         dialog.setContentView(R.layout.win_dialog);
+        dialog.setCanceledOnTouchOutside(false);
         dialog.show();
         Button replayGame = (Button) dialog.findViewById(R.id.replay);
         Button viewScore = (Button) dialog.findViewById(R.id.score_view);
@@ -58,6 +59,10 @@ public class WinActivity extends AppCompatActivity {
             context.startActivity(intent);
             }
         });
+    }
+    @Override
+    public  void onBackPressed(){
+
     }
 }
 

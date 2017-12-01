@@ -36,13 +36,13 @@ public class Pause extends AppCompatActivity {
             @Override
             public void onClick(View arg0) {
 
+
                 // custom dialog
                 final Dialog dialog = new Dialog(context);
                 MusicManager.gamePlayer.stop();
                 if (popUpType == 0) { // For pause dialog
                     dialog.setContentView(R.layout.pause_dialog);
-
-
+                    dialog.setCanceledOnTouchOutside(false);
                     Button resumeButton = (Button) dialog.findViewById(R.id.resume_button);
                     Button quitButton = (Button) dialog.findViewById(R.id.quit_button);
                     Button settingButton = (Button) dialog.findViewById(R.id.setting_button);
@@ -133,6 +133,11 @@ public class Pause extends AppCompatActivity {
                 }
             }
         });
+
+    }
+
+    @Override
+    public  void onBackPressed(){
 
     }
 }

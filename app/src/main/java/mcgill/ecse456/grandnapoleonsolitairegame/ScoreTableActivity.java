@@ -107,6 +107,10 @@ public class ScoreTableActivity extends AppCompatActivity{
         Intent intent = new Intent(this, ScoreTableActivity.class);
         startActivity(intent);
     }
+    @Override
+    public  void onBackPressed(){
+
+    }
 }
 
 

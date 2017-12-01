@@ -67,8 +67,10 @@ public class DisplayDifficultyPageActivity extends AppCompatActivity {
     }
 
     public void closedDifficulty (View view){
-        MusicManager.clickPlayer.start();
-        MusicManager.gamePlayer.stop();
         finish();
+    }
+    @Override
+    public  void onBackPressed(){
+
     }
 }

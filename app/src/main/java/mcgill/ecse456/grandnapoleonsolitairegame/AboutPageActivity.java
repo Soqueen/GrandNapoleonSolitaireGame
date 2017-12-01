@@ -19,5 +19,9 @@ public class AboutPageActivity extends AppCompatActivity {
         MusicManager.clickPlayer.start();
         finish();
     }
+    @Override
+    public  void onBackPressed(){
+
+    }
 }
 

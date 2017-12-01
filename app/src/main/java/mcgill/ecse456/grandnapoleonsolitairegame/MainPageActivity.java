@@ -137,4 +137,8 @@ public class MainPageActivity extends AppCompatActivity {
         super.onDestroy();
         Log.d("MainPageActivity", "onDestroy was called");
     }
+    @Override
+    public  void onBackPressed(){
+
+    }
 }
