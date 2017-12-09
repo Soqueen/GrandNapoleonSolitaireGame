@@ -152,29 +152,48 @@ public class Stack {
         return this.currentCards;
     }
     /**
-     * Get stack identify ID.
+     * Get stack identity .
      *
      * @return stackID
-     * @params args not used
      */
     public int getStackID() {
         return this.stackID;
     }
 
+    /**
+     * Get stack's x value
+     * @return  leftSideLocation
+     */
     public int getLeftSideLocation() {
         return this.leftSideLocation;
     }
 
+    /**
+     * Get stack's y value
+     * @return  topSideLocation
+     */
     public int getTopSideLocation() {
         return this.topSideLocation;
     }
 
+    /**
+     * Get stack's stacking order
+     * @return  stackingOrder
+     */
     public int getStackingOrder() { return this.stackingOrder; }
 
+    /**
+     * Get stack's ImageView height
+     * @return  height
+     */
     public float getHeight() {
         return this.height;
     }
 
+    /**
+     * Get stack's ImageView width
+     * @return  width
+     */
     public float getWidth() {
         return this.width;
     }

@@ -84,7 +84,6 @@ public class GameActivity extends AppCompatActivity {
             int suit = 1;
             for (int i = 20; i < 24; i++) {
                 cards[i] = new Card(suit, numb);
-
                 suit++;
             }
 
@@ -326,7 +325,6 @@ public class GameActivity extends AppCompatActivity {
 
 
     public static void saveScore(int step, Context context){
-
         edtTime = timer;
         edtStep = step;
         // Add a scoreRecord to database
