@@ -17,6 +17,15 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+/**
+ * GNS Android Game Application
+ * GameActivity.java
+ * Purpose: Contains the logic of the game page features.
+ *
+ * @author Sok Heng Lim
+ * @version 1.0 11/15/2017
+ */
+
 public class ScoreTableActivity extends AppCompatActivity{
     private ArrayList<String> nameDB, timeDB;
     private ArrayList<Integer> stepDB;

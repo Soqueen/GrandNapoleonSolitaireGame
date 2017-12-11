@@ -11,17 +11,25 @@ import android.os.SystemClock;
 
 import java.util.ArrayList;
 
+/**
+ * GNS Android Game Application
+ * GameActivity.java
+ * Purpose: Contains the logic of the game page features.
+ *
+ * @author Sok Heng Lim
+ * @version 1.0 11/15/2017
+ */
 
 public class WinActivity extends AppCompatActivity {
     private Context context;
-    ArrayList<String> listName,  listTime;
+    ArrayList<String> listName, listTime;
     ArrayList<Integer> listStep;
 
     public WinActivity() {
 
     }
 
-    public WinActivity(Context context,ArrayList<String> name, ArrayList<String> time, ArrayList<Integer> step) {
+    public WinActivity(Context context, ArrayList<String> name, ArrayList<String> time, ArrayList<Integer> step) {
         this.context = context;
         this.listName = name;
         this.listStep = step;
@@ -41,27 +49,28 @@ public class WinActivity extends AppCompatActivity {
         viewScore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            MusicManager.clickPlayer.start();
-            // Display on the score table activity
-            Intent intent = new Intent(context, ScoreTableActivity.class);
-            intent.putExtra("name", listName);
-            intent.putExtra("time", listTime);
-            intent.putExtra("step", listStep);
-            context.startActivity(intent);
+                MusicManager.clickPlayer.start();
+                // Display on the score table activity
+                Intent intent = new Intent(context, ScoreTableActivity.class);
+                intent.putExtra("name", listName);
+                intent.putExtra("time", listTime);
+                intent.putExtra("step", listStep);
+                context.startActivity(intent);
             }
         });
         // Check if the instruction menu button is clicked
         replayGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            MusicManager.clickPlayer.start();
-            Intent intent = new Intent(context, DisplayDifficultyPageActivity.class);
-            context.startActivity(intent);
+                MusicManager.clickPlayer.start();
+                Intent intent = new Intent(context, DisplayDifficultyPageActivity.class);
+                context.startActivity(intent);
             }
         });
     }
+
     @Override
-    public  void onBackPressed(){
+    public void onBackPressed() {
 
     }
 }

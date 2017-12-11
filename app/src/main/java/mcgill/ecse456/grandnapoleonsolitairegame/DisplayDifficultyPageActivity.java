@@ -14,18 +14,17 @@ import android.view.WindowManager;
  * Purpose: Contains the logic of the select difficulty Page.
  *
  * @author Sok Heng Lim
- * @author Andrew Lin
  * @version 1.0 03/12/2017
  */
 
 public class DisplayDifficultyPageActivity extends AppCompatActivity {
-    
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_display_difficulty_page);
     }
 
@@ -47,6 +46,7 @@ public class DisplayDifficultyPageActivity extends AppCompatActivity {
         intent.putExtra("id", 1);
         startActivity(intent);
     }
+
     /**
      * Navigate to Random game when the user click on Random/predetermined button
      *
@@ -66,11 +66,12 @@ public class DisplayDifficultyPageActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void closedDifficulty (View view){
+    public void closedDifficulty(View view) {
         finish();
     }
+
     @Override
-    public  void onBackPressed(){
+    public void onBackPressed() {
 
     }
 }

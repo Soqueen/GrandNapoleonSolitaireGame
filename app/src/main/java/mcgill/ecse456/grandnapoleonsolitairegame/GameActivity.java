@@ -33,7 +33,7 @@ public class GameActivity extends AppCompatActivity {
     public Button pauseButton;
     public Button hintButton;
     public TextView stepCounter;
-    public int type = 1; // 1: random game or 2: predetermined game
+    public int type = 1; // Set default game type to random
     public static int edtStep;
     public static Chronometer edtTime, timer;
     public static DatabaseHelper dbHandler;
@@ -44,31 +44,42 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.game_page);
+        // Get type of game
         Bundle b = getIntent().getExtras();
-        if(b != null) {
+        if (b != null) {
             this.type = b.getInt("id");
         }
-        dbHandler = new DatabaseHelper(this, null,null, 1);
-
-        timer = (Chronometer) findViewById(R.id.chronometer1); // initiate a chronometer
+        // Initilalize database handler
+        dbHandler = new DatabaseHelper(this, null, null, 1);
+        // Initilaize timer
+        timer = (Chronometer) findViewById(R.id.chronometer1);
+        // Start timer
         timer.start(); // Start the time counter
+        //Display card to table
         displayCards(type, cards, stacks);
 
         // When Pause button trigger
         pauseButton = (Button) findViewById(R.id.pause);
-        Pause pause = new Pause(context, pauseButton,timer, 0); //0  refer to pause dialog
+        Pause pause = new Pause(context, pauseButton, timer);
         pause.popUp();
 
+        // When Hint button trigger
         hintButton = (Button) findViewById(R.id.hint);
         Hint hint = new Hint(hintButton, cards, stacks);
         hint.clicked();
     }
 
-    public void displayCards(int type, Card[] cards, Stack[] stacks){
-        Log.d("Type of game", String.valueOf(type));
-
+    /**
+     * Display card on the game page.
+     *
+     * @param type  type of game that user selected 1 - random game or 2 - predetermined game
+     * @param stack stack position on the page
+     * @return None
+     * @params card card that will be added to stack
+     */
+    public void displayCards(int type, Card[] cards, Stack[] stacks) {
         // Create 53 stacks
         for (int i = 0; i < stacks.length; i++) {
             stacks[i] = new Stack(i);
@@ -124,8 +135,7 @@ public class GameActivity extends AppCompatActivity {
                 cards[i] = cards[randomCard];
                 cards[randomCard] = tempCard;
             }
-        }
-        else if (type == 2) {
+        } else if (type == 2) {
             // when predetermined selected - by place card into stack associated
             // TODO - Find at least a layout of solving game - Below is just a dummy layout
             cards[0] = new Card(1, 8);
@@ -302,6 +312,8 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
+
+    // Set stack location
     private void setStacksLocation() {
         stepCounter = (TextView) findViewById(R.id.step_counter);
         for (int i = 0; i < stacks.length; i++) {
@@ -319,35 +331,43 @@ public class GameActivity extends AppCompatActivity {
 
     // Temporary solution to actually finding location of ImageViews.
     @Override
-    public void onWindowFocusChanged (boolean hasFocus) {
+    public void onWindowFocusChanged(boolean hasFocus) {
         setStacksLocation();
     }
 
 
-    public static void saveScore(int step, Context context){
+    /**
+     * Save Score from step counter and timer to database handler and popup the win dialog
+     *
+     * @param step number of step counted before the game win
+     * @return None
+     * @params context context
+     */
+    public static void saveScore(int step, Context context) {
         edtTime = timer;
         edtStep = step;
         // Add a scoreRecord to database
-        //TODO- Have popup dialog to store player name and pass 'here' instead of 'Player'
+        // TODO - Have popup dialog to store player name and pass 'here' instead of 'Player'
         ScoreTable scoreRecord = new ScoreTable("Player", edtTime.getText().toString().trim(), edtStep);
         dbHandler.addScoreRecord(scoreRecord);
         Cursor data = dbHandler.getData();
-        // Populate database in the arraylist for each column
+        // Populate database information into the arraylist for each column
         ArrayList<String> listName = new ArrayList<>();
         ArrayList<String> listTime = new ArrayList<>();
         ArrayList<Integer> listStep = new ArrayList<>();
-        while(data.moveToNext()){
+        while (data.moveToNext()) {
             listName.add(data.getString(1)); //Name
             listTime.add(data.getString(2)); // Time column
             listStep.add(data.getInt(3)); // Counter step column
         }
+        // Popup the win dialog once the game finish
         WinActivity winDialog = new WinActivity(context, listName, listTime, listStep);
         winDialog.popUp();
     }
 
     @Override
-    public  void onBackPressed(){
- 
+    public void onBackPressed() {
+
     }
 
 }

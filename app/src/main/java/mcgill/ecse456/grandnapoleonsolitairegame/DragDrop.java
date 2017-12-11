@@ -9,11 +9,18 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
+/**
+ * GNS Android Game Application
+ * GameActivity.java
+ * Purpose: Contains the logic of the game page features.
+ *
+ * @author Andrew Lin
+ * @version 1.0 10/15/2017
+ */
 
 public class DragDrop {
     // Private variables only in DragDrop
-    private static float dx, dy, x , y, initialX, initialY;
+    private static float dx, dy, x, y, initialX, initialY;
     private static float stackHeight;
     private static float stackWidth;
     private static boolean baseStackOrder = false;
@@ -40,11 +47,12 @@ public class DragDrop {
     /**
      * Main method of the Drag and Drop feature. Called from GameActivity, and this will take
      * care of the Drag and Drop with the game rules
+     *
      * @param context
-     * @param c         The array of cards created in GameActivity
-     * @param s         The array of stacks created in GameActivity
-     * @param counter   The TextView element of the counter
-     * @param undo      The Button element of the undo button
+     * @param c       The array of cards created in GameActivity
+     * @param s       The array of stacks created in GameActivity
+     * @param counter The TextView element of the counter
+     * @param undo    The Button element of the undo button
      */
     public void main(Context context, Card[] c, Stack[] s, TextView counter, Button undo) {
         // Assignment for variables used in Drag and Drop
@@ -72,6 +80,7 @@ public class DragDrop {
     /**
      * Method called when a card has been pressed on by the user.
      * ACTION_DOWN is the event when it detects a touch.
+     *
      * @param v     Not used
      * @param event The event that was detected. In this case, it is ACTION_DOWN
      * @param c     The card that detected the touch event.
@@ -94,21 +103,23 @@ public class DragDrop {
     /**
      * Method called when a card is being moved after ACTION_DOWN.
      * ACTION_MOVE is the event when it is being moved
+     *
      * @param i ImageView of the card
      */
     private static void actionMove(ImageView i) {
         // Set the ImageView of the card to follow the touch
-        i.setX(x-dx);
-        i.setY(y-dy);
+        i.setX(x - dx);
+        i.setY(y - dy);
     }
 
     /**
      * Method called when a card is being dropped (or let go) after ACTION_DOWN/ACTION_MOVE
      * ACTION_UP is the event when it is being let go
      * The game rule implementation checks happen in this method.
-     * @param card  Card being dropped
-     * @param x     x location of where the card is being dropped
-     * @param y     y location of where the card is being dropped
+     *
+     * @param card Card being dropped
+     * @param x    x location of where the card is being dropped
+     * @param y    y location of where the card is being dropped
      */
     private void actionUp(Card card, float x, float y) {
         ImageView cardImage = card.getImageView();
@@ -174,7 +185,7 @@ public class DragDrop {
                 // Lock card
                 card.setCanMove(false);
 
-            // Special case. Stack is 16 to 19, or 24 to 27 and the stack is empty
+                // Special case. Stack is 16 to 19, or 24 to 27 and the stack is empty
             } else if (((whichStack >= 16 && whichStack < 20) || (whichStack >= 24 && whichStack < 28)) && stacks[whichStack].getCurrentCards().size() == 0) {
                 // Undo button variables assignment
                 previousCard = card;
@@ -205,7 +216,7 @@ public class DragDrop {
                 // Unlock the cards that must be unlocked after the move.
                 cardMoveCheck(previousStack);
 
-            // Any other case
+                // Any other case
             } else {
                 Card stackCard = stacks[whichStack].getLastCard();  // Get the card to be stacked on top of by the card dropped by user
 //                Log.d("", "Stack is valid");
@@ -228,7 +239,7 @@ public class DragDrop {
                         if (whichStack < 20) {
                             xToSet = stacks[whichStack].getLeftSideLocation() - xSpaceStack;
                             yToSet = stacks[whichStack].getTopSideLocation();
-                        // In the base stacks, set offset to below
+                            // In the base stacks, set offset to below
                         } else if (whichStack < 24) {
                             int difference = stackCard.getNumber() - card.getNumber();  // Calculate the number difference between the two cards
                             // Set the stacking order of all base if it has NOT been set yet
@@ -239,7 +250,7 @@ public class DragDrop {
                                     stacks[21].setStackingOrder(0);
                                     stacks[22].setStackingOrder(0);
                                     stacks[23].setStackingOrder(0);
-                                // 12 or -1 means ascending
+                                    // 12 or -1 means ascending
                                 } else if (difference == 12 || difference == -1) {
                                     stacks[20].setStackingOrder(2);
                                     stacks[21].setStackingOrder(2);
@@ -261,7 +272,7 @@ public class DragDrop {
                                 yToSet = card.getYPosition();
                                 whichStack = card.getCurrentStackID();
                             }
-                        // Right side of the board, set offset to the right
+                            // Right side of the board, set offset to the right
                         } else if (whichStack < 44) {
                             xToSet = stacks[whichStack].getLeftSideLocation() + xSpaceStack;
                             yToSet = stacks[whichStack].getTopSideLocation();
@@ -285,14 +296,14 @@ public class DragDrop {
 
                     // Unlock the cards that must be unlocked after the move
                     cardMoveCheck(previousStack);
-                // Not valid, add card back to where it was
+                    // Not valid, add card back to where it was
                 } else {
                     stacks[card.getCurrentStackID()].addCardToStack(card);
                     cardImage.setX(card.getXPosition());
                     cardImage.setY(card.getYPosition());
                 }
             }
-        // Not valid, add card back to where it was
+            // Not valid, add card back to where it was
         } else {
             xToSet = card.getXPosition();
             yToSet = card.getYPosition();
@@ -310,6 +321,7 @@ public class DragDrop {
     /**
      * Method called when a touch event has been detected. Switch statement to
      * determine which method to call depending on event.
+     *
      * @param v NOT USED
      * @param e The event detected
      * @param c The card that detected the event
@@ -350,8 +362,9 @@ public class DragDrop {
     /**
      * This method simply checks whether the stack being used CAN or CANNOT stack cards.
      * It does NOT check whether the stacking is valid.
-     * @param whichStack    The stack being used when the card is dropped.
-     * @param stackID       The stack that the card belonged to before the move.
+     *
+     * @param whichStack The stack being used when the card is dropped.
+     * @param stackID    The stack that the card belonged to before the move.
      * @return
      */
     private static boolean canStack(int whichStack, int stackID) {
@@ -380,8 +393,8 @@ public class DragDrop {
                 return false;
             }
 
-        // If on the left side of the board, if have cards, have to check whether the stacks
-        // to the left are empty. Checks for every stack to the left
+            // If on the left side of the board, if have cards, have to check whether the stacks
+            // to the left are empty. Checks for every stack to the left
         } else if (whichStack < 16) {
             if (haveCards) {
                 for (int i = 1; i <= whichStack / 4; i++) {
@@ -394,9 +407,9 @@ public class DragDrop {
                 return false;
             }
 
-        // If on the left side of the board, have to check whether the stacks
-        // to the left are empty. Checks for every stack to the left. These do
-        // not need to check if have cards. Can be stacked regardless
+            // If on the left side of the board, have to check whether the stacks
+            // to the left are empty. Checks for every stack to the left. These do
+            // not need to check if have cards. Can be stacked regardless
         } else if (whichStack < 20) {
             for (int i = 1; i <= whichStack / 4; i++) {
                 if (stacks[(whichStack - 4 * i)].getCurrentCards().size() != 0) {
@@ -405,13 +418,13 @@ public class DragDrop {
             }
             return true;
 
-        // Base stack can alaways stack, just need to check if valid stacking
+            // Base stack can alaways stack, just need to check if valid stacking
         } else if (whichStack < 24) {
             return true;
 
-        // If on the right side of the board, have to check whether the stacks
-        // to the right are empty. Checks for every stack to the right. These do
-        // not need to check if have cards. Can be stacked regardless
+            // If on the right side of the board, have to check whether the stacks
+            // to the right are empty. Checks for every stack to the right. These do
+            // not need to check if have cards. Can be stacked regardless
         } else if (whichStack < 28) {
             for (int i = 1; i <= whichStack / 4; i++) {
                 if (stacks[(whichStack + 4 * i)].getCurrentCards().size() != 0) {
@@ -420,24 +433,24 @@ public class DragDrop {
             }
             return true;
 
-        // If on the rightside of the board, if have cards, have to check whether the stacks
-        // to the left are empty. Checks for every stack to the right
+            // If on the rightside of the board, if have cards, have to check whether the stacks
+            // to the left are empty. Checks for every stack to the right
         } else if (whichStack < 40) {
             if (haveCards) {
                 for (int i = 1; i <= whichStack / 4; i++) {
                     if (whichStack + 4 * i < 44) {
                         if (stacks[(whichStack + 4 * i)].getCurrentCards().size() != 0) {
-                            Log.d("", "Stack < 40, stacks to right have cards" );
+                            Log.d("", "Stack < 40, stacks to right have cards");
                             return false;
                         }
                     }
                 }
-                Log.d("", "Stack < 40, stacks to right no cards" );
+                Log.d("", "Stack < 40, stacks to right no cards");
                 return true;
             } else {
                 return false;
             }
-        // If first column on the right, can only stack if there are cards
+            // If first column on the right, can only stack if there are cards
         } else if (whichStack < 44) {
             if (haveCards) {
                 return true;
@@ -452,7 +465,7 @@ public class DragDrop {
                 } else {
                     return true;
                 }
-            // Otherwise, stack cannot stack cards.
+                // Otherwise, stack cannot stack cards.
             } else {
                 return false;
             }
@@ -462,7 +475,8 @@ public class DragDrop {
     /**
      * Unlock the cards that should be unlocked by the move.
      * This is called every time a valid move was done by the user.
-     * @param stackID   ID of the card that was moved
+     *
+     * @param stackID ID of the card that was moved
      */
     private static void cardMoveCheck(int stackID) {
         // Simply unlock the card to the right if stack < 16
@@ -470,17 +484,17 @@ public class DragDrop {
             for (int i = 0; i < stacks[stackID + 4].getCurrentCards().size(); i++) {
                 stacks[stackID + 4].getCurrentCards().get(i).setCanMove(true);
             }
-        // Simply unlock the card to the left if stack >= 24 and < 44
+            // Simply unlock the card to the left if stack >= 24 and < 44
         } else if (stackID >= 24 && stackID < 44) {
             for (int i = 0; i < stacks[stackID - 4].getCurrentCards().size(); i++) {
                 stacks[stackID - 4].getCurrentCards().get(i).setCanMove(true);
             }
-        // Simply unlock the card to the right
-        } else if (stackID >= 44 && stackID < 48 ) {
+            // Simply unlock the card to the right
+        } else if (stackID >= 44 && stackID < 48) {
             for (int i = 0; i < stacks[stackID + 1].getCurrentCards().size(); i++) {
                 stacks[stackID + 1].getCurrentCards().get(i).setCanMove(true);
             }
-        // Simply unlock the card to the left
+            // Simply unlock the card to the left
         } else if (stackID > 48) {
             for (int i = 0; i < stacks[stackID - 1].getCurrentCards().size(); i++) {
                 stacks[stackID - 1].getCurrentCards().get(i).setCanMove(true);
@@ -490,7 +504,8 @@ public class DragDrop {
 
     /**
      * Check for win condition. Check whether the base all have 13 cards
-     * @return  True if base are filled. False otherwise.
+     *
+     * @return True if base are filled. False otherwise.
      */
     private static boolean winConditionCheck() {
         for (int i = 20; i < 24; i++) {
@@ -503,9 +518,10 @@ public class DragDrop {
 
     /**
      * Determine whether the two cards can be stacked together. Same suit + ascending or descending order.
-     * @param c1    Card 1
-     * @param c2    Card 2
-     * @return  True if can be stacked. False otherwise
+     *
+     * @param c1 Card 1
+     * @param c2 Card 2
+     * @return True if can be stacked. False otherwise
      */
     private static boolean compareCards(Card c1, Card c2) {
         if (c1.getSuit() == c2.getSuit()) {
@@ -521,17 +537,17 @@ public class DragDrop {
             @Override
             public void onClick(View v) {
                 if (previousCard != null) {
-                    Log.d("UNDO CALLLED --------", ""+ previousCard.getXPosition());
-                    Log.d("UNDO CALLLED --------", ""+ previousX);
-                    Log.d("UNDO CALLLED --------", ""+ previousCard.getYPosition());
-                    Log.d("UNDO CALLLED --------", ""+ previousY);
-                    Log.d("UNDO CALLLED --------", ""+ previousCard.getCurrentStackID());
-                    Log.d("UNDO CALLLED --------", ""+ previousStack);
+                    Log.d("UNDO CALLLED --------", "" + previousCard.getXPosition());
+                    Log.d("UNDO CALLLED --------", "" + previousX);
+                    Log.d("UNDO CALLLED --------", "" + previousCard.getYPosition());
+                    Log.d("UNDO CALLLED --------", "" + previousY);
+                    Log.d("UNDO CALLLED --------", "" + previousCard.getCurrentStackID());
+                    Log.d("UNDO CALLLED --------", "" + previousStack);
 
                     // Check if the card can be moved back
-                    if ((previousCard.getXPosition() != previousX && previousCard.getCurrentStackID() != previousStack)||( previousCard.getYPosition() != previousY && previousCard.getCurrentStackID() != previousStack)) {
+                    if ((previousCard.getXPosition() != previousX && previousCard.getCurrentStackID() != previousStack) || (previousCard.getYPosition() != previousY && previousCard.getCurrentStackID() != previousStack)) {
                         Boolean currentState = true;
-                        if (previousCard.getYPosition() == previousY && previousCard.getCurrentStackID() != previousStack){
+                        if (previousCard.getYPosition() == previousY && previousCard.getCurrentStackID() != previousStack) {
                             currentState = false;
                         }
 //                        Log.d("", "Undo-ing");
@@ -557,10 +573,12 @@ public class DragDrop {
             }
         });
     }
+
     /**
      * Set up touch for all cards
-     * @parem none
+     *
      * @return none
+     * @parem none
      */
     private void enableTouch() {
         // TODO: Only let outside cards move. All cards can be moved right now.

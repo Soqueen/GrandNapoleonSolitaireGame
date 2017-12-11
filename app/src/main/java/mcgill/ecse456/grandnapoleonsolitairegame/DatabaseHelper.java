@@ -8,6 +8,14 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 
+/**
+ * GNS Android Game Application
+ * GameActivity.java
+ * Purpose: Contains the logic of the game page features.
+ *
+ * @author Sok Heng Lim
+ * @version 1.0 11/15/2017
+ */
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -61,10 +69,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // Delete a scoreRecord from database
     public void deleteScoreRecord() {
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("DELETE FROM "+TABLE_NAME);
+        db.execSQL("DELETE FROM " + TABLE_NAME);
     }
 
-    public Cursor getData(){
+    public Cursor getData() {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT * FROM " + TABLE_NAME + " WHERE 1";
         Cursor c = db.rawQuery(query, null);

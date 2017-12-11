@@ -11,12 +11,10 @@ import android.widget.Button;
  * Purpose: Display the instructions of the games.
  *
  * @author Sok Heng Lim
- * @author Andrew Lin
- * @version 1.0 03/12/2017
+ * @version 1.0 11/02/2017
  */
 
 public class Instruction extends AppCompatActivity {
-    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +22,8 @@ public class Instruction extends AppCompatActivity {
         setContentView(R.layout.instruction_page1);
         recursiveNavigate();
     }
-    public void recursiveNavigate (){
+
+    public void recursiveNavigate() {
         Button[] b = initButton();
         b[1].setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,7 +34,8 @@ public class Instruction extends AppCompatActivity {
             }
         });
     }
-    public void recursive1(){
+
+    public void recursive1() {
         Button[] b = initButton();
         b[1].setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +70,8 @@ public class Instruction extends AppCompatActivity {
             }
         });
     }
-    public void recursive2(){
+
+    public void recursive2() {
         Button[] b = initButton();
         b[1].setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,7 +123,7 @@ public class Instruction extends AppCompatActivity {
         });
     }
 
-    public void recursive3(){
+    public void recursive3() {
         Button[] b = initButton();
         b[1].setOnClickListener(new View.OnClickListener() {
             @Override
@@ -174,7 +175,7 @@ public class Instruction extends AppCompatActivity {
         });
     }
 
-    public void recursive4(){
+    public void recursive4() {
         Button[] b = initButton();
         b[1].setOnClickListener(new View.OnClickListener() {
             @Override
@@ -226,7 +227,8 @@ public class Instruction extends AppCompatActivity {
             }
         });
     }
-    public void recursive5(){
+
+    public void recursive5() {
         Button[] b = initButton();
         b[1].setOnClickListener(new View.OnClickListener() {
             @Override
@@ -271,7 +273,7 @@ public class Instruction extends AppCompatActivity {
         });
     }
 
-    public Button[] initButton(){
+    public Button[] initButton() {
         Button[] b = new Button[2];
         Button prev = (Button) findViewById(R.id.inst_prev);
         Button next = (Button) findViewById(R.id.inst_next);
@@ -279,13 +281,14 @@ public class Instruction extends AppCompatActivity {
         b[1] = next;
         return b;
     }
-    
-    public void closedInstruction (View view){
+
+    public void closedInstruction(View view) {
         MusicManager.clickPlayer.start();
         finish();
     }
+
     @Override
-    public  void onBackPressed(){
+    public void onBackPressed() {
 
     }
 

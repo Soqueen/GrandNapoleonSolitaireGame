@@ -24,13 +24,11 @@ import java.util.ArrayList;
  * @version 1.0 03/10/2017
  */
 public class MainPageActivity extends AppCompatActivity {
-    
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         MusicManager.GamePlayer(this);
         setContentView(R.layout.activity_main_page);
     }
@@ -79,13 +77,13 @@ public class MainPageActivity extends AppCompatActivity {
 
     public void scoreTableNavigate(View view) {
         MusicManager.clickPlayer.start();
-        DatabaseHelper dbHandler = new DatabaseHelper(this, null,null, 1);
+        DatabaseHelper dbHandler = new DatabaseHelper(this, null, null, 1);
         Cursor data = dbHandler.getData();
         // Populate database in the arraylist for each column
         ArrayList<String> listName = new ArrayList<>();
         ArrayList<String> listTime = new ArrayList<>();
         ArrayList<String> listStep = new ArrayList<>();
-        while(data.moveToNext()){
+        while (data.moveToNext()) {
             listName.add(data.getString(1)); // Name column
             listTime.add(data.getString(2)); // Time column
             listStep.add(data.getString(3)); // Counter step column
@@ -98,18 +96,19 @@ public class MainPageActivity extends AppCompatActivity {
     }
 
     /* Closed GNS app when the user click on closed button */
-    public void closedApp (View view){
+    public void closedApp(View view) {
         MusicManager.clickPlayer.start();
         finish();
     }
+
     @Override
-    protected void onResume(){
+    protected void onResume() {
         super.onResume();
         Log.d("MainPageActivity", "onResume was called");
     }
 
     @Override
-    protected void onStart(){
+    protected void onStart() {
         super.onStart();
         Log.d("MainPageActivity", "onStart was called");
     }
@@ -121,24 +120,25 @@ public class MainPageActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onPause(){
+    protected void onPause() {
         super.onPause();
         Log.d("MainPageActivity", "onPause was called");
     }
 
     @Override
-    protected void onStop(){
+    protected void onStop() {
         super.onStop();
         Log.d("MainPageActivity", "onStop was called");
     }
 
     @Override
-    protected void onDestroy(){
+    protected void onDestroy() {
         super.onDestroy();
         Log.d("MainPageActivity", "onDestroy was called");
     }
+
     @Override
-    public  void onBackPressed(){
+    public void onBackPressed() {
 
     }
 }
