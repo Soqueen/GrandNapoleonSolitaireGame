@@ -19,8 +19,8 @@ import java.util.ArrayList;
 
 /**
  * GNS Android Game Application
- * GameActivity.java
- * Purpose: Contains the logic of the game page features.
+ * ScoreTableActivity.java
+ * Purpose: Contains the logic of the scoretable page features. It displays the winner score.
  *
  * @author Sok Heng Lim
  * @version 1.0 11/15/2017
@@ -32,6 +32,7 @@ public class ScoreTableActivity extends AppCompatActivity{
     private Button clearButton;
     DatabaseHelper dbHandler;
     private boolean empty = false;
+    // Initialize the table layout on score table page
     public void init() {
         TableLayout stk = (TableLayout) findViewById(R.id.table_main);
         TableRow tbrow0 = new TableRow(this);
@@ -52,8 +53,8 @@ public class ScoreTableActivity extends AppCompatActivity{
         tv3.setTextColor(Color.WHITE);
         tbrow0.addView(tv3);
         stk.addView(tbrow0);
-        // TODO - Figure out how to the sharepreference and pass it to the display table
         if (!empty){
+            // Loop through the all the array list of name, timer and step counter to display in score table
             for (int i = 0; i < nameDB.size(); i++) { // take till the lenght of data save
                 TableRow tbrow = new TableRow(this);
                 TextView t1v = new TextView(this);
@@ -84,10 +85,12 @@ public class ScoreTableActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Stop the background music
         MusicManager.gamePlayer.stop();
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.score_page);
+        // Get the extra parameters passed from game page
         Bundle b = getIntent().getExtras();
         if(b != null) {
             this.nameDB = b.getStringArrayList("name");
@@ -100,8 +103,10 @@ public class ScoreTableActivity extends AppCompatActivity{
         }
         clearButton = (Button) findViewById(R.id.clear);
         dbHandler = new DatabaseHelper(this, null, null, 1);
+        // Call init to display the table of score
         init();
     }
+    // Called to close the score table when the closed button on the score table page is clicked
     public void closedScoreTable (View view){
         MusicManager.clickPlayer.start();
         finish();
@@ -110,9 +115,10 @@ public class ScoreTableActivity extends AppCompatActivity{
 
     }
 
+    // Called to delete all score recorded in the table when the Clear button is clicked
     public void deleteScoreRecord(View view){
         MusicManager.clickPlayer.start();
-        dbHandler.deleteScoreRecord();
+        dbHandler.deleteScoreRecord(); // Remove the score saved in database
         Intent intent = new Intent(this, ScoreTableActivity.class);
         startActivity(intent);
     }

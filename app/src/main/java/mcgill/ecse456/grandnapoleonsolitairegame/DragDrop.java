@@ -11,8 +11,8 @@ import android.widget.TextView;
 
 /**
  * GNS Android Game Application
- * GameActivity.java
- * Purpose: Contains the logic of the game page features.
+ * DragDrop.java
+ * Purpose: Contains the logic of the drag and drop features and undo feature.
  *
  * @author Andrew Lin
  * @version 1.0 10/15/2017

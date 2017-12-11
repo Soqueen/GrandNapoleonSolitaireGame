@@ -5,14 +5,14 @@ import android.widget.Button;
 
 /**
  * GNS Android Game Application
- * GameActivity.java
- * Purpose: Contains the logic of the game page features.
+ * Hint.java
+ * Purpose: Contains the logic of the hint page features.
  *
  * @author Andrew Lin
  * @version 1.0 11/03/2017
  */
 
-// There is no logic for hint feature yet. This is just a dummy pagae after hint button detected on game page.
+// There is no logic for hint feature yet. This is just a dummy page after hint button detected on game page.
 // TODO - Implement the logic of hint.
 public class Hint {
     private Button b;

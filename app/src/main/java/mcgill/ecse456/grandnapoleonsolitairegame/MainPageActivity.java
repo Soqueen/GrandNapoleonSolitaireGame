@@ -23,6 +23,7 @@ import java.util.ArrayList;
  * @author Andrew Lin
  * @version 1.0 03/10/2017
  */
+
 public class MainPageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,48 +34,35 @@ public class MainPageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_page);
     }
 
-    /**
-     * Navigate to difficulty page when the user click on start button
-     *
-     * @return None
-     * @params view
-     */
+    // Display difficultypage when start button is clicked
     public void difficultyPageNavigate(View view) {
         MusicManager.clickPlayer.start();
         Intent intent = new Intent(this, DisplayDifficultyPageActivity.class);
         startActivity(intent);
     }
 
-    /**
-     * Navigate to Instruction page when the user click on Instruction button
-     *
-     * @return None
-     * @params view
-     */
+    // Display instruction page when instruction button is clicked
     public void instructionNavigate(View view) {
         MusicManager.clickPlayer.start();
         Intent intent = new Intent(this, Instruction.class);
         startActivity(intent);
     }
 
-    /**
-     * Navigate to about page when the user click on about button
-     *
-     * @return None
-     * @params view
-     */
+    // Display about page when the user click on about button
     public void displayAbout(View view) {
         MusicManager.clickPlayer.start();
         Intent intent = new Intent(this, AboutPageActivity.class);
         startActivity(intent);
     }
 
+    // Display setting page when setting button is clicked on main page
     public void settingNavigate(View view) {
         MusicManager.clickPlayer.start();
         Intent intent = new Intent(this, SettingActivity.class);
         startActivity(intent);
     }
 
+    // Display scoretable when scoretable button is clicked on main page
     public void scoreTableNavigate(View view) {
         MusicManager.clickPlayer.start();
         DatabaseHelper dbHandler = new DatabaseHelper(this, null, null, 1);

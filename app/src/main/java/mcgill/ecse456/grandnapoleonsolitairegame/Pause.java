@@ -11,8 +11,8 @@ import android.os.SystemClock;
 
 /**
  * GNS Android Game Application
- * GameActivity.java
- * Purpose: Contains the logic of the game page features.
+ * Pause.java
+ * Purpose: Contains the logic of the pause page features.
  *
  * @author Sok Heng Lim
  * @version 1.0 11/15/2017
@@ -41,32 +41,35 @@ public class Pause extends AppCompatActivity {
 
             @Override
             public void onClick(View arg0) {
-
-
-                // custom dialog
                 final Dialog dialog = new Dialog(context);
+                // Stopping the background music of game page
                 MusicManager.gamePlayer.stop();
 
                 dialog.setContentView(R.layout.pause_dialog);
+                // Set the touch false when it clicked outside the pause dialog - avoid pause dialog closed if closed button isn't clicked
                 dialog.setCanceledOnTouchOutside(false);
+                // Initializing all the buttons of pause dialog
                 Button resumeButton = (Button) dialog.findViewById(R.id.resume_button);
                 Button quitButton = (Button) dialog.findViewById(R.id.quit_button);
                 Button settingButton = (Button) dialog.findViewById(R.id.setting_button);
                 Button instructionButton = (Button) dialog.findViewById(R.id.instruction_button);
 
-                // Pause timer
+                // Saving the current time before pause dialog appear
                 timeDiff = timer.getBase() - SystemClock.elapsedRealtime();
+                // Stopping the timer
                 timer.stop();
-
+                // Displaying the pause dialog
                 dialog.show();
 
-                // Check if the resume button is clicked
+                // Checking if the resume button is clicked
                 resumeButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //resume timer
+                        //Resume the timer
                         timer.setBase(SystemClock.elapsedRealtime() + timeDiff);
                         timer.start();
+                        // Checking if music is not null
+                        // Starting the music before closed pause dialog
                         if (MusicManager.gamePlayer != null) {
                             MusicManager.gamePlayer.release();
                             MusicManager.gamePlayer = null;
@@ -74,6 +77,7 @@ public class Pause extends AppCompatActivity {
                         MusicManager.GamePlayer(context);
                         MusicManager.clickPlayer.start();
                         MusicManager.gamePlayer.start();
+                        // Close the pause dialog
                         dialog.dismiss();
                     }
                 });
@@ -83,7 +87,7 @@ public class Pause extends AppCompatActivity {
                 quitButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        // doesn't seem to save state here
+                        // Forcing the game to quit and go back to difficult page
                         MusicManager.clickPlayer.start();
                         finish();
                         android.os.Process.killProcess(android.os.Process.myPid());
@@ -96,6 +100,7 @@ public class Pause extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         MusicManager.clickPlayer.start();
+                        // Calling setting page activity
                         Intent intent = new Intent(context, SettingActivity.class);
                         context.startActivity(intent);
                     }
@@ -106,6 +111,7 @@ public class Pause extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         MusicManager.clickPlayer.start();
+                        // Calling instruction page activity
                         Intent intent = new Intent(context, Instruction.class);
                         context.startActivity(intent);
                     }
@@ -116,7 +122,7 @@ public class Pause extends AppCompatActivity {
     }
 
     @Override
-    public  void onBackPressed(){
+    public void onBackPressed() {
 
     }
 }

@@ -2,8 +2,8 @@ package mcgill.ecse456.grandnapoleonsolitairegame;
 
 /**
  * GNS Android Game Application
- * GameActivity.java
- * Purpose: Contains the logic of the game page features.
+ * ScoreTable.java
+ * Purpose: Feature of scoretable includes id, name, step counter and timer.
  *
  * @author Sok Heng Lim
  * @version 1.0 11/15/2017
@@ -14,17 +14,17 @@ public class ScoreTable {
     private String _name;
     private String _time;
     private int _step;
-
+    // Set default constructor - cannot remove since android need it
     public ScoreTable(){
 
     }
 
+    // Main constructor
     public ScoreTable(String name, String time, int step){
         this._name = name;
         this._time = time;
         this._step = step;
     }
-
     public void set_id(int id){
         this._id = id;
     }

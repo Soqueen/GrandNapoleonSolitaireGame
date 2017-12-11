@@ -8,8 +8,8 @@ import android.view.WindowManager;
 
 /**
  * GNS Android Game Application
- * GameActivity.java
- * Purpose: Contains the logic of the game page features.
+ * AboutPageActivity.java
+ * Purpose: Contains the logic of the about page features.
  *
  * @author Sok Heng Lim
  * @version 1.0 11/03/2017

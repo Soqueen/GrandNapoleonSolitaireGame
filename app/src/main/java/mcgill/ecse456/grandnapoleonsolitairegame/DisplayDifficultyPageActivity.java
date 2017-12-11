@@ -35,13 +35,7 @@ public class DisplayDifficultyPageActivity extends AppCompatActivity {
      * @params view
      */
     public void randomGameNavigate(View view) {
-        if (MusicManager.gamePlayer != null) {
-            MusicManager.gamePlayer.release();
-            MusicManager.gamePlayer = null;
-        }
-        MusicManager.GamePlayer(this);
-        MusicManager.clickPlayer.start();
-        MusicManager.gamePlayer.start();
+        setMusicOnGamePage();
         Intent intent = new Intent(this, GameActivity.class);
         intent.putExtra("id", 1);
         startActivity(intent);
@@ -54,6 +48,14 @@ public class DisplayDifficultyPageActivity extends AppCompatActivity {
      * @params view
      */
     public void predeterminedGameNavigate(View view) {
+        setMusicOnGamePage();
+        Intent intent = new Intent(this, GameActivity.class);
+        intent.putExtra("id", 2);
+        startActivity(intent);
+    }
+
+    // Set background music on game page when play selected game type
+    public void setMusicOnGamePage(){
         if (MusicManager.gamePlayer != null) {
             MusicManager.gamePlayer.release();
             MusicManager.gamePlayer = null;
@@ -61,11 +63,9 @@ public class DisplayDifficultyPageActivity extends AppCompatActivity {
         MusicManager.GamePlayer(this);
         MusicManager.clickPlayer.start();
         MusicManager.gamePlayer.start();
-        Intent intent = new Intent(this, GameActivity.class);
-        intent.putExtra("id", 2);
-        startActivity(intent);
     }
 
+    // Called when the closed button on difficult page is clicked
     public void closedDifficulty(View view) {
         finish();
     }
