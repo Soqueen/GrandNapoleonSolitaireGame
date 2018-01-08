@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/pause_page"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="mcgill.ecse456.grandnapoleonsolitairegame.MainPageActivity">
+
+
+    <Button
+        android:id="@+id/resume_button"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:background="@color/blue"
+        android:text="Resume"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/instruction_button"
+        android:layout_width="110dp"
+        android:background="@color/green_light"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="43dp"
+        android:text="Instructions"
+        android:layout_below="@+id/resume_button"
+        android:layout_alignLeft="@+id/resume_button"
+        android:layout_alignStart="@+id/resume_button" />
+
+    <Button
+        android:id="@+id/setting_button"
+        android:background="@color/Grey"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:text="Setting"
+        android:layout_below="@+id/instruction_button"
+        android:layout_alignLeft="@+id/instruction_button"
+        android:layout_alignStart="@+id/instruction_button"
+        android:layout_marginTop="43dp" />
+
+    <Button
+        android:id="@+id/quit_button"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:background="@color/red"
+        android:text="Quit"
+        android:layout_below="@+id/setting_button"
+        android:layout_alignLeft="@+id/setting_button"
+        android:layout_alignStart="@+id/setting_button"
+        android:layout_marginTop="41dp" />
+</RelativeLayout>

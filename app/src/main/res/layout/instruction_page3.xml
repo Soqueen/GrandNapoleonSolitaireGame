@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/instruction3">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:weightSum="1"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/linearLayout">
+
+        <ImageView
+            android:layout_width="555dp"
+            android:layout_height="421dp"
+            android:layout_above="@+id/inst_prev"
+            android:layout_centerHorizontal="true"
+            app:srcCompat="@drawable/step3" />
+    </LinearLayout>
+    <Button
+        android:id="@+id/inst_closed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Close"
+        android:onClick="closedInstruction"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/inst_prev"
+        android:layout_toStartOf="@+id/inst_prev"
+        android:layout_marginRight="69dp"
+        android:layout_marginEnd="69dp" />
+    <Button
+        android:id="@+id/inst_prev"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Previous"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/inst_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Next"
+        android:layout_marginLeft="71dp"
+        android:layout_marginStart="71dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/inst_prev"
+        android:layout_toEndOf="@+id/inst_prev" />
+</RelativeLayout>
